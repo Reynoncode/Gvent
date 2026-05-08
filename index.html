@@ -397,6 +397,224 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 .badge-epic      { color:var(--rarity-epic);      border:1px solid var(--rarity-epic); }
 .badge-legendary { color:var(--rarity-legendary); border:1px solid var(--rarity-legendary); }
 
+/* ════════════════════════════════
+   COLLECTION — STACKED COUNTS & SELL
+════════════════════════════════ */
+.col-item { position:relative; cursor:pointer; transition:transform 0.15s; }
+.col-item:active { transform:scale(0.96); }
+.col-stack-badge {
+  position:absolute; top:4px; right:4px;
+  font-family:'Orbitron',monospace; font-size:8px; font-weight:700;
+  background:rgba(0,0,0,0.75); color:var(--green);
+  padding:1px 5px; border-radius:3px; border:1px solid var(--green);
+  line-height:1.4;
+}
+.col-sell-btn {
+  width:100%; margin-top:2px;
+  font-family:'Orbitron',monospace; font-size:7px; letter-spacing:0.05em;
+  background:transparent; border:1px solid var(--border2);
+  color:var(--text-dim); padding:3px 0; cursor:pointer;
+  transition:all 0.15s; border-radius:2px;
+}
+.col-sell-btn:hover { border-color:var(--enemy); color:var(--enemy); background:rgba(255,58,74,0.08); }
+
+/* ════════════════════════════════
+   COLLECTION TABS
+════════════════════════════════ */
+.col-tabs {
+  display:flex; width:100%; border-bottom:1px solid var(--border); flex-shrink:0;
+}
+.col-tab {
+  flex:1; font-family:'Orbitron',monospace; font-size:9px; letter-spacing:0.1em;
+  padding:10px 4px; text-align:center; cursor:pointer;
+  background:none; border:none; color:var(--text-dim);
+  border-bottom:2px solid transparent; transition:all 0.2s;
+}
+.col-tab.active { color:var(--green); border-bottom-color:var(--green); }
+
+/* ════════════════════════════════
+   PACK SHOP
+════════════════════════════════ */
+#shopPanel {
+  flex:1; overflow-y:auto; padding:16px 14px;
+  display:flex; flex-direction:column; gap:14px; width:100%;
+}
+.shop-section-title {
+  font-family:'Orbitron',monospace; font-size:10px; color:var(--text-dim);
+  letter-spacing:0.15em; margin-bottom:2px;
+}
+
+/* Pack cards */
+.pack-card {
+  border-radius:8px; border:1.5px solid var(--border2);
+  background:linear-gradient(145deg, var(--bg2), var(--bg3));
+  padding:16px 14px; display:flex; align-items:center; gap:14px;
+  cursor:pointer; transition:all 0.2s; position:relative; overflow:hidden;
+}
+.pack-card::before {
+  content:''; position:absolute; inset:0; opacity:0; transition:opacity 0.2s;
+}
+.pack-card:active { transform:scale(0.98); }
+
+.pack-card.pack-common { border-color:var(--rarity-common); }
+.pack-card.pack-common::before { background:radial-gradient(ellipse at 0% 50%, rgba(122,154,128,0.12), transparent 60%); }
+.pack-card.pack-common:hover::before { opacity:1; }
+
+.pack-card.pack-rare { border-color:var(--rarity-rare); box-shadow:0 0 12px rgba(74,138,255,0.15); }
+.pack-card.pack-rare::before { background:radial-gradient(ellipse at 0% 50%, rgba(74,138,255,0.15), transparent 60%); }
+.pack-card.pack-rare:hover::before { opacity:1; }
+
+.pack-card.pack-epic { border-color:var(--rarity-epic); box-shadow:0 0 16px rgba(170,68,255,0.2); }
+.pack-card.pack-epic::before { background:radial-gradient(ellipse at 0% 50%, rgba(170,68,255,0.18), transparent 60%); }
+.pack-card.pack-epic:hover::before { opacity:1; }
+
+.pack-icon {
+  width:56px; height:72px; flex-shrink:0; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:28px; position:relative; overflow:hidden;
+}
+.pack-icon.pi-common { background:linear-gradient(135deg,#1a2e1e,#2a4a30); border:1.5px solid var(--rarity-common); }
+.pack-icon.pi-rare   { background:linear-gradient(135deg,#0d1a3a,#1a2e5a); border:1.5px solid var(--rarity-rare); }
+.pack-icon.pi-epic   { background:linear-gradient(135deg,#1a0a2e,#2e1050); border:1.5px solid var(--rarity-epic); }
+.pack-icon-shine {
+  position:absolute; top:-20px; left:-20px; width:30px; height:120px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+  transform:rotate(30deg); animation:packShine 3s ease-in-out infinite;
+}
+.pack-card.pack-rare  .pack-icon-shine { animation-delay:1s; }
+.pack-card.pack-epic  .pack-icon-shine { animation-delay:0.5s; }
+@keyframes packShine { 0%,100%{transform:rotate(30deg) translateX(0)} 50%{transform:rotate(30deg) translateX(60px)} }
+
+.pack-info { flex:1; }
+.pack-name { font-family:'Orbitron',monospace; font-size:13px; font-weight:700; margin-bottom:4px; }
+.pack-name.cn { color:var(--rarity-common); }
+.pack-name.rn { color:var(--rarity-rare); }
+.pack-name.en { color:var(--rarity-epic); }
+
+.pack-odds { font-size:10px; color:var(--text-dim); line-height:1.8; }
+.pack-odds span { color:var(--text-mid); }
+.pack-price {
+  font-family:'Orbitron',monospace; font-size:11px; font-weight:700;
+  color:var(--green); margin-top:6px;
+}
+
+.pack-buy-btn {
+  font-family:'Orbitron',monospace; font-size:9px; font-weight:700;
+  letter-spacing:0.1em; padding:8px 12px; flex-shrink:0;
+  background:transparent; border:1.5px solid; cursor:pointer; transition:all 0.2s;
+  border-radius:4px;
+}
+.pack-card.pack-common .pack-buy-btn { color:var(--rarity-common); border-color:var(--rarity-common); }
+.pack-card.pack-rare   .pack-buy-btn { color:var(--rarity-rare);   border-color:var(--rarity-rare); }
+.pack-card.pack-epic   .pack-buy-btn { color:var(--rarity-epic);   border-color:var(--rarity-epic); }
+.pack-card.pack-common .pack-buy-btn:hover { background:rgba(122,154,128,0.15); }
+.pack-card.pack-rare   .pack-buy-btn:hover { background:rgba(74,138,255,0.15); }
+.pack-card.pack-epic   .pack-buy-btn:hover { background:rgba(170,68,255,0.15); }
+
+/* Stocked packs section */
+.stocked-packs {
+  display:flex; flex-direction:column; gap:8px;
+}
+.stocked-pack-row {
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--bg2); border:1px solid var(--border2); border-radius:6px;
+  padding:10px 14px;
+}
+.stocked-pack-info { display:flex; align-items:center; gap:10px; }
+.stocked-pack-dot { width:10px; height:10px; border-radius:50%; }
+.stocked-pack-dot.common { background:var(--rarity-common); }
+.stocked-pack-dot.rare   { background:var(--rarity-rare); box-shadow:0 0 6px var(--rarity-rare); }
+.stocked-pack-dot.epic   { background:var(--rarity-epic); box-shadow:0 0 8px var(--rarity-epic); }
+.stocked-pack-name { font-family:'Orbitron',monospace; font-size:10px; color:var(--text); }
+.stocked-pack-count { font-family:'Orbitron',monospace; font-size:10px; color:var(--text-dim); }
+.stocked-open-btn {
+  font-family:'Orbitron',monospace; font-size:9px; font-weight:700;
+  letter-spacing:0.08em; padding:6px 12px;
+  background:transparent; cursor:pointer; transition:all 0.2s;
+  border-radius:3px;
+}
+.stocked-open-btn.common { color:var(--rarity-common); border:1px solid var(--rarity-common); }
+.stocked-open-btn.rare   { color:var(--rarity-rare);   border:1px solid var(--rarity-rare); }
+.stocked-open-btn.epic   { color:var(--rarity-epic);   border:1px solid var(--rarity-epic); }
+.stocked-open-btn:disabled { opacity:0.3; cursor:not-allowed; }
+
+/* ════════════════════════════════
+   PACK OPENING OVERLAY
+════════════════════════════════ */
+#packOpenOverlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.97); z-index:700;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.4s;
+}
+#packOpenOverlay.show { opacity:1; pointer-events:all; }
+
+.pack-open-title {
+  font-family:'Orbitron',monospace; font-size:11px; letter-spacing:0.3em;
+  color:var(--text-dim); margin-bottom:24px; text-align:center;
+}
+
+/* Opening animation — pack burst */
+.pack-burst {
+  width:100px; height:130px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:44px; position:relative; margin-bottom:32px;
+  animation:packBounce 0.5s ease-in-out infinite alternate;
+}
+.pack-burst.common { background:linear-gradient(135deg,#1a2e1e,#2a4a30); border:2px solid var(--rarity-common); box-shadow:0 0 30px rgba(122,154,128,0.3); }
+.pack-burst.rare   { background:linear-gradient(135deg,#0d1a3a,#1a2e5a); border:2px solid var(--rarity-rare);   box-shadow:0 0 40px rgba(74,138,255,0.4); }
+.pack-burst.epic   { background:linear-gradient(135deg,#1a0a2e,#2e1050); border:2px solid var(--rarity-epic);   box-shadow:0 0 50px rgba(170,68,255,0.5); }
+@keyframes packBounce { from{transform:translateY(0) scale(1)} to{transform:translateY(-8px) scale(1.04)} }
+
+.pack-tap-hint {
+  font-family:'Orbitron',monospace; font-size:10px; color:var(--text-dim);
+  letter-spacing:0.2em; animation:blinkHint 1.2s ease-in-out infinite;
+}
+@keyframes blinkHint { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+/* Card reveal sequence */
+.reveal-area {
+  display:flex; flex-direction:column; align-items:center; width:100%; padding:0 20px;
+}
+.reveal-cards-row {
+  display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+  margin-bottom:20px; max-width:360px;
+}
+.reveal-card {
+  width:62px; height:86px; border-radius:6px; border:2px solid var(--border2);
+  background:#060f08; position:relative; overflow:hidden;
+  opacity:0; transform:translateY(30px) scale(0.8);
+  transition:opacity 0.4s, transform 0.4s;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.reveal-card.show { opacity:1; transform:translateY(0) scale(1); }
+.reveal-card.rarity-common    { border-color:var(--rarity-common); }
+.reveal-card.rarity-rare      { border-color:var(--rarity-rare); box-shadow:0 0 12px rgba(74,138,255,0.4); }
+.reveal-card.rarity-epic      { border-color:var(--rarity-epic); box-shadow:0 0 18px rgba(170,68,255,0.5); }
+.reveal-card.rarity-legendary { border-color:var(--rarity-legendary); box-shadow:0 0 24px rgba(255,170,0,0.6); animation:legendGlow 1.5s ease-in-out infinite; }
+.reveal-card img { width:100%; height:72%; object-fit:contain; }
+.reveal-card-name { font-family:'Orbitron',monospace; font-size:5px; color:var(--text-mid); text-align:center; padding:0 2px; margin-top:2px; }
+.reveal-card-rarity { font-family:'Orbitron',monospace; font-size:5px; margin-top:1px; }
+.reveal-card-rarity.rarity-common    { color:var(--rarity-common); }
+.reveal-card-rarity.rarity-rare      { color:var(--rarity-rare); }
+.reveal-card-rarity.rarity-epic      { color:var(--rarity-epic); }
+.reveal-card-rarity.rarity-legendary { color:var(--rarity-legendary); }
+
+/* Particle burst effect */
+.particle { position:absolute; width:6px; height:6px; border-radius:50%; pointer-events:none; }
+@keyframes particleFly {
+  0%  { transform:translate(0,0) scale(1); opacity:1; }
+  100%{ transform:translate(var(--dx),var(--dy)) scale(0); opacity:0; }
+}
+
+.btn-collect {
+  font-family:'Orbitron',monospace; font-size:12px; font-weight:700;
+  letter-spacing:0.15em; padding:14px 32px;
+  background:transparent; color:var(--green); border:1.5px solid var(--green);
+  cursor:pointer; transition:all 0.2s; margin-top:8px;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.btn-collect:hover { background:var(--green-dim); }
+
 /* scrollbar */
 ::-webkit-scrollbar { width:3px; height:3px; }
 ::-webkit-scrollbar-track { background:var(--bg2); }
@@ -650,14 +868,92 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
   </div>
 </div>
 
-<!-- ═══ COLLECTION ═══ -->
+<!-- ═══ COLLECTION + SHOP ═══ -->
 <div id="colScreen" class="screen hidden">
   <div class="col-head">
     <button class="col-back" onclick="showMenu()">← GERİ</button>
-    <div class="col-title">KOLLEKSİYA</div>
-    <div class="col-count" id="colCount">20 kart</div>
+    <div class="col-title" id="colTitle">KOLLEKSİYA</div>
+    <div class="col-count" id="colCount"></div>
   </div>
-  <div class="col-grid" id="colGrid"></div>
+  <div class="col-tabs">
+    <button class="col-tab active" id="tabCol" onclick="switchTab('col')">🃏 KOLLEKSİYA</button>
+    <button class="col-tab" id="tabShop" onclick="switchTab('shop')">📦 PAKETLƏR</button>
+  </div>
+
+  <!-- Collection panel -->
+  <div id="colPanel" class="col-grid"></div>
+
+  <!-- Shop panel -->
+  <div id="shopPanel" style="display:none">
+    <div class="shop-section-title">PAKET MAĞAZASI</div>
+
+    <div class="pack-card pack-common" onclick="buyPack('common')">
+      <div class="pack-icon pi-common">
+        🟢<div class="pack-icon-shine"></div>
+      </div>
+      <div class="pack-info">
+        <div class="pack-name cn">ADİ PAKET</div>
+        <div class="pack-odds">
+          ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span>
+        </div>
+        <div class="pack-price">🆓 PULSUZ</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common')">AL</button>
+    </div>
+
+    <div class="pack-card pack-rare" onclick="buyPack('rare')">
+      <div class="pack-icon pi-rare">
+        🔵<div class="pack-icon-shine"></div>
+      </div>
+      <div class="pack-info">
+        <div class="pack-name rn">NADİR PAKET</div>
+        <div class="pack-odds">
+          ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span>
+        </div>
+        <div class="pack-price">🆓 PULSUZ</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare')">AL</button>
+    </div>
+
+    <div class="pack-card pack-epic" onclick="buyPack('epic')">
+      <div class="pack-icon pi-epic">
+        🟣<div class="pack-icon-shine"></div>
+      </div>
+      <div class="pack-info">
+        <div class="pack-name en">EPİK PAKET</div>
+        <div class="pack-odds">
+          ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span>
+        </div>
+        <div class="pack-price">🆓 PULSUZ</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic')">AL</button>
+    </div>
+
+    <div class="shop-section-title" style="margin-top:4px">STOKDAKI PAKETLƏR</div>
+    <div class="stocked-packs" id="stockedPacks">
+      <div style="font-size:11px;color:var(--text-dim);padding:8px 0">Heç bir paket yoxdur</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PACK OPENING OVERLAY ═══ -->
+<div id="packOpenOverlay">
+  <!-- Step 1: tap to open -->
+  <div id="packOpenStep1" style="display:flex;flex-direction:column;align-items:center">
+    <div class="pack-open-title" id="packOpenLabel">PAKETİ AÇ</div>
+    <div class="pack-burst" id="packBurst" onclick="startReveal()">📦</div>
+    <div class="pack-tap-hint">AÇMAQ ÜÇÜN TAP ET</div>
+  </div>
+  <!-- Step 2: reveal cards -->
+  <div id="packOpenStep2" style="display:none;flex-direction:column;align-items:center;width:100%">
+    <div class="pack-open-title">5 YENİ KART</div>
+    <div class="reveal-area">
+      <div class="reveal-cards-row" id="revealCardsRow"></div>
+      <button class="btn-collect" id="btnCollect" onclick="collectCards()" style="display:none">
+        ✓ YIĞ
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ RESULT OVERLAY ═══ -->
@@ -753,11 +1049,20 @@ function initGS() {
 }
 
 function dealFullHands() {
-  // Hər oyunçuya 12 random kart ver (bütün oyun üçün)
-  const shuffled1 = shuffle([...CARDS]);
-  const shuffled2 = shuffle([...CARDS]);
-  GS.pHand  = shuffled1.slice(0, 12).map(newCard);
-  GS.aiHand = shuffled2.slice(0, 12).map(newCard);
+  // Oyunçunun kolleksiyasından unikal kartlar götür (hər ID-dən 1 dənə)
+  const ownedIds = Object.keys(playerInventory).map(Number);
+  let pool;
+  if (ownedIds.length >= 5) {
+    // Kolleksiyadan unikal kartlar götür
+    const ownedCards = CARDS.filter(c => ownedIds.includes(c.id));
+    pool = shuffle([...ownedCards]);
+  } else {
+    // Kolleksiya yoxdursa bütün CARDS-dan götür
+    pool = shuffle([...CARDS]);
+  }
+  GS.pHand  = pool.slice(0, Math.min(12, pool.length)).map(newCard);
+  // AI hər zaman bütün CARDS-dan götürür
+  GS.aiHand = shuffle([...CARDS]).slice(0, 12).map(newCard);
 }
 
 function rowTotal(rows, type) { return rows[type].reduce((s,c)=>s+c.cur,0); }
@@ -1287,6 +1592,7 @@ function showMenu() {
     document.getElementById(id).classList.toggle('hidden', id !== 'menuScreen');
   });
   document.getElementById('resultOverlay').classList.remove('show');
+  document.getElementById('packOpenOverlay').classList.remove('show');
 }
 
 function exitGame() {
@@ -1306,17 +1612,40 @@ function startGame() {
 function showCollection() {
   document.getElementById('menuScreen').classList.add('hidden');
   document.getElementById('colScreen').classList.remove('hidden');
+  switchTab('col');
+}
 
-  const grid = document.getElementById('colGrid');
+// ── TAB SWİTCH ──
+function switchTab(tab) {
+  document.getElementById('tabCol').classList.toggle('active', tab === 'col');
+  document.getElementById('tabShop').classList.toggle('active', tab === 'shop');
+  document.getElementById('colPanel').style.display  = tab === 'col'  ? '' : 'none';
+  document.getElementById('shopPanel').style.display = tab === 'shop' ? 'flex' : 'none';
+  document.getElementById('colTitle').textContent = tab === 'col' ? 'KOLLEKSİYA' : 'PAKET MAĞAZASI';
+
+  if (tab === 'col')  renderCollectionPanel();
+  if (tab === 'shop') renderStockedPacks();
+}
+
+// ════════════════════════════════════════
+//  KOLLEKSİYA PANELİ
+// ════════════════════════════════════════
+function renderCollectionPanel() {
+  const grid = document.getElementById('colPanel');
   grid.innerHTML = '';
 
   const RARITY_ORDER = { legendary:0, epic:1, rare:2, common:3 };
   const sorted = [...CARDS].sort((a,b) => RARITY_ORDER[a.rarity] - RARITY_ORDER[b.rarity]);
+  let totalOwned = 0;
 
   sorted.forEach(card => {
+    const count = playerInventory[card.id] || 0;
+    totalOwned += count;
     const div = document.createElement('div');
-    div.className = `col-item rarity-${card.rarity}`;
+    div.className = `col-item rarity-${card.rarity}` + (count === 0 ? ' locked' : '');
+    div.style.opacity = count === 0 ? '0.35' : '1';
     div.innerHTML = `
+      ${count > 0 ? `<div class="col-stack-badge">x${count}</div>` : ''}
       <div class="col-img">
         <img src="cards/${card.id}.png" alt="${card.name}" style="width:100%;height:100%;object-fit:cover;border-radius:3px"
           onerror="this.parentNode.innerHTML='<span style=\\'font-size:28px\\'>👾</span>'">
@@ -1324,10 +1653,233 @@ function showCollection() {
       <div class="col-name">${card.name}</div>
       <div class="col-pow">${card.power}</div>
       <div class="col-rarity-badge badge-${card.rarity}">${RARITY_AZ[card.rarity]}</div>
+      ${count > 1 ? `<button class="col-sell-btn" onclick="sellCard(${card.id},event)">SAT (1)</button>` : ''}
     `;
     grid.appendChild(div);
   });
+
+  const uniq = Object.keys(playerInventory).filter(id => playerInventory[id] > 0).length;
+  document.getElementById('colCount').textContent = `${uniq}/${CARDS.length} unikal`;
 }
+
+function sellCard(cardId, e) {
+  e.stopPropagation();
+  if (!playerInventory[cardId] || playerInventory[cardId] === 0) return;
+  playerInventory[cardId]--;
+  if (playerInventory[cardId] === 0) delete playerInventory[cardId];
+  saveInventory();
+  renderCollectionPanel();
+  showToast('Kart satıldı');
+}
+
+// ════════════════════════════════════════
+//  PAKET SİSTEMİ
+// ════════════════════════════════════════
+
+// Rarity weights
+const PACK_ODDS = {
+  common: { common:70, rare:25, epic:5,  legendary:0  },
+  rare:   { common:50, rare:30, epic:18, legendary:2  },
+  epic:   { common:30, rare:30, epic:30, legendary:10 },
+};
+
+function rollRarity(packType) {
+  const odds = PACK_ODDS[packType];
+  const r = Math.random() * 100;
+  if (r < odds.legendary) return 'legendary';
+  if (r < odds.legendary + odds.epic) return 'epic';
+  if (r < odds.legendary + odds.epic + odds.rare) return 'rare';
+  return 'common';
+}
+
+function generatePack(packType) {
+  // 5 kart: önce common-ları, sona dəyərlini sırala
+  const rarityOrder = { common:0, rare:1, epic:2, legendary:3 };
+  const results = [];
+  for (let i = 0; i < 5; i++) {
+    const rarity = rollRarity(packType);
+    const pool = CARDS.filter(c => c.rarity === rarity);
+    const card = pool[Math.floor(Math.random() * pool.length)];
+    results.push(card);
+  }
+  results.sort((a,b) => rarityOrder[a.rarity] - rarityOrder[b.rarity]);
+  return results;
+}
+
+function buyPack(type) {
+  packetStock[type] = (packetStock[type] || 0) + 1;
+  savePackets();
+  renderStockedPacks();
+  showToast(`${type === 'common' ? 'Adi' : type === 'rare' ? 'Nadir' : 'Epik'} paket alındı!`);
+}
+
+function renderStockedPacks() {
+  const el = document.getElementById('stockedPacks');
+  const types = [
+    { key:'common', label:'ADİ PAKET',   cls:'common' },
+    { key:'rare',   label:'NADİR PAKET', cls:'rare'   },
+    { key:'epic',   label:'EPİK PAKET',  cls:'epic'   },
+  ];
+  const rows = types.filter(t => (packetStock[t.key] || 0) > 0);
+  if (rows.length === 0) {
+    el.innerHTML = '<div style="font-size:11px;color:var(--text-dim);padding:8px 0">Heç bir paket yoxdur</div>';
+    return;
+  }
+  el.innerHTML = rows.map(t => `
+    <div class="stocked-pack-row">
+      <div class="stocked-pack-info">
+        <div class="stocked-pack-dot ${t.cls}"></div>
+        <div class="stocked-pack-name">${t.label}</div>
+        <div class="stocked-pack-count">x${packetStock[t.key]}</div>
+      </div>
+      <button class="stocked-open-btn ${t.cls}" onclick="openPack('${t.key}')">AÇ</button>
+    </div>
+  `).join('');
+}
+
+// ════════════════════════════════════════
+//  PAKET AÇMA ANİMASİYASI
+// ════════════════════════════════════════
+let pendingRevealCards = [];
+let currentOpenPackType = '';
+
+function openPack(type) {
+  if (!packetStock[type] || packetStock[type] <= 0) return;
+  currentOpenPackType = type;
+  pendingRevealCards = generatePack(type);
+
+  // Overlay hazırla
+  const overlay = document.getElementById('packOpenOverlay');
+  const step1   = document.getElementById('packOpenStep1');
+  const step2   = document.getElementById('packOpenStep2');
+  const burst   = document.getElementById('packBurst');
+  const label   = document.getElementById('packOpenLabel');
+
+  step1.style.display = 'flex';
+  step2.style.display = 'none';
+  document.getElementById('revealCardsRow').innerHTML = '';
+  document.getElementById('btnCollect').style.display = 'none';
+
+  const names = { common:'ADİ PAKET', rare:'NADİR PAKET', epic:'EPİK PAKET' };
+  const emojis = { common:'🟢', rare:'🔵', epic:'🟣' };
+  label.textContent = names[type];
+  burst.className = `pack-burst ${type}`;
+  burst.textContent = emojis[type];
+
+  overlay.classList.add('show');
+}
+
+async function startReveal() {
+  const step1 = document.getElementById('packOpenStep1');
+  const step2 = document.getElementById('packOpenStep2');
+  const row   = document.getElementById('revealCardsRow');
+
+  // Burst animasiyası
+  const burst = document.getElementById('packBurst');
+  burst.style.animation = 'none';
+  burst.style.transform = 'scale(1.3)';
+  burst.style.opacity   = '0';
+
+  await delay(300);
+  step1.style.display = 'none';
+  step2.style.display = 'flex';
+
+  // Kartları sırayla göstər (commondan legendarya)
+  for (let i = 0; i < pendingRevealCards.length; i++) {
+    const card = pendingRevealCards[i];
+    const div  = document.createElement('div');
+    div.className = `reveal-card rarity-${card.rarity}`;
+    div.innerHTML = `
+      <img src="cards/${card.id}.png" alt="${card.name}"
+        onerror="this.src='';this.parentNode.style.fontSize='22px';this.parentNode.innerHTML='👾<div class=\\'reveal-card-name\\'>${card.name}</div>'">
+      <div class="reveal-card-name">${card.name}</div>
+      <div class="reveal-card-rarity rarity-${card.rarity}">${RARITY_AZ[card.rarity]}</div>
+    `;
+    row.appendChild(div);
+
+    // Gecikmə: daha dəyərli kart → daha uzun gözlə
+    const delays = { common:320, rare:480, epic:680, legendary:900 };
+    await delay(delays[card.rarity] || 400);
+    div.classList.add('show');
+
+    // Rare+ üçün parıltı effekti
+    if (card.rarity === 'legendary' || card.rarity === 'epic') {
+      spawnParticles(div, card.rarity);
+    }
+    if (card.rarity === 'legendary') {
+      showToast(`⭐ LEGENDƏRİ KART: ${card.name}!`);
+    }
+  }
+
+  await delay(500);
+  document.getElementById('btnCollect').style.display = 'block';
+}
+
+function spawnParticles(el, rarity) {
+  const colors = { epic:'#aa44ff', legendary:'#ffaa00' };
+  const color  = colors[rarity] || '#fff';
+  const rect   = el.getBoundingClientRect();
+  const cx     = rect.left + rect.width/2;
+  const cy     = rect.top  + rect.height/2;
+
+  for (let i = 0; i < 10; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const angle = (Math.PI * 2 * i) / 10;
+    const dist  = 40 + Math.random() * 40;
+    p.style.cssText = `
+      left:${cx}px; top:${cy}px; background:${color};
+      --dx:${Math.cos(angle)*dist}px; --dy:${Math.sin(angle)*dist}px;
+      animation:particleFly 0.7s ease-out forwards;
+      position:fixed; z-index:800;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 800);
+  }
+}
+
+function collectCards() {
+  // Kartları inventara əlavə et
+  pendingRevealCards.forEach(card => {
+    playerInventory[card.id] = (playerInventory[card.id] || 0) + 1;
+  });
+  // Paketi stokdan çıxart
+  packetStock[currentOpenPackType]--;
+  if (packetStock[currentOpenPackType] <= 0) delete packetStock[currentOpenPackType];
+
+  saveInventory();
+  savePackets();
+
+  document.getElementById('packOpenOverlay').classList.remove('show');
+  renderStockedPacks();
+  showToast('Kartlar kolleksiyaya əlavə edildi!');
+}
+
+// ════════════════════════════════════════
+//  LOCAL STORAGE — inventory & packets
+// ════════════════════════════════════════
+// Bu dəyərlər Firebase sync olunana qədər localStorage-da saxlanır
+let playerInventory = {}; // { cardId: count }
+let packetStock     = {}; // { 'common': n, 'rare': n, 'epic': n }
+
+function loadLocal() {
+  try {
+    playerInventory = JSON.parse(localStorage.getItem('gvent_inventory') || '{}');
+    packetStock     = JSON.parse(localStorage.getItem('gvent_packets')   || '{}');
+  } catch(e) {
+    playerInventory = {}; packetStock = {};
+  }
+}
+
+function saveInventory() {
+  localStorage.setItem('gvent_inventory', JSON.stringify(playerInventory));
+}
+
+function savePackets() {
+  localStorage.setItem('gvent_packets', JSON.stringify(packetStock));
+}
+
+loadLocal();
 
 // Start on menu
 showMenu();
@@ -1371,11 +1923,46 @@ onAuthStateChanged(auth, async (user) => {
       showNickModal();
     } else {
       updateAuthBtn(user, snap.data().nickname);
+      // Firestore-dan inventory yüklə
+      await syncInventoryFromFirestore(user.uid);
     }
   } else {
     resetAuthBtn();
   }
 });
+
+async function syncInventoryFromFirestore(uid) {
+  try {
+    const invRef  = doc(db, 'inventories', uid);
+    const invSnap = await getDoc(invRef);
+    if (invSnap.exists()) {
+      const data = invSnap.data();
+      playerInventory = data.cards  || {};
+      packetStock     = data.packets || {};
+      saveInventory();
+      savePackets();
+    }
+  } catch(e) { /* offline — localStorage istifadə et */ }
+}
+
+async function pushInventoryToFirestore() {
+  if (!currentUser) return;
+  try {
+    const invRef = doc(db, 'inventories', currentUser.uid);
+    await setDoc(invRef, { cards: playerInventory, packets: packetStock, updatedAt: Date.now() });
+  } catch(e) {}
+}
+
+// saveInventory-ni override et — həm localStorage həm Firestore
+const _origSaveInventory = window.saveInventory;
+window.saveInventory = function() {
+  localStorage.setItem('gvent_inventory', JSON.stringify(playerInventory));
+  pushInventoryToFirestore();
+};
+window.savePackets = function() {
+  localStorage.setItem('gvent_packets', JSON.stringify(packetStock));
+  pushInventoryToFirestore();
+};
 
 // ── Auth button click ──
 window.onAuthBtnClick = async function() {
