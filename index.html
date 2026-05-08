@@ -1336,7 +1336,7 @@ showMenu();
 <!-- ═══ FIREBASE ═══ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut, onAuthStateChanged }
+import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut as fbSignOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -1358,19 +1358,19 @@ const provider = new GoogleAuthProvider();
 
 let currentUser = null;
 
+// ── Redirect nəticəsini yoxla (səhifə yenidən yüklənəndən sonra) ──
+getRedirectResult(auth).catch(() => {});
+
 // ── Auth state listener ──
 onAuthStateChanged(auth, async (user) => {
   currentUser = user;
   if (user) {
-    // Firestore-da profil yoxla
     const ref  = doc(db, 'users', user.uid);
     const snap = await getDoc(ref);
     if (!snap.exists() || !snap.data().nickname) {
-      // Nickname yoxdur → modal aç
       showNickModal();
     } else {
-      const data = snap.data();
-      updateAuthBtn(user, data.nickname);
+      updateAuthBtn(user, snap.data().nickname);
     }
   } else {
     resetAuthBtn();
@@ -1385,7 +1385,7 @@ window.onAuthBtnClick = async function() {
     so.style.display = so.style.display === 'block' ? 'none' : 'block';
   } else {
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithRedirect(auth, provider);
     } catch(e) {
       showToast('Giriş uğursuz oldu');
     }
