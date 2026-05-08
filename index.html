@@ -37,6 +37,12 @@
   --card-h: 96px;
   --card-w-sm: 56px;
   --card-h-sm: 78px;
+
+  /* NADİRLİK BORDER RƏNGLƏRİ */
+  --rarity-common:    #7a9a80;
+  --rarity-rare:      #4a8aff;
+  --rarity-epic:      #aa44ff;
+  --rarity-legendary: #ffaa00;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -99,6 +105,98 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 .btn-menu.sec::before { background:var(--bg3); }
 
 /* ════════════════════════════════
+   REDRAW / KARDDƏYİŞMƏ SCREEN
+════════════════════════════════ */
+#redrawScreen {
+  z-index:300; background:var(--bg);
+  padding:0; justify-content:flex-start;
+}
+
+.redraw-header {
+  width:100%; padding:16px 18px 12px;
+  background:var(--bg2); border-bottom:1px solid var(--border);
+  text-align:center; flex-shrink:0; z-index:1;
+}
+.redraw-title {
+  font-family:'Orbitron',monospace; font-size:14px; font-weight:700;
+  color:var(--green); letter-spacing:0.15em;
+}
+.redraw-sub {
+  font-size:11px; color:var(--text-dim); margin-top:4px;
+  letter-spacing:0.08em;
+}
+.redraw-select-info {
+  font-family:'Orbitron',monospace; font-size:11px;
+  color:var(--orange); margin-top:6px; letter-spacing:0.1em;
+}
+
+.redraw-grid {
+  flex:1; overflow-y:auto; padding:12px 10px;
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  gap:8px; width:100%; max-width:500px; align-content:start;
+  scrollbar-width:none;
+}
+.redraw-grid::-webkit-scrollbar { display:none; }
+
+.redraw-card-wrap {
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  cursor:pointer;
+}
+.redraw-card-wrap .card-mini {
+  width:64px; height:88px; border-radius:6px;
+  border:2px solid var(--border2);
+  background:#000; position:relative; overflow:hidden;
+  transition:transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+.redraw-card-wrap.chosen .card-mini {
+  border-color:var(--orange) !important;
+  box-shadow:0 0 16px rgba(255,107,0,0.5);
+  transform:translateY(-4px) scale(1.04);
+}
+.redraw-card-wrap .card-mini img {
+  width:100%; height:100%; object-fit:contain; display:block;
+}
+.redraw-card-wrap .card-mini .no-img {
+  position:absolute; inset:0; display:flex; align-items:center;
+  justify-content:center; font-size:24px;
+}
+.redraw-card-name {
+  font-family:'Orbitron',monospace; font-size:6px;
+  color:var(--text-mid); text-align:center; line-height:1.3;
+}
+.redraw-card-power {
+  font-family:'Orbitron',monospace; font-size:12px;
+  font-weight:700; color:var(--green);
+}
+
+/* rarity border on mini cards */
+.card-mini.rarity-common    { border-color:var(--rarity-common); }
+.card-mini.rarity-rare      { border-color:var(--rarity-rare);   }
+.card-mini.rarity-epic      { border-color:var(--rarity-epic);   }
+.card-mini.rarity-legendary { border-color:var(--rarity-legendary); animation:legendGlow 2s ease-in-out infinite; }
+
+.redraw-footer {
+  flex-shrink:0; padding:12px 16px 20px;
+  background:var(--bg2); border-top:1px solid var(--border);
+  display:flex; gap:10px; width:100%; max-width:500px;
+}
+.btn-redraw-confirm {
+  flex:1; font-family:'Orbitron',monospace; font-size:11px; font-weight:700;
+  letter-spacing:0.12em; padding:13px 8px;
+  background:transparent; color:var(--orange); border:1.5px solid var(--orange);
+  cursor:pointer; transition:all 0.2s;
+}
+.btn-redraw-confirm:hover { background:rgba(255,107,0,0.12); }
+.btn-redraw-confirm:disabled { opacity:0.3; cursor:not-allowed; }
+.btn-redraw-skip {
+  flex:1; font-family:'Orbitron',monospace; font-size:11px; font-weight:700;
+  letter-spacing:0.12em; padding:13px 8px;
+  background:transparent; color:var(--text-dim); border:1.5px solid var(--border2);
+  cursor:pointer; transition:all 0.2s;
+}
+.btn-redraw-skip:hover { background:var(--bg3); color:var(--text-mid); }
+
+/* ════════════════════════════════
    GAME SCREEN
 ════════════════════════════════ */
 #gameScreen { justify-content:flex-start; padding:0; background:var(--bg); }
@@ -145,7 +243,6 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 .row.row-power.can-drop  { border-color:var(--row-power); box-shadow:0 0 12px var(--row-power-dim) inset; }
 .row.row-speed.can-drop  { border-color:var(--row-speed); box-shadow:0 0 12px var(--row-speed-dim) inset; }
 .row.row-light.can-drop  { border-color:var(--row-light); box-shadow:0 0 12px var(--row-light-dim) inset; }
-.row.row-power.can-drop.cosmic, .row.row-speed.can-drop.cosmic, .row.row-light.can-drop.cosmic { border-color:var(--row-cosmic); }
 
 .row-type-tag {
   position:absolute; top:3px; right:4px;
@@ -185,19 +282,8 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 .btn-exit:hover { color:var(--enemy); border-color:var(--enemy); }
 
 /* ════════════════════════════════
-   CARDS
+   CARDS — NADİRLİK BORDER RƏNGLƏRİ
 ════════════════════════════════ */
-
-/* ── KART BORDER RƏNGLƏRİ — BURADAN DƏYİŞ ── */
-:root {
-  --border-power:  #00ccff;   /* GÜC kartı border rəngi   */
-  --border-speed:  #ffcc00;   /* SÜRƏT kartı border rəngi */
-  --border-light:  #ff88ff;   /* İŞIQ kartı border rəngi  */
-  --border-cosmic: #ffffff;   /* KOSMİK kartı border rəngi*/
-  --border-selected: #00ff88; /* Seçilmiş kart border rəngi */
-}
-/* ─────────────────────────────── */
-
 .card {
   border-radius:5px; border:2px solid var(--border2);
   background:#000; cursor:pointer;
@@ -207,21 +293,17 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 .card.in-hand { width:var(--card-w); height:var(--card-h); }
 .card.on-field { width:var(--card-w-sm); height:var(--card-h-sm); cursor:default; }
 .card.in-hand:hover { transform:translateY(-10px); box-shadow:0 8px 20px rgba(0,0,0,0.6); }
-.card.selected { transform:translateY(-14px) scale(1.05); box-shadow:0 12px 28px rgba(0,255,136,0.25); border-color:var(--border-selected) !important; }
+.card.selected { transform:translateY(-14px) scale(1.05); box-shadow:0 12px 28px rgba(0,255,136,0.25); border-color:var(--green) !important; box-shadow:0 0 18px rgba(0,255,136,0.5) !important; }
 
-/* type borders */
-.card.type-power  { border-color:var(--border-power); }
-.card.type-speed  { border-color:var(--border-speed); }
-.card.type-light  { border-color:var(--border-light); }
-.card.type-cosmic { border-color:var(--border-cosmic); }
+/* NADİRLİK ƏSASINDA BORDER — bütün kartlar üçün */
+.card.rarity-common    { border-color:var(--rarity-common); }
+.card.rarity-rare      { border-color:var(--rarity-rare); box-shadow:0 0 8px rgba(74,138,255,0.25); }
+.card.rarity-epic      { border-color:var(--rarity-epic); box-shadow:0 0 12px rgba(170,68,255,0.3); }
+.card.rarity-legendary { border-color:var(--rarity-legendary); animation:legendGlow 2s ease-in-out infinite; }
 
-/* rarity glows */
-.card.rare      { box-shadow:0 0 10px rgba(74,138,255,0.2); }
-.card.epic      { box-shadow:0 0 14px rgba(170,68,255,0.25); }
-.card.legendary { animation:legendGlow 2s ease-in-out infinite; }
-@keyframes legendGlow { 0%,100%{box-shadow:0 0 18px rgba(255,170,0,0.3)} 50%{box-shadow:0 0 35px rgba(255,170,0,0.55)} }
+@keyframes legendGlow { 0%,100%{box-shadow:0 0 18px rgba(255,170,0,0.4),0 0 6px rgba(255,170,0,0.2)} 50%{box-shadow:0 0 36px rgba(255,170,0,0.7),0 0 14px rgba(255,170,0,0.4)} }
 
-/* card image — tam doldurur, heç bir yazı yoxdur */
+/* card image */
 .card-img {
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
@@ -298,11 +380,22 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 
 .col-grid { flex:1; overflow-y:auto; padding:14px; display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; width:100%; max-width:500px; align-content:start; }
 .col-item { border-radius:6px; border:1.5px solid var(--border2); background:#060f08; display:flex; flex-direction:column; align-items:center; padding:8px 4px 6px; gap:3px; }
+.col-item.rarity-common    { border-color:var(--rarity-common); }
+.col-item.rarity-rare      { border-color:var(--rarity-rare); }
+.col-item.rarity-epic      { border-color:var(--rarity-epic); }
+.col-item.rarity-legendary { border-color:var(--rarity-legendary); }
 .col-img { width:54px; height:70px; border-radius:4px; overflow:hidden; background:#040a05; display:flex; align-items:center; justify-content:center; font-size:28px; }
 .col-img img { width:100%; height:100%; object-fit:cover; }
 .col-name { font-family:'Orbitron',monospace; font-size:6px; text-align:center; color:var(--text); line-height:1.3; }
 .col-pow { font-family:'Orbitron',monospace; font-size:14px; font-weight:700; color:var(--green); }
-.col-type-dot { width:7px; height:7px; border-radius:50%; }
+.col-rarity-badge {
+  font-family:'Orbitron',monospace; font-size:6px; letter-spacing:0.05em;
+  padding:1px 5px; border-radius:2px; margin-top:1px;
+}
+.badge-common    { color:var(--rarity-common);    border:1px solid var(--rarity-common); }
+.badge-rare      { color:var(--rarity-rare);      border:1px solid var(--rarity-rare); }
+.badge-epic      { color:var(--rarity-epic);      border:1px solid var(--rarity-epic); }
+.badge-legendary { color:var(--rarity-legendary); border:1px solid var(--rarity-legendary); }
 
 /* scrollbar */
 ::-webkit-scrollbar { width:3px; height:3px; }
@@ -336,6 +429,20 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
   <div class="menu-btns fade-up">
     <button class="btn-menu" onclick="startGame()">▶ &nbsp;TEK OYUNÇU</button>
     <button class="btn-menu sec" onclick="showCollection()">☰ &nbsp;KOLLEKSİYA</button>
+  </div>
+</div>
+
+<!-- ═══ REDRAW SCREEN ═══ -->
+<div id="redrawScreen" class="screen hidden">
+  <div class="redraw-header">
+    <div class="redraw-title">ELİNİZDƏKİ KARTLAR</div>
+    <div class="redraw-sub">12 kart random verildi — 2 kartı seçib dəyişə bilərsiniz</div>
+    <div class="redraw-select-info" id="redrawInfo">0 / 2 seçildi</div>
+  </div>
+  <div class="redraw-grid" id="redrawGrid"></div>
+  <div class="redraw-footer">
+    <button class="btn-redraw-confirm" id="redrawConfirmBtn" onclick="confirmRedraw()" disabled>🔄 DƏYİŞ</button>
+    <button class="btn-redraw-skip" onclick="skipRedraw()">▶ KEÇ</button>
   </div>
 </div>
 
@@ -482,8 +589,6 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 //  CARD DEFINITIONS
 //  type: 'power' | 'speed' | 'light' | 'cosmic'
 //  rarity: 'common' | 'rare' | 'epic' | 'legendary'
-//  abilityFn: null | string key
-//  power: base strength value
 // ════════════════════════════════════════
 const CARDS = [
   { id:1,  name:'HEATBLAST',     type:'light',  power:6,  rarity:'common',    ability:'Adi',          abilityFn:null },
@@ -494,49 +599,41 @@ const CARDS = [
   { id:6,  name:'STINKFLY',      type:'speed',  power:3,  rarity:'common',    ability:'Adi',          abilityFn:null },
   { id:7,  name:'CANNONBOLT',    type:'speed',  power:7,  rarity:'rare',      ability:'Sahə +1',      abilityFn:'buffRow' },
   { id:8,  name:'BLITZWOLFER',   type:'speed',  power:6,  rarity:'epic',      ability:'Kart çək',     abilityFn:'draw1' },
-  { id:9,  name:'WILDMUTT',      type:'power',  power:6,  rarity:'common',      ability:'Güclü zərbə',  abilityFn:null },
-  { id:10, name:'FOUR ARMS',     type:'power',  power:8,  rarity:'common',      ability:'Əks +2',       abilityFn:'reflect2' },
+  { id:9,  name:'WILDMUTT',      type:'power',  power:6,  rarity:'common',    ability:'Güclü zərbə',  abilityFn:null },
+  { id:10, name:'FOUR ARMS',     type:'power',  power:8,  rarity:'common',    ability:'Əks +2',       abilityFn:'reflect2' },
   { id:11, name:'WILDVINE',      type:'power',  power:5,  rarity:'rare',      ability:'Hamı +1',      abilityFn:'buffAll' },
   { id:12, name:'SNARE-OH',      type:'power',  power:7,  rarity:'epic',      ability:'Düşmən -2',    abilityFn:'debuff2' },
   { id:13, name:'EYE GUY',       type:'power',  power:5,  rarity:'rare',      ability:'Özü +1',       abilityFn:'selfBuff1' },
   { id:14, name:'UOCHUCK',       type:'light',  power:3,  rarity:'rare',      ability:'Hamı +1',      abilityFn:'buffAll' },
   { id:15, name:'ARTICGUANA',    type:'light',  power:5,  rarity:'epic',      ability:'Nəhəng güc',   abilityFn:null },
-  { id:16, name:'WAY BIG',       type:'cosmic', power:12, rarity:'legendary',      ability:'Özü +2',       abilityFn:'selfBuff2' },
+  { id:16, name:'WAY BIG',       type:'cosmic', power:12, rarity:'legendary', ability:'Özü +2',       abilityFn:'selfBuff2' },
   { id:17, name:'FRANKENSTRIKE', type:'cosmic', power:8,  rarity:'epic',      ability:'Hamı +2',      abilityFn:'buffAll2' },
-  { id:18, name:'GREY MATTER',   type:'cosmic', power:2,  rarity:'common',      ability:'Güclü',        abilityFn:null },
-  { id:19, name:'UPGRADE',       type:'cosmic', power:7,  rarity:'common', ability:'Misilsiz',     abilityFn:null },
-  { id:20, name:'DITTO',         type:'cosmic', power:4,  rarity:'rare', ability:'Düşmən -4',    abilityFn:'debuff4' },
+  { id:18, name:'GREY MATTER',   type:'cosmic', power:2,  rarity:'common',    ability:'Güclü',        abilityFn:null },
+  { id:19, name:'UPGRADE',       type:'cosmic', power:7,  rarity:'common',    ability:'Misilsiz',     abilityFn:null },
+  { id:20, name:'DITTO',         type:'cosmic', power:4,  rarity:'rare',      ability:'Düşmən -4',    abilityFn:'debuff4' },
 ];
 
 const TYPE_COLOR = { power:'var(--row-power)', speed:'var(--row-speed)', light:'var(--row-light)', cosmic:'var(--row-cosmic)' };
-const TYPE_DOT   = { power:'dot-power', speed:'dot-speed', light:'dot-light', cosmic:'dot-cosmic' };
 const TYPE_NAME  = { power:'GÜC', speed:'SÜRƏT', light:'İŞIQ', cosmic:'KOSMİK' };
 const ROWS       = ['power', 'speed', 'light'];
+
+// Rarity label map
+const RARITY_AZ = { common:'ADİ', rare:'NADİR', epic:'EPİK', legendary:'LEGENDƏRİ' };
 
 // ════════════════════════════════════════
 //  GAME STATE
 // ════════════════════════════════════════
 let GS = {};
 let selectedCard = null;
+let redrawSelected = new Set(); // uids chosen for redraw
 
 function newCard(def) {
   return { ...def, uid: Math.random().toString(36).slice(2,9), cur: def.power };
 }
 
-function initGS() {
-  GS = {
-    round: 1,
-    pWins: 0, aiWins: 0,
-    pHand: [], aiHand: [],
-    pRows: { power:[], speed:[], light:[] },
-    aiRows: { power:[], speed:[], light:[] },
-    pPassed: false, aiPassed: false,
-    busy: false, over: false,
-    usedIds: new Set(), // track used card ids across all rounds
-  };
-}
-
-// Shuffle array in place (Fisher-Yates)
+// ════════════════════════════════════════
+//  SHUFFLE
+// ════════════════════════════════════════
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -545,34 +642,133 @@ function shuffle(arr) {
   return arr;
 }
 
-function dealHands() {
-  // Available cards = not yet used this game
-  const available = CARDS.filter(c => !GS.usedIds.has(c.id));
-  shuffle(available);
+// ════════════════════════════════════════
+//  INIT GAME STATE
+//  - 12 kart bütün oyun üçün verilir
+//  - 3 raund boyu EYNİ 12 kart əldə qalır
+//  - Oyunçu özü qərar verir hansı kartı hansı roundda atsın
+// ════════════════════════════════════════
+function initGS() {
+  GS = {
+    round: 1,
+    pWins: 0, aiWins: 0,
+    pHand: [],   // 12 kart — bütün oyun boyu əldə qalır
+    aiHand: [],  // 12 kart — AI üçün eyni
+    pRows: { power:[], speed:[], light:[] },
+    aiRows: { power:[], speed:[], light:[] },
+    pPassed: false, aiPassed: false,
+    busy: false, over: false,
+  };
+}
 
-  // Need 20 cards total (10 each). If not enough, reset used pool.
-  if (available.length < 20) {
-    GS.usedIds.clear();
-    const refreshed = shuffle([...CARDS]);
-    const pSlice  = refreshed.slice(0, 10);
-    const aiSlice = refreshed.slice(10, 20);
-    pSlice.forEach(c => GS.usedIds.add(c.id));
-    aiSlice.forEach(c => GS.usedIds.add(c.id));
-    GS.pHand  = pSlice.map(newCard);
-    GS.aiHand = aiSlice.map(newCard);
-    return;
-  }
-
-  const pSlice  = available.slice(0, 10);
-  const aiSlice = available.slice(10, 20);
-  pSlice.forEach(c => GS.usedIds.add(c.id));
-  aiSlice.forEach(c => GS.usedIds.add(c.id));
-  GS.pHand  = pSlice.map(newCard);
-  GS.aiHand = aiSlice.map(newCard);
+function dealFullHands() {
+  // Hər oyunçuya 12 random kart ver (bütün oyun üçün)
+  const shuffled1 = shuffle([...CARDS]);
+  const shuffled2 = shuffle([...CARDS]);
+  GS.pHand  = shuffled1.slice(0, 12).map(newCard);
+  GS.aiHand = shuffled2.slice(0, 12).map(newCard);
 }
 
 function rowTotal(rows, type) { return rows[type].reduce((s,c)=>s+c.cur,0); }
 function sideTotal(rows) { return ROWS.reduce((s,t)=>s+rowTotal(rows,t),0); }
+
+// ════════════════════════════════════════
+//  REDRAW SCREEN
+// ════════════════════════════════════════
+function showRedrawScreen() {
+  redrawSelected.clear();
+  document.getElementById('menuScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.add('hidden');
+  document.getElementById('redrawScreen').classList.remove('hidden');
+  renderRedrawGrid();
+  updateRedrawInfo();
+}
+
+function renderRedrawGrid() {
+  const grid = document.getElementById('redrawGrid');
+  grid.innerHTML = '';
+
+  GS.pHand.forEach(card => {
+    const wrap = document.createElement('div');
+    wrap.className = 'redraw-card-wrap' + (redrawSelected.has(card.uid) ? ' chosen' : '');
+    wrap.onclick = () => toggleRedrawCard(card.uid, wrap);
+
+    wrap.innerHTML = `
+      <div class="card-mini rarity-${card.rarity}">
+        <img src="cards/${card.id}.png" alt="${card.name}"
+          onerror="this.parentNode.innerHTML='<div class=\\'no-img\\'>👾</div>'">
+      </div>
+      <div class="redraw-card-name">${card.name}</div>
+      <div class="redraw-card-power">${card.power}</div>
+    `;
+    grid.appendChild(wrap);
+  });
+}
+
+function toggleRedrawCard(uid, wrapEl) {
+  if (redrawSelected.has(uid)) {
+    redrawSelected.delete(uid);
+    wrapEl.classList.remove('chosen');
+  } else {
+    if (redrawSelected.size >= 2) {
+      showToast('Maksimum 2 kart seçə bilərsiniz!');
+      return;
+    }
+    redrawSelected.add(uid);
+    wrapEl.classList.add('chosen');
+  }
+  updateRedrawInfo();
+}
+
+function updateRedrawInfo() {
+  const n = redrawSelected.size;
+  document.getElementById('redrawInfo').textContent = `${n} / 2 seçildi`;
+  document.getElementById('redrawConfirmBtn').disabled = (n === 0);
+}
+
+function confirmRedraw() {
+  if (redrawSelected.size === 0) return;
+
+  // Get cards NOT in the current full hand (for random replacement pool)
+  const usedIds = new Set(GS.pHand.map(c => c.id));
+  const pool = CARDS.filter(c => !usedIds.has(c.id));
+  shuffle(pool);
+
+  let poolIdx = 0;
+  GS.pHand = GS.pHand.map(card => {
+    if (redrawSelected.has(card.uid)) {
+      // Replace with random card from pool (or from all if pool exhausted)
+      let replacement;
+      if (poolIdx < pool.length) {
+        replacement = newCard(pool[poolIdx++]);
+      } else {
+        // Fallback: pick any random card
+        replacement = newCard(CARDS[Math.floor(Math.random() * CARDS.length)]);
+      }
+      return replacement;
+    }
+    return card;
+  });
+
+  startGameAfterRedraw();
+}
+
+function skipRedraw() {
+  startGameAfterRedraw();
+}
+
+function startGameAfterRedraw() {
+  document.getElementById('redrawScreen').classList.add('hidden');
+  document.getElementById('gameScreen').classList.remove('hidden');
+
+  selectedCard = null;
+  const btn = document.getElementById('passBtn');
+  btn.textContent = '⏭ PASS';
+  btn.classList.remove('passed');
+  btn.disabled = false;
+
+  renderAll();
+}
 
 // ════════════════════════════════════════
 //  ABILITIES
@@ -605,12 +801,12 @@ function applyAbility(card, isPlayer, rowType) {
     case 'debuff4':
       if (lastOpp) lastOpp.cur = Math.max(0, lastOpp.cur - 4); break;
     case 'draw1': {
-      const remaining = CARDS.filter(c => !GS.usedIds.has(c.id));
-      if (remaining.length > 0) {
-        const pick = remaining[Math.floor(Math.random() * remaining.length)];
-        GS.usedIds.add(pick.id);
-        if (isPlayer) GS.pHand.push(newCard(pick));
-        else GS.aiHand.push(newCard(pick));
+      // Draw a random extra card from the full card pool
+      const usedIds = new Set([...GS.pHand, ...Object.values(GS.pRows).flat()].map(c => c.id));
+      const pool = CARDS.filter(c => !usedIds.has(c.id));
+      if (pool.length && isPlayer) {
+        const pick = pool[Math.floor(Math.random() * pool.length)];
+        GS.pHand.push(newCard(pick));
       }
       break;
     }
@@ -641,29 +837,21 @@ function aiTurn() {
   const pTot = sideTotal(GS.pRows);
   const aTot = sideTotal(GS.aiRows);
 
-  // If player passed and AI is winning → AI passes too
   if (GS.pPassed && aTot > pTot) { aiDoPass(); return; }
-
-  // If AI is comfortable ahead and not in last round
   if (aTot > pTot + 8 && GS.aiHand.length > 3 && Math.random() < 0.35) { aiDoPass(); return; }
 
-  // Choose card
   let chosen;
-  // prefer debuffs when losing badly
   if (pTot - aTot > 4) {
     const debuffs = GS.aiHand.filter(c => c.abilityFn && c.abilityFn.startsWith('debuff'));
     if (debuffs.length) chosen = debuffs.sort((a,b) => b.power - a.power)[0];
   }
   if (!chosen) chosen = [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
 
-  // Pick row for card
   let rowType = chosen.type === 'cosmic'
-    ? ROWS[Math.floor(Math.random() * 3)]  // cosmic → any row
+    ? ROWS[Math.floor(Math.random() * 3)]
     : chosen.type;
 
   playCard(chosen, false, rowType);
-
-  // after AI plays, check round end
   setTimeout(() => checkRoundEnd(), 200);
 }
 
@@ -680,18 +868,15 @@ function onCardClick(card, el) {
   if (GS.busy || GS.pPassed || GS.over) return;
 
   if (selectedCard && selectedCard.uid === card.uid) {
-    // deselect (toggle)
     clearSelection();
     return;
   }
   clearSelection();
   selectedCard = card;
   el.classList.add('selected');
-
-  // highlight valid rows
   highlightRows(card.type);
+
   if (card.type !== 'cosmic') {
-    // direct play: only one row matches
     showToast(`"${card.name}" → ${TYPE_NAME[card.type]} sahəsinə tap!`);
   } else {
     showToast(`"${card.name}" → istənilən sahəyə tap!`);
@@ -702,7 +887,6 @@ function onRowClick(rowType) {
   if (!selectedCard || GS.busy || GS.pPassed || GS.over) return;
   const card = selectedCard;
 
-  // validate
   if (card.type !== 'cosmic' && card.type !== rowType) {
     showToast(`Bu kart yalnız ${TYPE_NAME[card.type]} sahəsinə gedə bilər!`);
     return;
@@ -711,7 +895,6 @@ function onRowClick(rowType) {
   clearSelection();
   playCard(card, true, rowType);
 
-  // AI responds
   if (!GS.aiPassed) {
     GS.busy = true;
     showAiThink(true);
@@ -733,7 +916,6 @@ function playerPass() {
   const btn = document.getElementById('passBtn');
   btn.textContent = '✓ PASS ETDİNİZ';
   btn.classList.add('passed');
-
   showToast('Pass etdiniz');
 
   if (!GS.aiPassed) {
@@ -767,6 +949,7 @@ function checkRoundEnd() {
     showToast(msg);
     renderScoreboard();
 
+    // Oyun 3 raunddan sonra bitir (və ya biri 2 raund qazanırsa)
     if (GS.pWins >= 2 || GS.aiWins >= 2 || GS.round >= 3) {
       setTimeout(() => endGame(), 1400);
     } else {
@@ -777,6 +960,7 @@ function checkRoundEnd() {
 }
 
 function nextRound() {
+  // Sahəni təmizlə amma KARTLAR DEYİŞMİR — eyni 12 kart əldə qalır
   GS.pRows  = { power:[], speed:[], light:[] };
   GS.aiRows = { power:[], speed:[], light:[] };
   GS.pPassed = false;
@@ -788,8 +972,6 @@ function nextRound() {
   btn.classList.remove('passed');
   btn.disabled = false;
 
-  // Fresh 10 cards each for the new round (unique, not reused)
-  dealHands();
   renderAll();
 }
 
@@ -838,7 +1020,6 @@ function renderRows() {
 
 function renderRow(elId, cards, isPlayer) {
   const el = document.getElementById(elId);
-  // preserve special children
   const aiTag  = el.querySelector('.ai-tag');
   const rowTag = el.querySelector('.row-type-tag');
   el.innerHTML = '';
@@ -847,18 +1028,10 @@ function renderRow(elId, cards, isPlayer) {
 
   cards.forEach(card => {
     const div = document.createElement('div');
-    div.className = `card on-field type-${card.type} ${card.rarity} play-anim`;
-    div.innerHTML = fieldCardHTML(card);
+    div.className = `card on-field rarity-${card.rarity} play-anim`;
+    div.innerHTML = `<div class="card-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\\'no-img\\'>👾</span>'"></div>`;
     el.appendChild(div);
   });
-}
-
-function fieldCardHTML(card) {
-  return `
-    <div class="card-img">
-      <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\'no-img\'>👾</span>'">
-    </div>
-  `;
 }
 
 function renderHand() {
@@ -866,21 +1039,13 @@ function renderHand() {
   el.innerHTML = '';
   GS.pHand.forEach(card => {
     const div = document.createElement('div');
-    div.className = `card in-hand type-${card.type} ${card.rarity}`;
-    div.innerHTML = handCardHTML(card);
+    div.className = `card in-hand rarity-${card.rarity}`;
+    div.innerHTML = `<div class="card-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\\'no-img\\'>👾</span>'"></div>`;
     div.onclick = () => onCardClick(card, div);
     if (selectedCard && selectedCard.uid === card.uid) div.classList.add('selected');
     el.appendChild(div);
   });
   document.getElementById('handCount').textContent = GS.pHand.length;
-}
-
-function handCardHTML(card) {
-  return `
-    <div class="card-img">
-      <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\'no-img\'>👾</span>'">
-    </div>
-  `;
 }
 
 function renderScoreboard() {
@@ -955,7 +1120,7 @@ function showToast(msg) {
 //  SCREENS
 // ════════════════════════════════════════
 function showMenu() {
-  ['menuScreen','gameScreen','colScreen'].forEach(id => {
+  ['menuScreen','gameScreen','colScreen','redrawScreen'].forEach(id => {
     document.getElementById(id).classList.toggle('hidden', id !== 'menuScreen');
   });
   document.getElementById('resultOverlay').classList.remove('show');
@@ -967,20 +1132,12 @@ function exitGame() {
 
 function startGame() {
   document.getElementById('resultOverlay').classList.remove('show');
-  document.getElementById('menuScreen').classList.add('hidden');
-  document.getElementById('gameScreen').classList.remove('hidden');
-  document.getElementById('colScreen').classList.add('hidden');
 
   initGS();
-  dealHands();
-  selectedCard = null;
+  dealFullHands(); // Deal 12 cards to each player upfront
 
-  const btn = document.getElementById('passBtn');
-  btn.textContent = '⏭ PASS';
-  btn.classList.remove('passed');
-  btn.disabled = false;
-
-  renderAll();
+  // Show redraw screen first
+  showRedrawScreen();
 }
 
 function showCollection() {
@@ -990,18 +1147,20 @@ function showCollection() {
   const grid = document.getElementById('colGrid');
   grid.innerHTML = '';
 
-  CARDS.forEach(card => {
+  const RARITY_ORDER = { legendary:0, epic:1, rare:2, common:3 };
+  const sorted = [...CARDS].sort((a,b) => RARITY_ORDER[a.rarity] - RARITY_ORDER[b.rarity]);
+
+  sorted.forEach(card => {
     const div = document.createElement('div');
-    div.className = `col-item`;
-    div.style.borderColor = TYPE_COLOR[card.type];
+    div.className = `col-item rarity-${card.rarity}`;
     div.innerHTML = `
       <div class="col-img">
         <img src="cards/${card.id}.png" alt="${card.name}" style="width:100%;height:100%;object-fit:cover;border-radius:3px"
-          onerror="this.parentNode.innerHTML='<span style=\'font-size:28px\'>👾</span>'">
+          onerror="this.parentNode.innerHTML='<span style=\\'font-size:28px\\'>👾</span>'">
       </div>
       <div class="col-name">${card.name}</div>
       <div class="col-pow">${card.power}</div>
-      <div class="col-type-dot ${TYPE_DOT[card.type]}" style="margin-top:1px"></div>
+      <div class="col-rarity-badge badge-${card.rarity}">${RARITY_AZ[card.rarity]}</div>
     `;
     grid.appendChild(div);
   });
