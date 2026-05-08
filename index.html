@@ -405,9 +405,100 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 /* fade in */
 @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 .fade-up { animation:fadeUp 0.5s ease-out both; }
+
+/* ════════════════════════════════
+   AUTH BUTTON — SOL ÜST
+════════════════════════════════ */
+#authBtn {
+  position:fixed; top:12px; left:12px; z-index:500;
+  display:flex; align-items:center; gap:7px;
+  background:var(--bg2); border:1px solid var(--border2);
+  padding:7px 12px; cursor:pointer;
+  font-family:'Orbitron',monospace; font-size:9px;
+  color:var(--text-mid); letter-spacing:0.1em;
+  transition:all 0.2s; white-space:nowrap;
+}
+#authBtn:hover { border-color:var(--green); color:var(--green); }
+#authBtn .auth-avatar {
+  width:20px; height:20px; border-radius:50%;
+  border:1px solid var(--green); object-fit:cover;
+}
+#authBtn .auth-nick {
+  max-width:90px; overflow:hidden; text-overflow:ellipsis;
+}
+#authSignout {
+  position:fixed; top:12px; left:12px; z-index:499;
+  margin-top:36px;
+  background:var(--bg2); border:1px solid var(--border);
+  padding:5px 10px; cursor:pointer;
+  font-family:'Orbitron',monospace; font-size:8px;
+  color:var(--enemy); letter-spacing:0.1em;
+  display:none; transition:all 0.2s;
+}
+#authSignout:hover { border-color:var(--enemy); background:rgba(255,58,74,0.08); }
+
+/* ════════════════════════════════
+   NİCKNAME MODAL
+════════════════════════════════ */
+#nickModal {
+  position:fixed; inset:0; background:rgba(0,0,0,0.92);
+  z-index:600; display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s;
+}
+#nickModal.show { opacity:1; pointer-events:all; }
+.nick-box {
+  background:var(--bg2); border:1.5px solid var(--green);
+  padding:30px 24px; width:90%; max-width:300px; text-align:center;
+  box-shadow:0 0 60px var(--green-dim);
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+}
+.nick-title {
+  font-family:'Orbitron',monospace; font-size:13px; font-weight:700;
+  color:var(--green); letter-spacing:0.15em; margin-bottom:6px;
+}
+.nick-sub {
+  font-size:11px; color:var(--text-dim); margin-bottom:20px; line-height:1.6;
+}
+.nick-input {
+  width:100%; background:var(--bg3); border:1px solid var(--border2);
+  color:var(--text); font-family:'Orbitron',monospace; font-size:12px;
+  padding:11px 12px; margin-bottom:14px; outline:none; letter-spacing:0.1em;
+  transition:border-color 0.2s;
+}
+.nick-input:focus { border-color:var(--green); }
+.nick-input::placeholder { color:var(--text-dim); font-size:10px; }
+.nick-err {
+  font-size:10px; color:var(--enemy); margin-bottom:10px;
+  min-height:14px; letter-spacing:0.05em;
+}
+.btn-nick {
+  width:100%; font-family:'Orbitron',monospace; font-size:11px; font-weight:700;
+  letter-spacing:0.12em; padding:12px;
+  background:transparent; color:var(--green); border:1.5px solid var(--green);
+  cursor:pointer; transition:all 0.2s;
+}
+.btn-nick:hover { background:var(--green-dim); }
+.btn-nick:disabled { opacity:0.4; cursor:not-allowed; }
 </style>
 </head>
 <body>
+
+<!-- ═══ AUTH BUTTON ═══ -->
+<button id="authBtn" onclick="onAuthBtnClick()">
+  <span id="authBtnLabel">G  GİRİŞ ET</span>
+</button>
+<button id="authSignout" onclick="signOut()">ÇIXIŞ</button>
+
+<!-- ═══ NİCKNAME MODAL ═══ -->
+<div id="nickModal">
+  <div class="nick-box">
+    <div class="nick-title">NİCKNAME SEÇ</div>
+    <div class="nick-sub">Oyunda görünəcək adını seç.<br>Bir dəfə seçilir, dəyişilmir.</div>
+    <input class="nick-input" id="nickInput" type="text" maxlength="16" placeholder="nickname (maks 16 hərf)">
+    <div class="nick-err" id="nickErr"></div>
+    <button class="btn-nick" id="nickSaveBtn" onclick="saveNickname()">✓ TƏSDİQ ET</button>
+  </div>
+</div>
 
 <!-- ═══ MENU ═══ -->
 <div id="menuScreen" class="screen">
@@ -1241,5 +1332,151 @@ function showCollection() {
 // Start on menu
 showMenu();
 </script>
-</body>
-</html>
+
+<!-- ═══ FIREBASE ═══ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as fbSignOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBCVQr0MyNVdJvGdL3fDNMWI0hggLSkkgw",
+  authDomain: "gvnet-f42ed.firebaseapp.com",
+  projectId: "gvnet-f42ed",
+  storageBucket: "gvnet-f42ed.firebasestorage.app",
+  messagingSenderId: "79170987156",
+  appId: "1:79170987156:web:381b35b22961dffed18081",
+  measurementId: "G-1Q0VCX9G33"
+};
+
+const app      = initializeApp(firebaseConfig);
+const auth     = getAuth(app);
+const db       = getFirestore(app);
+const provider = new GoogleAuthProvider();
+
+let currentUser = null;
+
+// ── Auth state listener ──
+onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+  if (user) {
+    // Firestore-da profil yoxla
+    const ref  = doc(db, 'users', user.uid);
+    const snap = await getDoc(ref);
+    if (!snap.exists() || !snap.data().nickname) {
+      // Nickname yoxdur → modal aç
+      showNickModal();
+    } else {
+      const data = snap.data();
+      updateAuthBtn(user, data.nickname);
+    }
+  } else {
+    resetAuthBtn();
+  }
+});
+
+// ── Auth button click ──
+window.onAuthBtnClick = async function() {
+  if (currentUser) {
+    // Giriş edibsə — signout dropdown toggle
+    const so = document.getElementById('authSignout');
+    so.style.display = so.style.display === 'block' ? 'none' : 'block';
+  } else {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch(e) {
+      showToast('Giriş uğursuz oldu');
+    }
+  }
+};
+
+// ── Sign out ──
+window.signOut = async function() {
+  await fbSignOut(auth);
+  document.getElementById('authSignout').style.display = 'none';
+  showToast('Çıxış edildi');
+};
+
+// ── Nickname modal ──
+window.showNickModal = function() {
+  document.getElementById('nickModal').classList.add('show');
+  document.getElementById('nickInput').focus();
+};
+
+window.saveNickname = async function() {
+  const input = document.getElementById('nickInput');
+  const err   = document.getElementById('nickErr');
+  const btn   = document.getElementById('nickSaveBtn');
+  const nick  = input.value.trim();
+
+  err.textContent = '';
+
+  if (nick.length < 2) { err.textContent = 'Minimum 2 hərf olmalıdır'; return; }
+  if (!/^[a-zA-Z0-9_\-\.]+$/.test(nick)) {
+    err.textContent = 'Yalnız hərf, rəqəm, _ - . işlədə bilərsiniz';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Yoxlanır...';
+
+  try {
+    // Nickname unikallığını yoxla
+    const nickRef  = doc(db, 'nicknames', nick.toLowerCase());
+    const nickSnap = await getDoc(nickRef);
+
+    if (nickSnap.exists()) {
+      err.textContent = 'Bu nickname artıq tutulub, başqa birini seç';
+      btn.disabled = false;
+      btn.textContent = '✓ TƏSDİQ ET';
+      return;
+    }
+
+    // Nickname mövcud deyil — yaz
+    const userRef = doc(db, 'users', currentUser.uid);
+    await setDoc(userRef, {
+      uid:      currentUser.uid,
+      email:    currentUser.email,
+      photo:    currentUser.photoURL || '',
+      nickname: nick,
+      createdAt: Date.now()
+    });
+    // Unikallıq üçün nicknames kolleksiyasına da əlavə et
+    await setDoc(nickRef, { uid: currentUser.uid });
+
+    document.getElementById('nickModal').classList.remove('show');
+    updateAuthBtn(currentUser, nick);
+    showToast(`Xoş gəldin, ${nick}!`);
+
+  } catch(e) {
+    err.textContent = 'Xəta baş verdi, yenidən cəhd et';
+    btn.disabled = false;
+    btn.textContent = '✓ TƏSDİQ ET';
+  }
+};
+
+// ── UI helpers ──
+function updateAuthBtn(user, nickname) {
+  const btn = document.getElementById('authBtn');
+  const photoHTML = user.photoURL
+    ? `<img class="auth-avatar" src="${user.photoURL}" referrerpolicy="no-referrer">`
+    : `<span style="font-size:14px">👤</span>`;
+  btn.innerHTML = `${photoHTML}<span class="auth-nick">${nickname}</span>`;
+}
+
+function resetAuthBtn() {
+  document.getElementById('authBtn').innerHTML =
+    `<span id="authBtnLabel">G&nbsp;&nbsp;GİRİŞ ET</span>`;
+}
+
+// Close signout dropdown when clicking elsewhere
+document.addEventListener('click', (e) => {
+  const btn = document.getElementById('authBtn');
+  const so  = document.getElementById('authSignout');
+  if (!btn.contains(e.target) && !so.contains(e.target)) {
+    so.style.display = 'none';
+  }
+});
+</script>
