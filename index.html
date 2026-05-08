@@ -591,26 +591,26 @@ html, body { width:100%; height:100%; overflow:hidden; background:#000; font-fam
 //  rarity: 'common' | 'rare' | 'epic' | 'legendary'
 // ════════════════════════════════════════
 const CARDS = [
-  { id:1,  name:'HEATBLAST',     type:'light',  power:6,  rarity:'common',    ability:'Adi',          abilityFn:null },
-  { id:2,  name:'DIAMONDHEAD',   type:'light',  power:5,  rarity:'common',    ability:'Sürət +1',     abilityFn:'speedBoost' },
-  { id:3,  name:'RİPJAWS',       type:'speed',  power:4,  rarity:'common',    ability:'Adi',          abilityFn:null },
-  { id:4,  name:'XLR8',          type:'speed',  power:4,  rarity:'common',    ability:'Düşmən -1',    abilityFn:'debuff1' },
-  { id:5,  name:'GHOSTFREAK',    type:'speed',  power:6,  rarity:'common',    ability:'Adi',          abilityFn:null },
-  { id:6,  name:'STINKFLY',      type:'speed',  power:3,  rarity:'common',    ability:'Adi',          abilityFn:null },
-  { id:7,  name:'CANNONBOLT',    type:'speed',  power:7,  rarity:'rare',      ability:'Sahə +1',      abilityFn:'buffRow' },
-  { id:8,  name:'BLITZWOLFER',   type:'speed',  power:6,  rarity:'epic',      ability:'Kart çək',     abilityFn:'draw1' },
-  { id:9,  name:'WILDMUTT',      type:'power',  power:6,  rarity:'common',    ability:'Güclü zərbə',  abilityFn:null },
-  { id:10, name:'FOUR ARMS',     type:'power',  power:8,  rarity:'common',    ability:'Əks +2',       abilityFn:'reflect2' },
-  { id:11, name:'WILDVINE',      type:'power',  power:5,  rarity:'rare',      ability:'Hamı +1',      abilityFn:'buffAll' },
-  { id:12, name:'SNARE-OH',      type:'power',  power:7,  rarity:'epic',      ability:'Düşmən -2',    abilityFn:'debuff2' },
-  { id:13, name:'EYE GUY',       type:'power',  power:5,  rarity:'rare',      ability:'Özü +1',       abilityFn:'selfBuff1' },
-  { id:14, name:'UOCHUCK',       type:'light',  power:3,  rarity:'rare',      ability:'Hamı +1',      abilityFn:'buffAll' },
-  { id:15, name:'ARTICGUANA',    type:'light',  power:5,  rarity:'epic',      ability:'Nəhəng güc',   abilityFn:null },
-  { id:16, name:'WAY BIG',       type:'cosmic', power:12, rarity:'legendary', ability:'Özü +2',       abilityFn:'selfBuff2' },
-  { id:17, name:'FRANKENSTRIKE', type:'cosmic', power:8,  rarity:'epic',      ability:'Hamı +2',      abilityFn:'buffAll2' },
-  { id:18, name:'GREY MATTER',   type:'cosmic', power:2,  rarity:'common',    ability:'Güclü',        abilityFn:null },
-  { id:19, name:'UPGRADE',       type:'cosmic', power:7,  rarity:'common',    ability:'Misilsiz',     abilityFn:null },
-  { id:20, name:'DITTO',         type:'cosmic', power:4,  rarity:'rare',      ability:'Düşmən -4',    abilityFn:'debuff4' },
+  { id:1,  name:'HEATBLAST',     type:'light',  power:6,  rarity:'common',    ability:'Düşmən Speed ən güclüsü →2',  abilityFn:'heatblast' },
+  { id:2,  name:'DIAMONDHEAD',   type:'light',  power:5,  rarity:'common',    ability:'Özü +1',                      abilityFn:'selfBuff1' },
+  { id:3,  name:'RİPJAWS',       type:'speed',  power:4,  rarity:'common',    ability:'Adi',                         abilityFn:null },
+  { id:4,  name:'XLR8',          type:'speed',  power:4,  rarity:'common',    ability:'Düşmən Power ən güclüsü →2',  abilityFn:'xlr8' },
+  { id:5,  name:'GHOSTFREAK',    type:'speed',  power:6,  rarity:'common',    ability:'Adi',                         abilityFn:null },
+  { id:6,  name:'STINKFLY',      type:'speed',  power:3,  rarity:'common',    ability:'Adi',                         abilityFn:null },
+  { id:7,  name:'CANNONBOLT',    type:'speed',  power:7,  rarity:'rare',      ability:'Sahədəki hər karta +1',       abilityFn:'buffRow' },
+  { id:8,  name:'BLITZWOLFER',   type:'speed',  power:6,  rarity:'epic',      ability:'Düşmən Power hamısı -1',      abilityFn:'blitzwolfer' },
+  { id:9,  name:'WILDMUTT',      type:'power',  power:6,  rarity:'common',    ability:'Adi',                         abilityFn:null },
+  { id:10, name:'FOUR ARMS',     type:'power',  power:8,  rarity:'common',    ability:'Düşmən Light ən güclüsü →2',  abilityFn:'fourarms' },
+  { id:11, name:'WILDVINE',      type:'power',  power:5,  rarity:'rare',      ability:'Sahədəki hər karta +1',       abilityFn:'buffRow' },
+  { id:12, name:'SNARE-OH',      type:'power',  power:7,  rarity:'epic',      ability:'Düşmən Light hamısı -1',      abilityFn:'snareoh' },
+  { id:13, name:'EYE GUY',       type:'power',  power:5,  rarity:'rare',      ability:'Özü +1',                      abilityFn:'selfBuff1' },
+  { id:14, name:'UOCHUCK',       type:'light',  power:3,  rarity:'rare',      ability:'Sahədəki hər karta +1',       abilityFn:'buffRow' },
+  { id:15, name:'ARTICGUANA',    type:'light',  power:5,  rarity:'epic',      ability:'Düşmən Speed hamısı -1',      abilityFn:'articguana' },
+  { id:16, name:'WAY BIG',       type:'cosmic', power:12, rarity:'legendary', ability:'Özü +2',                      abilityFn:'selfBuff2' },
+  { id:17, name:'FRANKENSTRIKE', type:'cosmic', power:8,  rarity:'epic',      ability:'Əlavə edilən bölüm düşmənə -1', abilityFn:'frankenstrike' },
+  { id:18, name:'GREY MATTER',   type:'cosmic', power:2,  rarity:'common',    ability:'Sahə 2x + Düşmən sahə -1',   abilityFn:'greymatter' },
+  { id:19, name:'UPGRADE',       type:'cosmic', power:7,  rarity:'common',    ability:'Sahədəki hər karta +1',       abilityFn:'buffRow' },
+  { id:20, name:'DITTO',         type:'cosmic', power:4,  rarity:'rare',      ability:'Sahədəki kart sayı qədər çoxal', abilityFn:'ditto' },
 ];
 
 const TYPE_COLOR = { power:'var(--row-power)', speed:'var(--row-speed)', light:'var(--row-light)', cosmic:'var(--row-cosmic)' };
@@ -777,36 +777,82 @@ function applyAbility(card, isPlayer, rowType) {
   const myRows  = isPlayer ? GS.pRows  : GS.aiRows;
   const oppRows = isPlayer ? GS.aiRows : GS.pRows;
   const myRow   = myRows[rowType];
-  const lastOpp = ROWS.map(t => oppRows[t]).flat().slice(-1)[0];
 
   switch (card.abilityFn) {
-    case 'speedBoost':
-      card.cur += 1; break;
+
+    // ── Özünə buff ──
     case 'selfBuff1':
       card.cur += 1; break;
     case 'selfBuff2':
       card.cur += 2; break;
+
+    // ── Cannonbolt / Wildvine / Upchuck / Upgrade: əlavə edildiyi bölümdəki mövcud kartlara +1 ──
     case 'buffRow':
-      myRow.forEach((c, i) => { if (i < myRow.length - 1) c.cur += 1; }); break;
-    case 'buffAll':
-      Object.values(myRows).flat().forEach(c => { if (c.uid !== card.uid) c.cur += 1; }); break;
-    case 'buffAll2':
-      Object.values(myRows).flat().forEach(c => { if (c.uid !== card.uid) c.cur += 2; }); break;
-    case 'reflect2':
-      card.cur += Math.min(Object.values(oppRows).flat().length * 1, 6); break;
-    case 'debuff1':
-      if (lastOpp) lastOpp.cur = Math.max(0, lastOpp.cur - 1); break;
-    case 'debuff2':
-      if (lastOpp) lastOpp.cur = Math.max(0, lastOpp.cur - 2); break;
-    case 'debuff4':
-      if (lastOpp) lastOpp.cur = Math.max(0, lastOpp.cur - 4); break;
-    case 'draw1': {
-      // Draw a random extra card from the full card pool
-      const usedIds = new Set([...GS.pHand, ...Object.values(GS.pRows).flat()].map(c => c.id));
-      const pool = CARDS.filter(c => !usedIds.has(c.id));
-      if (pool.length && isPlayer) {
-        const pick = pool[Math.floor(Math.random() * pool.length)];
-        GS.pHand.push(newCard(pick));
+      myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 1; }); break;
+
+    // ── HEATBLAST: rəqibin speed bölümündəki ən güclü kartı 2-yə endir ──
+    case 'heatblast': {
+      const row = oppRows['speed'];
+      if (row.length) {
+        const strongest = row.reduce((a, b) => b.cur > a.cur ? b : a);
+        strongest.cur = 2;
+      }
+      break;
+    }
+
+    // ── XLR8: rəqibin power bölümündəki ən güclü kartı 2-yə endir ──
+    case 'xlr8': {
+      const row = oppRows['power'];
+      if (row.length) {
+        const strongest = row.reduce((a, b) => b.cur > a.cur ? b : a);
+        strongest.cur = 2;
+      }
+      break;
+    }
+
+    // ── FOUR ARMS: rəqibin light bölümündəki ən güclü kartı 2-yə endir ──
+    case 'fourarms': {
+      const row = oppRows['light'];
+      if (row.length) {
+        const strongest = row.reduce((a, b) => b.cur > a.cur ? b : a);
+        strongest.cur = 2;
+      }
+      break;
+    }
+
+    // ── SNARE-OH: rəqibin light bölümündəki bütün kartlara -1 ──
+    case 'snareoh':
+      oppRows['light'].forEach(c => { c.cur = Math.max(0, c.cur - 1); }); break;
+
+    // ── ARTICGUANA: rəqibin speed bölümündəki bütün kartlara -1 ──
+    case 'articguana':
+      oppRows['speed'].forEach(c => { c.cur = Math.max(0, c.cur - 1); }); break;
+
+    // ── BLITZWOLFER: rəqibin power bölümündəki bütün kartlara -1 ──
+    case 'blitzwolfer':
+      oppRows['power'].forEach(c => { c.cur = Math.max(0, c.cur - 1); }); break;
+
+    // ── FRANKENSTRIKE: əlavə edildiyi bölümdəki rəqibin kartlarına -1 ──
+    case 'frankenstrike':
+      oppRows[rowType].forEach(c => { c.cur = Math.max(0, c.cur - 1); }); break;
+
+    // ── GREY MATTER: öz bölümündəki kartları 2x et + rəqibin həmin bölümüne -1 ──
+    case 'greymatter':
+      myRow.forEach(c => { if (c.uid !== card.uid) c.cur *= 2; });
+      oppRows[rowType].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
+      break;
+
+    // ── DITTO: əlavə edildiyi bölümdəki kart sayı qədər çoxalır (hər biri 4 gücündə) ──
+    case 'ditto': {
+      // myRow artıq ditto-nu özünü ehtiva edir (playCard onu əvvəlcə push etdi)
+      const count = myRow.length - 1; // ditto özündən başqa neçə kart var
+      if (count > 0) {
+        // Ditto-nun gücünü kart sayına görə böl: toplam 12 qalır (4 * count + özü)
+        // Hər klon 4 güc daşıyır, dittonu da 4 saxla
+        for (let i = 0; i < count; i++) {
+          const clone = { ...card, uid: Math.random().toString(36).slice(2,9), cur: 4 };
+          myRow.push(clone);
+        }
       }
       break;
     }
