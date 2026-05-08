@@ -877,31 +877,68 @@ function playCard(card, isPlayer, rowType) {
 // ════════════════════════════════════════
 //  AI LOGIC
 // ════════════════════════════════════════
-function aiTurn() {
-  if (GS.aiPassed || GS.aiHand.length === 0) { aiDoPass(); return; }
 
-  const pTot = sideTotal(GS.pRows);
-  const aTot = sideTotal(GS.aiRows);
+// Debuff abilityFn-lərin siyahısı
+const DEBUFF_FNS = new Set(['heatblast','xlr8','fourarms','snareoh','articguana','blitzwolfer','frankenstrike']);
 
-  if (GS.pPassed && aTot > pTot) { aiDoPass(); return; }
-  if (aTot > pTot + 8 && GS.aiHand.length > 3 && Math.random() < 0.35) { aiDoPass(); return; }
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-  let chosen;
-  if (pTot - aTot > 4) {
-    const debuffs = GS.aiHand.filter(c => c.abilityFn && c.abilityFn.startsWith('debuff'));
-    if (debuffs.length) chosen = debuffs.sort((a,b) => b.power - a.power)[0];
+// AI öz bütün turlarını bu funksiya ilə idarə edir.
+// pPassed=true olduqdan sonra AI qabağa keçənə qədər fasiləsiz oynayır.
+async function runAiTurns() {
+  if (GS.over || GS.aiPassed) { checkRoundEnd(); return; }
+
+  while (!GS.over && !GS.aiPassed) {
+    // Kartı yoxdursa məcburi pass
+    if (GS.aiHand.length === 0) { aiDoPass(); return; }
+
+    const pTot = sideTotal(GS.pRows);
+    const aTot = sideTotal(GS.aiRows);
+    const gap  = aTot - pTot;
+
+    // Oyunçu pass edibsə: qabaqda olduqda pass et
+    if (GS.pPassed && gap > 0) { aiDoPass(); return; }
+
+    // Normal növbə — hər ikisi oynayırkən: komfortlu qabaqda → strategik pass
+    if (!GS.pPassed && gap > 6 && GS.aiHand.length > 4 && Math.random() < 0.25) {
+      aiDoPass();
+      return;
+    }
+
+    // Kart seç
+    let chosen = null;
+    if (gap < -3) {
+      const debuffCards = GS.aiHand.filter(c => DEBUFF_FNS.has(c.abilityFn));
+      if (debuffCards.length) chosen = debuffCards.sort((a,b) => b.power - a.power)[0];
+    }
+    if (!chosen) chosen = [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
+
+    // Bölüm seç
+    let chosenRow;
+    if (chosen.type === 'cosmic') {
+      chosenRow = ROWS.reduce((best, t) =>
+        rowTotal(GS.aiRows, t) < rowTotal(GS.aiRows, best) ? t : best, ROWS[0]);
+    } else {
+      chosenRow = chosen.type;
+    }
+
+    // Oyna
+    showAiThink(true);
+    await delay(600 + Math.random() * 500);
+    showAiThink(false);
+    if (GS.over || GS.aiPassed) return;
+    playCard(chosen, false, chosenRow);
+    await delay(150);
+
+    // Oyunçu pass etməyibsə → AI bir kart oynadı, indi oyunçunun növbəsi
+    if (!GS.pPassed) return;
+
+    // Oyunçu pass edibsə → loop davam edir, yenidən yoxla
   }
-  if (!chosen) chosen = [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
-
-  let rowType = chosen.type === 'cosmic'
-    ? ROWS[Math.floor(Math.random() * 3)]
-    : chosen.type;
-
-  playCard(chosen, false, rowType);
-  setTimeout(() => checkRoundEnd(), 200);
 }
 
 function aiDoPass() {
+  if (GS.aiPassed) return;
   GS.aiPassed = true;
   showToast('AI pass etdi');
   setTimeout(() => checkRoundEnd(), 400);
@@ -941,16 +978,10 @@ function onRowClick(rowType) {
   clearSelection();
   playCard(card, true, rowType);
 
-  if (!GS.aiPassed) {
-    GS.busy = true;
-    showAiThink(true);
-    setTimeout(() => {
-      showAiThink(false);
-      aiTurn();
-      GS.busy = false;
-    }, 800 + Math.random() * 600);
-  } else {
+  if (GS.aiPassed) {
     checkRoundEnd();
+  } else {
+    runAiTurns();
   }
 }
 
@@ -964,16 +995,11 @@ function playerPass() {
   btn.classList.add('passed');
   showToast('Pass etdiniz');
 
-  if (!GS.aiPassed) {
-    GS.busy = true;
-    showAiThink(true);
-    setTimeout(() => {
-      showAiThink(false);
-      aiTurn();
-      GS.busy = false;
-    }, 700 + Math.random() * 500);
-  } else {
+  if (GS.aiPassed) {
     checkRoundEnd();
+  } else {
+    // AI indi fasiləsiz oynayacaq (qabağa keçənə qədər)
+    runAiTurns();
   }
 }
 
