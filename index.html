@@ -997,7 +997,17 @@ const CARDS = [
   { id:17, name:'FRANKENSTRIKE', type:'cosmic', power:8,  rarity:'epic',      ability:'Əlavə edilən bölüm düşmənə -1', abilityFn:'frankenstrike' },
   { id:18, name:'GREY MATTER',   type:'cosmic', power:2,  rarity:'common',    ability:'Sahə 2x + Düşmən sahə -1',   abilityFn:'greymatter' },
   { id:19, name:'UPGRADE',       type:'cosmic', power:7,  rarity:'common',    ability:'Sahədəki hər karta +1',       abilityFn:'buffRow' },
-  { id:20, name:'DITTO',         type:'cosmic', power:4,  rarity:'rare',      ability:'Sahədəki kart sayı qədər çoxal', abilityFn:'ditto' },
+  { id:20, name:'DITTO',         type:'cosmic', power:4,  rarity:'rare',      ability:'Sahədəki kart sayı qədər çoxal',              abilityFn:'ditto'       },
+  { id:21, name:'ECHO ECHO',     type:'speed',  power:5,  rarity:'common',    ability:'Sahədəki kart sayı qədər çoxal',              abilityFn:'ditto'       },
+  { id:22, name:'HUMUNGASAUR',   type:'power',  power:10, rarity:'common',    ability:'Düşmən Light hamısı -1',                      abilityFn:'snareoh'     },
+  { id:23, name:'JETRAY',        type:'speed',  power:6,  rarity:'common',    ability:'Düşmən Power hamısı -1',                      abilityFn:'blitzwolfer' },
+  { id:24, name:'BIG CHILL',     type:'light',  power:5,  rarity:'common',    ability:'Düşmən Speed hamısı -1',                      abilityFn:'articguana'  },
+  { id:25, name:'CHROMASTONE',   type:'light',  power:8,  rarity:'rare',      ability:'Sahədəki hər karta +1',                       abilityFn:'buffRow'     },
+  { id:26, name:'BRAINSTORM',    type:'cosmic', power:3,  rarity:'common',    ability:'Sahə 2x + Düşmən sahə -1',                    abilityFn:'greymatter'  },
+  { id:27, name:'SPIDERMONKEY',  type:'speed',  power:5,  rarity:'rare',      ability:'Düşmən Power ən güclüsü →2',                  abilityFn:'xlr8'        },
+  { id:28, name:'GOOP',          type:'power',  power:5,  rarity:'rare',      ability:'Düşmən Light ən güclüsü →2',                  abilityFn:'fourarms'    },
+  { id:29, name:'SWAMPFIRE',     type:'light',  power:9,  rarity:'epic',      ability:'Öz sırası +2, Düşmən Light hamısı -2',        abilityFn:'swampfire'   },
+  { id:30, name:'ALIEN X',       type:'cosmic', power:14, rarity:'legendary', ability:'Öz sırası 2x + Düşmənin ən güclü kartı →2',   abilityFn:'alienx'      },
 ];
 
 const TYPE_COLOR = { power:'var(--row-power)', speed:'var(--row-speed)', light:'var(--row-light)', cosmic:'var(--row-cosmic)' };
@@ -1238,7 +1248,7 @@ function applyAbility(card, isPlayer, rowType) {
       oppRows[rowType].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
       break;
 
-    // ── DITTO: əlavə edildiyi bölümdəki kart sayı qədər çoxalır (hər biri 4 gücündə) ──
+    // ── DITTO / ECHO ECHO: əlavə edildiyi bölümdəki kart sayı qədər çoxalır (hər biri 4 gücündə) ──
     case 'ditto': {
       // myRow artıq ditto-nu özünü ehtiva edir (playCard onu əvvəlcə push etdi)
       const count = myRow.length - 1; // ditto özündən başqa neçə kart var
@@ -1250,6 +1260,26 @@ function applyAbility(card, isPlayer, rowType) {
           myRow.push(clone);
         }
       }
+      break;
+    }
+
+    // ── SWAMPFIRE: öz light sırasındakı digər kartlara +2, rəqibin light sırasındakı hamısına -2 ──
+    case 'swampfire':
+      myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 2; });
+      oppRows['light'].forEach(c => { c.cur = Math.max(0, c.cur - 2); });
+      break;
+
+    // ── ALIEN X: öz sırasındakı digər kartları 2x edir + rəqibin bütün sıralarındakı ən güclü kartı →2 ──
+    case 'alienx': {
+      myRow.forEach(c => { if (c.uid !== card.uid) c.cur *= 2; });
+      // Rəqibin bütün sıralarında ən güclü kartı tap
+      let strongest = null;
+      ROWS.forEach(t => {
+        oppRows[t].forEach(c => {
+          if (!strongest || c.cur > strongest.cur) strongest = c;
+        });
+      });
+      if (strongest) strongest.cur = 2;
       break;
     }
   }
