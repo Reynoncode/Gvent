@@ -89,8 +89,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .auth-ben-item{font-size:12px;color:var(--text-mid);padding:5px 0;display:flex;gap:8px;align-items:center;}
 
 /* ════════════════ REDRAW ════════════════ */
-#redrawScreen{z-index:300;}
-.redraw-header{width:100%;padding:14px 16px 10px;background:var(--bg2);border-bottom:1px solid var(--border);text-align:center;flex-shrink:0;z-index:1;margin-top:44px;}
+#redrawScreen{z-index:300;padding-bottom:56px;}
+.redraw-header{width:100%;padding:14px 16px 10px;background:var(--bg2);border-bottom:1px solid var(--border);text-align:center;flex-shrink:0;z-index:1;margin-top:44px;position:sticky;top:0;}
 .redraw-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.12em;}
 .redraw-sub{font-size:11px;color:var(--text-dim);margin-top:4px;letter-spacing:0.06em;}
 .redraw-select-info{font-family:'Orbitron',monospace;font-size:11px;color:var(--orange);margin-top:5px;letter-spacing:0.1em;}
@@ -107,7 +107,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .card-mini.rarity-rare{border-color:var(--rarity-rare);}
 .card-mini.rarity-epic{border-color:var(--rarity-epic);}
 .card-mini.rarity-legendary{border-color:var(--rarity-legendary);}
-.redraw-footer{flex-shrink:0;padding:12px 16px 16px;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:10px;width:100%;max-width:500px;}
+.redraw-footer{flex-shrink:0;padding:12px 16px 16px;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:10px;width:100%;max-width:500px;position:sticky;bottom:0;z-index:10;}
 .btn-redraw-confirm{flex:1;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:0.12em;padding:14px 8px;background:transparent;color:var(--orange);border:1.5px solid var(--orange);cursor:pointer;transition:all 0.2s;}
 .btn-redraw-confirm:disabled{opacity:0.3;cursor:not-allowed;}
 .btn-redraw-skip{flex:1;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:0.12em;padding:14px 8px;background:transparent;color:var(--text-dim);border:1.5px solid var(--border2);cursor:pointer;transition:all 0.2s;}
@@ -349,6 +349,25 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp 0.5s ease-out both;}
+
+/* ════════════════ LEVEL GRID ════════════════ */
+.level-row{background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all 0.2s;position:relative;}
+.level-row.unlocked{border-color:var(--border2);}
+.level-row.unlocked:active{transform:scale(0.98);}
+.level-row.completed{border-color:var(--green);background:rgba(0,255,136,0.04);}
+.level-row.locked{opacity:0.4;cursor:not-allowed;}
+.level-num{font-family:'Orbitron',monospace;font-size:16px;font-weight:900;color:var(--text-dim);min-width:28px;text-align:center;}
+.level-row.completed .level-num{color:var(--green);}
+.level-info{flex:1;}
+.level-name{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;color:var(--text);}
+.level-stars{font-size:10px;margin-top:2px;}
+.level-reward{font-family:'Orbitron',monospace;font-size:10px;color:var(--coin);margin-left:auto;}
+.level-check{font-size:14px;margin-left:6px;}
+.level-difficulty{font-size:9px;color:var(--text-dim);margin-top:2px;}
+
+/* ════════════════ RESULT OVERLAY LEVEL ════════════════ */
+.level-complete-badge{background:var(--green-dim);border:1px solid var(--green);border-radius:6px;padding:8px 16px;font-family:'Orbitron',monospace;font-size:11px;color:var(--green);text-align:center;margin-top:8px;}
+
 </style>
 </head>
 <body>
@@ -453,12 +472,37 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
   </div>
 </div>
 
+<!-- GAME START SCREEN -->
+<div id="gameStartScreen" class="screen hidden">
+  <div class="page-content" style="padding-top:44px;padding-bottom:56px;">
+    <div style="width:100%;max-width:500px;padding:16px;">
+      <div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--green);letter-spacing:0.15em;text-align:center;margin-bottom:18px;">OYUN REJİMİ</div>
+      
+      <!-- Single Player Button -->
+      <div style="background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:16px;margin-bottom:18px;cursor:pointer;transition:all 0.2s;" onclick="startSinglePlayer()" id="spBtn">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="font-size:32px;">🎮</div>
+          <div>
+            <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--green);">TEK OYUNÇU</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:3px;">Kolleksiyandan kart seç, AI ilə oyna</div>
+          </div>
+          <div style="margin-left:auto;color:var(--text-dim);font-size:20px;">›</div>
+        </div>
+      </div>
+
+      <!-- Levels Section -->
+      <div style="font-family:'Orbitron',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:10px;">🏆 MƏRHƏLƏLƏR (20 Level)</div>
+      <div id="levelGrid" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+  </div>
+</div>
+
 <!-- GAME SCREEN -->
 <div id="gameScreen" class="screen hidden">
-  <div class="game-layout">
+  <div class="game-layout"><div id="levelBanner" style="display:none;background:linear-gradient(90deg,var(--bg2),rgba(0,255,136,0.08));border-bottom:1px solid var(--green);padding:5px 12px;text-align:center;font-family:'Orbitron',monospace;font-size:9px;color:var(--green);letter-spacing:0.12em;flex-shrink:0;"></div>
     <div class="scoreboard">
       <div class="score-side">
-        <div class="score-name">YAPay ZEKA</div>
+        <div class="score-name" id="aiScoreName">YAPay ZEKA</div>
         <div class="score-val enemy" id="aiScore">0</div>
         <div class="score-gems" id="aiGems"></div>
       </div>
@@ -662,8 +706,66 @@ let selectedCard = null;
 let redrawSelected = new Set();
 
 // ═══════════════════════════════════
+//  LEVEL SYSTEM
+// ═══════════════════════════════════
+const LEVELS = [
+  {level:1,  name:'Başlanğıc',    stars:'⭐',    coinReward:50,  aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.1, aiSmartness:0.2},
+  {level:2,  name:'Yeni Başlayan',stars:'⭐',    coinReward:55,  aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.1, aiSmartness:0.25},
+  {level:3,  name:'Həvəskar',     stars:'⭐',    coinReward:60,  aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.15,aiSmartness:0.3},
+  {level:4,  name:'İdmançı',      stars:'⭐⭐',  coinReward:65,  aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.2, aiSmartness:0.35},
+  {level:5,  name:'Güclü',        stars:'⭐⭐',  coinReward:70,  aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.2, aiSmartness:0.4},
+  {level:6,  name:'Cəngavər',     stars:'⭐⭐',  coinReward:75,  aiHandSize:8,  aiPassThreshold:6, aiDebuffChance:0.25,aiSmartness:0.45},
+  {level:7,  name:'Şampion',      stars:'⭐⭐⭐',coinReward:80,  aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.3, aiSmartness:0.5},
+  {level:8,  name:'Usta',         stars:'⭐⭐⭐',coinReward:85,  aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.35,aiSmartness:0.55},
+  {level:9,  name:'Ekspert',      stars:'⭐⭐⭐',coinReward:90,  aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.4, aiSmartness:0.6},
+  {level:10, name:'Veteran',      stars:'⭐⭐⭐',coinReward:95,  aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.45,aiSmartness:0.65},
+  {level:11, name:'Əfsanə',       stars:'🌟🌟', coinReward:100, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.5, aiSmartness:0.7},
+  {level:12, name:'Titan',        stars:'🌟🌟', coinReward:105, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.55,aiSmartness:0.72},
+  {level:13, name:'İlahi',        stars:'🌟🌟', coinReward:110, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.6, aiSmartness:0.75},
+  {level:14, name:'Omnipotent',   stars:'🌟🌟🌟',coinReward:115, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.65,aiSmartness:0.78},
+  {level:15, name:'Galaktik',     stars:'🌟🌟🌟',coinReward:120, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.7, aiSmartness:0.8},
+  {level:16, name:'Kosmik',       stars:'🌟🌟🌟',coinReward:125, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.75,aiSmartness:0.83},
+  {level:17, name:'Sonsuz',       stars:'💫💫',  coinReward:130, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.8, aiSmartness:0.85},
+  {level:18, name:'Ultim8',       stars:'💫💫',  coinReward:135, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.85,aiSmartness:0.88},
+  {level:19, name:'Omnitrix',     stars:'💫💫💫',coinReward:140, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.9, aiSmartness:0.9},
+  {level:20, name:'Alien X',      stars:'💫💫💫',coinReward:145, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:1.0, aiSmartness:1.0},
+];
+
+// First 20 cards for AI in level mode
+const LEVEL_AI_CARD_IDS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+let currentLevelData = null; // null = single player free mode
+let playerLevelProgress = {};
+
+function loadLevelProgress() {
+  try { playerLevelProgress = JSON.parse(localStorage.getItem('b10_levels') || '{}'); }
+  catch(e) { playerLevelProgress = {}; }
+}
+
+function saveLevelProgress() {
+  localStorage.setItem('b10_levels', JSON.stringify(playerLevelProgress));
+}
+
+function isLevelUnlocked(lvl) {
+  if (lvl === 1) return true;
+  return !!playerLevelProgress[lvl - 1];
+}
+
+// ═══════════════════════════════════
 //  STORAGE
 // ═══════════════════════════════════
+const STARTER_CARD_IDS = [1,2,3,4,5,6,9,10,18,19];
+
+function grantStarterCards() {
+  // Only grant if never granted before
+  if (localStorage.getItem('b10_starter_granted')) return;
+  STARTER_CARD_IDS.forEach(id => {
+    playerInventory[id] = (playerInventory[id] || 0) + 1;
+  });
+  localStorage.setItem('b10_starter_granted', '1');
+  saveAll();
+}
+
 function loadLocal() {
   try {
     playerInventory = JSON.parse(localStorage.getItem('b10_inv') || '{}');
@@ -681,6 +783,7 @@ function loadLocal() {
     playerInventory={}; packetStock={}; playerCoins=0; playerStats={wins:0,games:0};
     refreshMarket();
   }
+  grantStarterCards();
 }
 
 function saveAll() {
@@ -719,19 +822,23 @@ function getMarketTimeLeft() {
 // ═══════════════════════════════════
 //  NAVIGATION
 // ═══════════════════════════════════
-const SCREENS = ['homeScreen','authScreen','redrawScreen','gameScreen','colScreen','shopScreen'];
-const NAV_MAP = {'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen'};
+const SCREENS = ['homeScreen','authScreen','redrawScreen','gameScreen','colScreen','shopScreen','gameStartScreen'];
+const NAV_MAP = {'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen','game-start':'gameStartScreen'};
 
 function showScreen(id) {
   SCREENS.forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  const navId = Object.entries({'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen'})
+  const navId = Object.entries({'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen','game-start':'gameStartScreen'})
     .find(([k,v]) => v === id);
   if (navId) document.getElementById('nav-' + navId[0])?.classList.add('active');
+  // gameScreen and redrawScreen also highlight game nav
+  if (id === 'gameScreen' || id === 'redrawScreen') {
+    document.getElementById('nav-game')?.classList.add('active');
+  }
 }
 
 function navTo(dest) {
-  if (dest === 'game-start') { startGame(); return; }
+  if (dest === 'game-start') { showGameStartScreen(); return; }
   if (NAV_MAP[dest]) {
     showScreen(NAV_MAP[dest]);
     if (dest === 'col') { renderCollectionPanel(); }
@@ -740,6 +847,12 @@ function navTo(dest) {
     if (dest === 'auth') { renderAuthScreen(); }
   }
 }
+
+// Make playerLevelProgress accessible globally for Firebase
+Object.defineProperty(window, 'playerLevelProgress', {
+  get() { return playerLevelProgress; },
+  set(v) { playerLevelProgress = v; }
+});
 
 function updateHomeStats() {
   const uniq = Object.keys(playerInventory).filter(id => playerInventory[id] > 0).length;
@@ -1144,6 +1257,14 @@ function startGameAfterRedraw() {
   selectedCard = null;
   const btn = document.getElementById('passBtn');
   btn.textContent = '⏭ PASS'; btn.classList.remove('passed'); btn.disabled = false;
+  // Show level banner
+  const banner = document.getElementById('levelBanner');
+  if (currentLevelData) {
+    banner.style.display = 'block';
+    banner.textContent = `${currentLevelData.stars} LEVEL ${currentLevelData.level}: ${currentLevelData.name.toUpperCase()} — Mükafat: 🪙${currentLevelData.coinReward}`;
+  } else {
+    banner.style.display = 'none';
+  }
   renderAll();
 }
 
@@ -1182,19 +1303,70 @@ function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function runAiTurns() {
   if (GS.over || GS.aiPassed) { checkRoundEnd(); return; }
+  // Get level config (default to hard free mode if no level)
+  const lvlCfg = currentLevelData || {aiPassThreshold:6, aiDebuffChance:0.4, aiSmartness:0.6};
   while (!GS.over && !GS.aiPassed) {
     if (GS.aiHand.length === 0) { aiDoPass(); return; }
     const pTot=sideTotal(GS.pRows), aTot=sideTotal(GS.aiRows), gap=aTot-pTot;
+    // AI pass logic based on level threshold
     if (GS.pPassed && gap > 0) { aiDoPass(); return; }
-    if (!GS.pPassed && gap > 6 && GS.aiHand.length > 4 && Math.random() < 0.25) { aiDoPass(); return; }
+    // Smarter AI holds longer at higher levels
+    const passGapThreshold = lvlCfg.aiPassThreshold;
+    const passRandChance = 0.4 - (lvlCfg.aiSmartness * 0.3); // lower chance to pass early at high levels
+    if (!GS.pPassed && gap > passGapThreshold && GS.aiHand.length > 4 && Math.random() < passRandChance) {
+      aiDoPass(); return;
+    }
+
     let chosen = null;
-    if (gap < -3) { const d=GS.aiHand.filter(c=>DEBUFF_FNS.has(c.abilityFn)); if(d.length)chosen=d.sort((a,b)=>b.power-a.power)[0]; }
-    if (!chosen) chosen = [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
+
+    // Debuff logic: use debuff cards when behind, based on debuffChance
+    if (gap < -2 && Math.random() < lvlCfg.aiDebuffChance) {
+      const d=GS.aiHand.filter(c=>DEBUFF_FNS.has(c.abilityFn));
+      if(d.length) chosen=d.sort((a,b)=>b.power-a.power)[0];
+    }
+
+    // Smart buff analysis: at high smartness, prefer buff cards that give net gain
+    if (!chosen && lvlCfg.aiSmartness > 0.5 && Math.random() < lvlCfg.aiSmartness - 0.3) {
+      // Find cards with buffRow or greymatter abilities that can multiply advantage
+      const buffCards = GS.aiHand.filter(c => ['buffRow','greymatter','swampfire','alienx','frankenstrike'].includes(c.abilityFn));
+      if (buffCards.length) {
+        // Prefer buff if AI already has cards in that row
+        for (const bc of buffCards.sort((a,b)=>b.power-a.power)) {
+          const rowType = bc.type === 'cosmic'
+            ? ROWS.reduce((best,t)=>rowTotal(GS.aiRows,t)<rowTotal(GS.aiRows,best)?t:best,ROWS[0])
+            : bc.type;
+          if (GS.aiRows[rowType].length > 0) { chosen = bc; break; }
+        }
+      }
+    }
+
+    if (!chosen) {
+      if (lvlCfg.aiSmartness > 0.7) {
+        // High smartness: pick best card for weakest row that player is winning
+        const weakRow = ROWS.reduce((worst, t) => {
+          const diff = rowTotal(GS.aiRows, t) - rowTotal(GS.pRows, t);
+          const wdiff = rowTotal(GS.aiRows, worst) - rowTotal(GS.pRows, worst);
+          return diff < wdiff ? t : worst;
+        }, ROWS[0]);
+        const rowCards = GS.aiHand.filter(c => c.type === weakRow || c.type === 'cosmic');
+        chosen = rowCards.length
+          ? rowCards.sort((a,b) => b.power - a.power)[0]
+          : [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
+      } else {
+        chosen = [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
+      }
+    }
+
     let chosenRow = (chosen.type === 'cosmic')
       ? ROWS.reduce((best,t) => rowTotal(GS.aiRows,t) < rowTotal(GS.aiRows,best) ? t : best, ROWS[0])
       : chosen.type;
+
+    // Think delay: faster at higher levels
+    const thinkMs = currentLevelData
+      ? Math.max(300, 900 - (currentLevelData.level * 30))
+      : 600;
     showAiThink(true);
-    await delay(600 + Math.random() * 500);
+    await delay(thinkMs + Math.random() * 300);
     showAiThink(false);
     if (GS.over || GS.aiPassed) return;
     playCard(chosen, false, chosenRow);
@@ -1266,35 +1438,81 @@ function endGame() {
   playerStats.games++;
   const won = GS.pWins > GS.aiWins;
   const draw = GS.pWins === GS.aiWins;
+  const title = document.getElementById('resultTitle');
+  const sub = document.getElementById('resultSub');
+  const box = document.getElementById('resultBox');
+  const btns = document.querySelector('#resultBox .ov-btns');
 
   if (won) {
     playerStats.wins++;
-    playerCoins += 12;
-    // random common card reward
-    const commons = CARDS.filter(c => c.rarity === 'common');
-    const bonus = commons[Math.floor(Math.random() * commons.length)];
-    playerInventory[bonus.id] = (playerInventory[bonus.id] || 0) + 1;
-    saveAll();
+    let coinGain = 12;
+    let extraHtml = '';
+
+    if (currentLevelData) {
+      // Level mode win
+      coinGain = currentLevelData.coinReward;
+      const lvlNum = currentLevelData.level;
+      // Mark level as completed (if not already or this is first time)
+      const alreadyDone = !!playerLevelProgress[lvlNum];
+      if (!alreadyDone) {
+        playerLevelProgress[lvlNum] = { coins: coinGain, completedAt: Date.now() };
+        saveLevelProgress();
+      }
+      extraHtml = `<div class="level-complete-badge">⭐ Level ${lvlNum} Tamamlandı!</div>`;
+      const nextLevel = LEVELS.find(l => l.level === lvlNum + 1);
+      if (nextLevel && !alreadyDone) {
+        extraHtml += `<div style="font-size:11px;color:var(--text-dim);margin-top:6px;font-family:'Orbitron',monospace;">🔓 Level ${nextLevel.level} açıldı!</div>`;
+      }
+      // Update result buttons for level mode
+      if (btns) {
+        const nextLvl = LEVELS.find(l => l.level === lvlNum + 1);
+        btns.innerHTML = `
+          ${nextLvl ? `<button class="btn-menu" onclick="startLevelGame(${nextLvl.level})">▶ NƏZİR LEVEL</button>` : ''}
+          <button class="btn-menu" onclick="startLevelGame(${lvlNum})">🔄 TƏKRARla</button>
+          <button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`;
+      }
+    } else {
+      // Single player win - random common card
+      const commons = CARDS.filter(c => c.rarity === 'common');
+      const bonus = commons[Math.floor(Math.random() * commons.length)];
+      playerInventory[bonus.id] = (playerInventory[bonus.id] || 0) + 1;
+      extraHtml = `🃏 +1 ${bonus.name}`;
+      if (btns) {
+        btns.innerHTML = `
+          <button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button>
+          <button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
+      }
+    }
+
+    playerCoins += coinGain;
     updateCoinDisplay();
-    const box = document.getElementById('resultBox');
-    const title = document.getElementById('resultTitle');
-    const sub = document.getElementById('resultSub');
+    saveAll();
+
     title.textContent = 'QALİB!'; title.className = 'ov-title'; box.className = 'overlay-box';
-    sub.innerHTML = `AI-ı məğlub etdiniz!<br>Raund: ${GS.pWins} — ${GS.aiWins}<br><br>🪙 +12 COIN<br>🃏 +1 ${bonus.name}`;
+    sub.innerHTML = `AI-ı məğlub etdiniz!<br>Raund: ${GS.pWins} — ${GS.aiWins}<br><br>🪙 +${coinGain} COIN<br>${extraHtml}`;
+
   } else if (draw) {
     saveAll();
-    const title = document.getElementById('resultTitle');
-    const sub = document.getElementById('resultSub');
-    const box = document.getElementById('resultBox');
     title.textContent = 'BƏRABƏR!'; title.className = 'ov-title'; box.className = 'overlay-box';
     sub.innerHTML = `Güclər bərabər idi<br>Raund: ${GS.pWins} — ${GS.aiWins}`;
+    if (btns) {
+      btns.innerHTML = currentLevelData
+        ? `<button class="btn-menu" onclick="startLevelGame(${currentLevelData.level})">🔄 TƏKRARla</button>
+           <button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`
+        : `<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button>
+           <button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
+    }
   } else {
     saveAll();
-    const title = document.getElementById('resultTitle');
-    const sub = document.getElementById('resultSub');
-    const box = document.getElementById('resultBox');
     title.textContent = 'MƏĞLUB!'; title.className = 'ov-title lose'; box.className = 'overlay-box lose';
     sub.innerHTML = `AI sizi məğlub etdi<br>Raund: ${GS.pWins} — ${GS.aiWins}`;
+    if (btns) {
+      btns.innerHTML = currentLevelData
+        ? `<button class="btn-menu" onclick="startLevelGame(${currentLevelData.level})">🔄 TƏKRARla</button>
+           <button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`
+        : `<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button>
+           <button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
+    }
   }
   document.getElementById('resultOverlay').classList.add('show');
 }
@@ -1342,6 +1560,12 @@ function renderScoreboard() {
   document.getElementById('playerScore').textContent = GS.pWins;
   document.getElementById('aiScore').textContent = GS.aiWins;
   document.getElementById('roundNum').textContent = `${GS.round} / 3`;
+  const aiNameEl = document.getElementById('aiScoreName');
+  if (aiNameEl && currentLevelData) {
+    aiNameEl.textContent = `LVL ${currentLevelData.level}`;
+  } else if (aiNameEl) {
+    aiNameEl.textContent = 'YAPay ZEKA';
+  }
   ['player','ai'].forEach(side => {
     const wins = side === 'player' ? GS.pWins : GS.aiWins;
     const losses = side === 'player' ? GS.aiWins : GS.pWins;
@@ -1395,15 +1619,85 @@ function showToast(msg) {
   _toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
 }
 
+// ═══════════════════════════════════
+//  GAME START SCREEN & LEVEL SYSTEM
+// ═══════════════════════════════════
+function showGameStartScreen() {
+  document.getElementById('resultOverlay').classList.remove('show');
+  loadLevelProgress();
+  renderLevelGrid();
+  showScreen('gameStartScreen');
+  document.getElementById('nav-game').classList.add('active');
+}
+
+function renderLevelGrid() {
+  const grid = document.getElementById('levelGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  LEVELS.forEach(lvl => {
+    const unlocked = isLevelUnlocked(lvl.level);
+    const completed = !!playerLevelProgress[lvl.level];
+    const row = document.createElement('div');
+    const diffLabels = ['','Çox Asan','Asan','Asan','Orta','Orta','Orta','Çətin','Çətin','Çətin','Çətin','Ekspert','Ekspert','Ekspert','Çox Çətin','Çox Çətin','Çox Çətin','Master','Master','Grandmaster','İmpossible'];
+    row.className = `level-row ${completed ? 'completed' : unlocked ? 'unlocked' : 'locked'}`;
+    row.innerHTML = `
+      <div class="level-num">${lvl.level}</div>
+      <div class="level-info">
+        <div class="level-name">${lvl.name}</div>
+        <div class="level-stars">${lvl.stars}</div>
+        <div class="level-difficulty">${diffLabels[lvl.level] || ''}</div>
+      </div>
+      <div class="level-reward">🪙 ${lvl.coinReward}</div>
+      ${completed ? '<div class="level-check">✅</div>' : unlocked ? '<div class="level-check" style="color:var(--text-dim)">▶</div>' : '<div class="level-check">🔒</div>'}`;
+    if (unlocked) {
+      row.onclick = () => startLevelGame(lvl.level);
+    }
+    grid.appendChild(row);
+  });
+}
+
+function startSinglePlayer() {
+  currentLevelData = null;
+  startGame();
+}
+
+function startLevelGame(levelNum) {
+  currentLevelData = LEVELS.find(l => l.level === levelNum);
+  if (!currentLevelData) return;
+  document.getElementById('resultOverlay').classList.remove('show');
+  initGS(); dealFullHandsForLevel(); showRedrawScreen();
+}
+
+function dealFullHandsForLevel() {
+  // Player hand from owned cards
+  const ownedIds = Object.keys(playerInventory).map(Number);
+  let pool = ownedIds.length >= 5
+    ? shuffle([...CARDS.filter(c => ownedIds.includes(c.id))])
+    : shuffle([...CARDS]);
+  GS.pHand = pool.slice(0, Math.min(12, pool.length)).map(newCard);
+
+  // AI hand: only cards with IDs 1-20, sized by level difficulty
+  const aiPool = shuffle([...CARDS.filter(c => LEVEL_AI_CARD_IDS.includes(c.id))]);
+  const aiSize = currentLevelData ? currentLevelData.aiHandSize : 12;
+  GS.aiHand = aiPool.slice(0, Math.min(aiSize, aiPool.length)).map(newCard);
+}
+
 function startGame() {
   document.getElementById('resultOverlay').classList.remove('show');
-  initGS(); dealFullHands(); showRedrawScreen();
+  initGS();
+  if (currentLevelData) {
+    dealFullHandsForLevel();
+  } else {
+    dealFullHands();
+  }
+  showRedrawScreen();
 }
 
 // ═══════════════════════════════════
 //  INIT
 // ═══════════════════════════════════
 loadLocal();
+loadLevelProgress();
 updateCoinDisplay();
 showScreen('homeScreen');
 updateHomeStats();
@@ -1463,10 +1757,12 @@ async function syncFromFirestore(uid) {
       window.packetStock = d.packets || {};
       window.playerCoins = d.coins || 0;
       window.playerStats = d.stats || {wins:0,games:0};
+      window.playerLevelProgress = d.levels || {};
       localStorage.setItem('b10_inv', JSON.stringify(window.playerInventory));
       localStorage.setItem('b10_pkt', JSON.stringify(window.packetStock));
       localStorage.setItem('b10_coins', String(window.playerCoins));
       localStorage.setItem('b10_stats', JSON.stringify(window.playerStats));
+      localStorage.setItem('b10_levels', JSON.stringify(window.playerLevelProgress));
       updateCoinDisplay();
       updateHomeStats();
     }
@@ -1481,6 +1777,7 @@ window.pushToFirestore = async function() {
       packets: window.packetStock,
       coins: window.playerCoins,
       stats: window.playerStats,
+      levels: window.playerLevelProgress,
       updatedAt: Date.now()
     });
   } catch(e) {}
