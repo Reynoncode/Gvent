@@ -654,56 +654,56 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 //  DATA
 // ═══════════════════════════════════
 const CARDS = [
-  {id:1,name:'HEATBLAST',type:'light',power:6,rarity:'common',abilityFn:'heatblast'},
-  {id:2,name:'DIAMONDHEAD',type:'light',power:5,rarity:'common',abilityFn:'selfBuff1'},
-  {id:3,name:'RİPJAWS',type:'speed',power:4,rarity:'common',abilityFn:null},
-  {id:4,name:'XLR8',type:'speed',power:4,rarity:'common',abilityFn:'xlr8'},
-  {id:5,name:'GHOSTFREAK',type:'speed',power:6,rarity:'common',abilityFn:null},
-  {id:6,name:'STINKFLY',type:'speed',power:3,rarity:'common',abilityFn:null},
-  {id:7,name:'CANNONBOLT',type:'speed',power:7,rarity:'rare',abilityFn:'buffRow'},
-  {id:8,name:'BLITZWOLFER',type:'speed',power:6,rarity:'epic',abilityFn:'blitzwolfer'},
-  {id:9,name:'WILDMUTT',type:'power',power:6,rarity:'common',abilityFn:null},
-  {id:10,name:'FOUR ARMS',type:'power',power:8,rarity:'common',abilityFn:'fourarms'},
-  {id:11,name:'WILDVINE',type:'power',power:5,rarity:'rare',abilityFn:'buffRow'},
-  {id:12,name:'SNARE-OH',type:'power',power:7,rarity:'epic',abilityFn:'snareoh'},
-  {id:13,name:'EYE GUY',type:'power',power:5,rarity:'rare',abilityFn:'selfBuff1'},
-  {id:14,name:'UOCHUCK',type:'light',power:3,rarity:'rare',abilityFn:'buffRow'},
-  {id:15,name:'ARTICGUANA',type:'light',power:5,rarity:'epic',abilityFn:'articguana'},
-  {id:16,name:'WAY BIG',type:'cosmic',power:12,rarity:'legendary',abilityFn:'selfBuff2'},
-  {id:17,name:'FRANKENSTRIKE',type:'cosmic',power:8,rarity:'epic',abilityFn:'frankenstrike'},
-  {id:18,name:'GREY MATTER',type:'cosmic',power:2,rarity:'common',abilityFn:'greymatter'},
-  {id:19,name:'UPGRADE',type:'cosmic',power:7,rarity:'common',abilityFn:'buffRow'},
-  {id:20,name:'DITTO',type:'cosmic',power:4,rarity:'rare',abilityFn:'ditto'},
-  {id:21,name:'ECHO ECHO',type:'speed',power:5,rarity:'common',abilityFn:'ditto'},
-  {id:22,name:'HUMUNGASAUR',type:'power',power:10,rarity:'common',abilityFn:'snareoh'},
-  {id:23,name:'JETRAY',type:'speed',power:6,rarity:'common',abilityFn:'blitzwolfer'},
-  {id:24,name:'BIG CHILL',type:'light',power:5,rarity:'common',abilityFn:'articguana'},
-  {id:25,name:'CHROMASTONE',type:'light',power:8,rarity:'rare',abilityFn:'buffRow'},
-  {id:26,name:'BRAINSTORM',type:'cosmic',power:3,rarity:'common',abilityFn:'greymatter'},
-  {id:27,name:'SPIDERMONKEY',type:'speed',power:5,rarity:'rare',abilityFn:'xlr8'},
-  {id:28,name:'GOOP',type:'power',power:5,rarity:'rare',abilityFn:'fourarms'},
-  {id:29,name:'SWAMPFIRE',type:'light',power:9,rarity:'epic',abilityFn:'swampfire'},
-  {id:30,name:'ALIEN X',type:'cosmic',power:14,rarity:'legendary',abilityFn:'alienx'},
-  {id:31,name:'LODESTAR',type:'cosmic',power:8,rarity:'epic',abilityFn:'frankenstrike'},
-  {id:32,name:'RATH',type:'power',power:10,rarity:'epic',abilityFn:'fourarms'},
-  {id:33,name:'NANOMECH',type:'light',power:2,rarity:'rare',abilityFn:'greymatter'},
-  {id:34,name:'FASTTRACK',type:'speed',power:3,rarity:'rare',abilityFn:'xlr8'},
-  {id:35,name:'CHAMALIEN',type:'light',power:3,rarity:'epic',abilityFn:null},
-  {id:36,name:'CLOCKWORK',type:'cosmic',power:5,rarity:'legendary',abilityFn:'selfBuff1'},
-  {id:37,name:'NRG',type:'power',power:7,rarity:'epic',abilityFn:'selfBuff1'},
-  {id:38,name:'TERRASPIN',type:'speed',power:6,rarity:'rare',abilityFn:'buffRow'},
-  {id:39,name:'ARMODRILLO',type:'power',power:7,rarity:'rare',abilityFn:'buffRow'},
-  {id:40,name:'AMPFEBIAN',type:'cosmic',power:9,rarity:'legendary',abilityFn:'frankenstrike'},
-  {id:41,name:'WATER HAZARD',type:'light',power:8,rarity:'epic',abilityFn:'buffRow'},
-  {id:42,name:'ECHO ECHO (ULT)',type:'speed',power:8,rarity:'ultimate',abilityFn:'blitzwolfer'},
-  {id:43,name:'HUMUNGOUSAUR (ULT)',type:'power',power:12,rarity:'ultimate',abilityFn:'snareoh'},
-  {id:44,name:'SWAMPFIRE (ULT)',type:'light',power:12,rarity:'ultimate',abilityFn:'swampfire'},
-  {id:45,name:'SPIDERMONKEY (ULT)',type:'power',power:9,rarity:'ultimate',abilityFn:'blitzwolfer'},
-  {id:46,name:'BIG CHILL (ULT)',type:'light',power:8,rarity:'ultimate',abilityFn:'swampfire'},
-  {id:47,name:'CANNONBOLT (ULT)',type:'speed',power:10,rarity:'ultimate',abilityFn:'buffRow'},
-  {id:48,name:'WILDMUTT (ULT)',type:'speed',power:8,rarity:'ultimate',abilityFn:'snareoh'},
-  {id:49,name:'WAY BIG (ULT)',type:'cosmic',power:18,rarity:'ultimate',abilityFn:'alienx'},
-  {id:50,name:'FEEDBACK',type:'cosmic',power:10,rarity:'legendary',abilityFn:'greymatter'},
+  {id:1, name:'HEATBLAST',            type:'light',  power:6,  rarity:'common',    abilityFn:'lightVsSpeed'},
+  {id:2, name:'DIAMONDHEAD',          type:'light',  power:5,  rarity:'common',    abilityFn:null},
+  {id:3, name:'RİPJAWS',             type:'speed',  power:4,  rarity:'common',    abilityFn:null},
+  {id:4, name:'XLR8',                type:'speed',  power:4,  rarity:'common',    abilityFn:'speedVsPower1'},
+  {id:5, name:'GHOSTFREAK',          type:'speed',  power:6,  rarity:'common',    abilityFn:null},
+  {id:6, name:'STINKFLY',            type:'speed',  power:3,  rarity:'common',    abilityFn:null},
+  {id:7, name:'CANNONBOLT',          type:'speed',  power:7,  rarity:'rare',      abilityFn:null},
+  {id:8, name:'BLITZWOLFER',         type:'speed',  power:6,  rarity:'epic',      abilityFn:'frankenPartner'},
+  {id:9, name:'WILDMUTT',            type:'power',  power:6,  rarity:'common',    abilityFn:null},
+  {id:10,name:'FOUR ARMS',           type:'power',  power:8,  rarity:'common',    abilityFn:'powerVsLight1'},
+  {id:11,name:'WILDVINE',            type:'power',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:12,name:'SNARE-OH',            type:'power',  power:7,  rarity:'epic',      abilityFn:'frankenPartner'},
+  {id:13,name:'EYE GUY',             type:'power',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:14,name:'UOCHUCK',             type:'light',  power:3,  rarity:'rare',      abilityFn:null},
+  {id:15,name:'ARTICGUANA',          type:'light',  power:5,  rarity:'epic',      abilityFn:'lightVsSpeed'},
+  {id:16,name:'WAY BIG',             type:'cosmic', power:12, rarity:'legendary', abilityFn:'wayBig'},
+  {id:17,name:'FRANKENSTRIKE',       type:'cosmic', power:8,  rarity:'epic',      abilityFn:'frankenstrike'},
+  {id:18,name:'GREY MATTER',         type:'cosmic', power:2,  rarity:'common',    abilityFn:'doubleStrongest'},
+  {id:19,name:'UPGRADE',             type:'cosmic', power:7,  rarity:'common',    abilityFn:'doubleStrongest'},
+  {id:20,name:'DITTO',               type:'cosmic', power:4,  rarity:'rare',      abilityFn:'ditto'},
+  {id:21,name:'ECHO ECHO',           type:'speed',  power:5,  rarity:'common',    abilityFn:'ditto'},
+  {id:22,name:'HUMUNGASAUR',         type:'power',  power:10, rarity:'common',    abilityFn:'powerVsLight1'},
+  {id:23,name:'JETRAY',              type:'speed',  power:6,  rarity:'common',    abilityFn:'speedVsPower2'},
+  {id:24,name:'BIG CHILL',           type:'light',  power:5,  rarity:'common',    abilityFn:'lightVsSpeed'},
+  {id:25,name:'CHROMASTONE',         type:'light',  power:8,  rarity:'rare',      abilityFn:null},
+  {id:26,name:'BRAINSTORM',          type:'cosmic', power:3,  rarity:'common',    abilityFn:'doubleStrongest'},
+  {id:27,name:'SPIDERMONKEY',        type:'speed',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:28,name:'GOOP',                type:'power',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:29,name:'SWAMPFIRE',           type:'light',  power:9,  rarity:'epic',      abilityFn:null},
+  {id:30,name:'ALIEN X',             type:'cosmic', power:14, rarity:'legendary', abilityFn:'alienX'},
+  {id:31,name:'LODESTAR',            type:'cosmic', power:8,  rarity:'epic',      abilityFn:'lodestar'},
+  {id:32,name:'RATH',                type:'power',  power:10, rarity:'epic',      abilityFn:'powerVsLight1'},
+  {id:33,name:'NANOMECH',            type:'light',  power:2,  rarity:'rare',      abilityFn:'lightVsSpeed2'},
+  {id:34,name:'FASTTRACK',           type:'speed',  power:3,  rarity:'rare',      abilityFn:'speedVsPower2'},
+  {id:35,name:'CHAMALIEN',           type:'light',  power:3,  rarity:'epic',      abilityFn:null},
+  {id:36,name:'CLOCKWORK',           type:'cosmic', power:5,  rarity:'legendary', abilityFn:'clockwork'},
+  {id:37,name:'NRG',                 type:'power',  power:7,  rarity:'epic',      abilityFn:'teamSynergy'},
+  {id:38,name:'TERRASPIN',           type:'speed',  power:6,  rarity:'rare',      abilityFn:'teamSynergy'},
+  {id:39,name:'ARMODRILLO',          type:'power',  power:7,  rarity:'rare',      abilityFn:'teamSynergy'},
+  {id:40,name:'AMPFEBIAN',           type:'cosmic', power:9,  rarity:'legendary', abilityFn:'ampfibian'},
+  {id:41,name:'WATER HAZARD',        type:'light',  power:8,  rarity:'epic',      abilityFn:'teamSynergy'},
+  {id:42,name:'ECHO ECHO (ULT)',     type:'speed',  power:8,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:21},
+  {id:43,name:'HUMUNGOUSAUR (ULT)',  type:'power',  power:12, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:22},
+  {id:44,name:'SWAMPFIRE (ULT)',     type:'light',  power:12, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:29},
+  {id:45,name:'SPIDERMONKEY (ULT)', type:'power',  power:9,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:27},
+  {id:46,name:'BIG CHILL (ULT)',    type:'light',  power:8,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:24},
+  {id:47,name:'CANNONBOLT (ULT)',   type:'speed',  power:10, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:7},
+  {id:48,name:'WILDMUTT (ULT)',     type:'speed',  power:8,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:9},
+  {id:49,name:'WAY BIG (ULT)',      type:'cosmic', power:18, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:16},
+  {id:50,name:'FEEDBACK',           type:'cosmic', power:10, rarity:'legendary', abilityFn:'feedback'},
 ];
 
 const SELL_PRICE = {common:12, rare:70, epic:210, legendary:1000, ultimate:3000};
@@ -1300,6 +1300,7 @@ function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math
 
 function initGS() {
   GS = {round:1,pWins:0,aiWins:0,pHand:[],aiHand:[],pRows:{power:[],speed:[],light:[]},aiRows:{power:[],speed:[],light:[]},pPassed:false,aiPassed:false,busy:false,over:false};
+  resetPersistentEffects(); // ← bunu əlavə et
 }
 
 function dealFullHands() {
@@ -1385,35 +1386,230 @@ function startGameAfterRedraw() {
 }
 
 // Abilities
+// Global persistent effects tracker
+let persistentEffects = {
+  feedback: false,        // rəqibin sonrakı kartlarına -1
+  ampfibianRows: new Set(), // hansı sahələrdə ampfibian effekti var
+  frankenActive: false,   // frankenstrike aktiv
+};
+
+function resetPersistentEffects() {
+  persistentEffects = {
+    feedback: false,
+    ampfibianRows: new Set(),
+    frankenActive: false,
+  };
+}
+
+const TEAM_SYNERGY_IDS = new Set([40, 37, 41, 38, 39]); // Ampfibian,NRG,WaterHazard,Terraspin,Armodrillo
+const FRANKEN_PARTNER_IDS = new Set([12, 8]); // Snare-Oh, Blitzwolfer
+const ULTIMATE_BASE_MAP = {42:21, 43:22, 44:29, 45:27, 46:24, 47:7, 48:9, 49:16};
+
+function getAllFieldCards(rows) {
+  return [...rows.power, ...rows.speed, ...rows.light];
+}
+
 function applyAbility(card, isPlayer, rowType) {
   const myRows = isPlayer ? GS.pRows : GS.aiRows;
   const oppRows = isPlayer ? GS.aiRows : GS.pRows;
   const myRow = myRows[rowType];
-  switch (card.abilityFn) {
-    case 'selfBuff1': card.cur += 1; break;
-    case 'selfBuff2': card.cur += 2; break;
-    case 'buffRow': myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 1; }); break;
-    case 'heatblast': { const r=oppRows['speed']; if(r.length){const s=r.reduce((a,b)=>b.cur>a.cur?b:a);s.cur=2;} break; }
-    case 'xlr8': { const r=oppRows['power']; if(r.length){const s=r.reduce((a,b)=>b.cur>a.cur?b:a);s.cur=2;} break; }
-    case 'fourarms': { const r=oppRows['light']; if(r.length){const s=r.reduce((a,b)=>b.cur>a.cur?b:a);s.cur=2;} break; }
-    case 'snareoh': oppRows['light'].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); break;
-    case 'articguana': oppRows['speed'].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); break;
-    case 'blitzwolfer': oppRows['power'].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); break;
-    case 'frankenstrike': oppRows[rowType].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); break;
-    case 'greymatter': myRow.forEach(c=>{if(c.uid!==card.uid)c.cur*=2;}); oppRows[rowType].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); break;
-    case 'ditto': { const count=myRow.length-1; if(count>0){for(let i=0;i<count;i++){myRow.push({...card,uid:Math.random().toString(36).slice(2,9),cur:4});}}} break;
-    case 'swampfire': myRow.forEach(c=>{if(c.uid!==card.uid)c.cur+=2;}); oppRows['light'].forEach(c=>{c.cur=Math.max(0,c.cur-2);}); break;
-    case 'alienx': { myRow.forEach(c=>{if(c.uid!==card.uid)c.cur*=2;}); let s=null; ROWS.forEach(t=>{oppRows[t].forEach(c=>{if(!s||c.cur>s.cur)s=c;})}); if(s)s.cur=2; break; }
+  const oppRow = oppRows[rowType];
+
+  // ── ULTIMATE SYNERGY ──────────────────────────────
+  if (card.abilityFn === 'ultimateSynergy') {
+    const baseId = ULTIMATE_BASE_MAP[card.id];
+    if (!baseId) return;
+    // Normal kart əvvəl atılıbmı yoxla
+    const baseCardOnField = getAllFieldCards(myRows).find(c => c.id === baseId);
+    if (baseCardOnField) {
+      // Hər ikisinin cəmini tap, 2x et
+      const combined = baseCardOnField.cur + card.cur;
+      baseCardOnField.cur = combined;
+      card.cur = combined;
+    }
+    return;
+  }
+
+  // ── TYPE ADVANTAGE DEBUFFS ────────────────────────
+  // Power → Light (-1)
+  if (card.abilityFn === 'powerVsLight1') {
+    oppRows['light'].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
+    return;
+  }
+  // Light → Speed (-1)
+  if (card.abilityFn === 'lightVsSpeed') {
+    oppRows['speed'].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
+    return;
+  }
+  // Light → Speed (-2) — Nanomech
+  if (card.abilityFn === 'lightVsSpeed2') {
+    oppRows['speed'].forEach(c => { c.cur = Math.max(0, c.cur - 2); });
+    return;
+  }
+  // Speed → Power (-1)
+  if (card.abilityFn === 'speedVsPower1') {
+    oppRows['power'].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
+    return;
+  }
+  // Speed → Power (-2) — Jetray, Fasttrack
+  if (card.abilityFn === 'speedVsPower2') {
+    oppRows['power'].forEach(c => { c.cur = Math.max(0, c.cur - 2); });
+    return;
+  }
+
+  // ── LEGENDARY: ALIEN X ───────────────────────────
+  if (card.abilityFn === 'alienX') {
+    oppRow.forEach(c => { c.cur = 2; });
+    return;
+  }
+
+  // ── LEGENDARY: WAY BIG ───────────────────────────
+  if (card.abilityFn === 'wayBig') {
+    const sorted = [...oppRow].sort((a, b) => b.cur - a.cur);
+    const toRemove = sorted.slice(0, 2).map(c => c.uid);
+    toRemove.forEach(uid => {
+      oppRows['power'] = oppRows['power'].filter(c => c.uid !== uid);
+      oppRows['speed'] = oppRows['speed'].filter(c => c.uid !== uid);
+      oppRows['light'] = oppRows['light'].filter(c => c.uid !== uid);
+      if (isPlayer) { GS.aiRows = oppRows; } else { GS.pRows = oppRows; }
+    });
+    return;
+  }
+
+  // ── LEGENDARY: AMPFIBIAN ─────────────────────────
+  if (card.abilityFn === 'ampfibian') {
+    // Mövcud kartlara +2 (özü istisna)
+    myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 2; });
+    // Bu sahəni persistent effekt kimi qeyd et
+    persistentEffects.ampfibianRows.add(isPlayer ? `p_${rowType}` : `ai_${rowType}`);
+    return;
+  }
+
+  // ── LEGENDARY: FEEDBACK ──────────────────────────
+  if (card.abilityFn === 'feedback') {
+    // Bütün sahələrdəki mövcud kartlara -1
+    getAllFieldCards(oppRows).forEach(c => { c.cur = Math.max(0, c.cur - 1); });
+    // Persistent: sonrakı kartlara da -1
+    persistentEffects.feedback = isPlayer ? 'vsAi' : 'vsPlayer';
+    return;
+  }
+
+  // ── LEGENDARY: CLOCKWORK ─────────────────────────
+  if (card.abilityFn === 'clockwork') {
+    const toReturn = myRow.filter(c => c.uid !== card.uid);
+    toReturn.forEach(c => {
+      if (isPlayer) GS.pHand.push(c);
+      else GS.aiHand.push(c);
+    });
+    myRows[rowType] = [card]; // yalnız clockwork qalır
+    if (isPlayer) GS.pRows = myRows; else GS.aiRows = myRows;
+    return;
+  }
+
+  // ── EPIC: FRANKENSTRIKE ──────────────────────────
+  if (card.abilityFn === 'frankenstrike') {
+    persistentEffects.frankenActive = true;
+    applyFrankenBonus(isPlayer);
+    return;
+  }
+
+  // frankenPartner (Snare-Oh, Blitzwolfer) atılanda da yoxla
+  if (card.abilityFn === 'frankenPartner') {
+    if (persistentEffects.frankenActive) {
+      applyFrankenBonus(isPlayer);
+    }
+    return;
+  }
+
+  // ── EPIC: LODESTAR ───────────────────────────────
+  if (card.abilityFn === 'lodestar') {
+    myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 1; });
+    return;
+  }
+
+  // ── DITTO / ECHO ECHO ────────────────────────────
+  if (card.abilityFn === 'ditto') {
+    const count = myRow.length - 1; // özü artıq əlavə olunub
+    if (count <= 0) return; // heç kart yoxdusa 1 qalır
+    for (let i = 0; i < count; i++) {
+      myRow.push({ ...card, uid: Math.random().toString(36).slice(2, 9) });
+    }
+    return;
+  }
+
+  // ── GREY MATTER / UPGRADE / BRAINSTORM ───────────
+  if (card.abilityFn === 'doubleStrongest') {
+    const others = myRow.filter(c => c.uid !== card.uid);
+    if (!others.length) return;
+    const strongest = others.reduce((a, b) => b.cur > a.cur ? b : a);
+    strongest.cur *= 2;
+    return;
+  }
+
+  // ── TEAM SYNERGY ─────────────────────────────────
+  if (card.abilityFn === 'teamSynergy') {
+    updateTeamSynergy(isPlayer);
+    return;
   }
 }
 
+// ── FRANKENSTRIKE BONUS HELPER ───────────────────
+function applyFrankenBonus(isPlayer) {
+  const myRows = isPlayer ? GS.pRows : GS.aiRows;
+  const allMy = getAllFieldCards(myRows);
+  const franken = allMy.find(c => c.abilityFn === 'frankenstrike');
+  const partners = allMy.filter(c => FRANKEN_PARTNER_IDS.has(c.id));
+  if (!franken || partners.length === 0) return;
+  const group = [franken, ...partners];
+  const totalBase = group.reduce((s, c) => s + CARDS.find(x => x.uid === c.uid || x.id === c.id)?.power || c.cur, 0);
+  // 2x total gücü bütün qrupa bərabər böl
+  const doubled = totalBase * 2;
+  group.forEach(c => { c.cur = Math.round(doubled / group.length); });
+}
+
+// ── TEAM SYNERGY HELPER ──────────────────────────
+function updateTeamSynergy(isPlayer) {
+  const myRows = isPlayer ? GS.pRows : GS.aiRows;
+  const allMy = getAllFieldCards(myRows);
+  const synCards = allMy.filter(c => TEAM_SYNERGY_IDS.has(c.id));
+  const count = synCards.length;
+  if (count < 2) return;
+  synCards.forEach(c => {
+    const base = CARDS.find(x => x.id === c.id)?.power || c.cur;
+    c.cur = base + count;
+  });
+}
+
 function playCard(card, isPlayer, rowType) {
-  if (isPlayer) { GS.pHand=GS.pHand.filter(c=>c.uid!==card.uid); GS.pRows[rowType].push(card); }
-  else { GS.aiHand=GS.aiHand.filter(c=>c.uid!==card.uid); GS.aiRows[rowType].push(card); }
+  if (isPlayer) {
+    GS.pHand = GS.pHand.filter(c => c.uid !== card.uid);
+    GS.pRows[rowType].push(card);
+  } else {
+    GS.aiHand = GS.aiHand.filter(c => c.uid !== card.uid);
+    GS.aiRows[rowType].push(card);
+    // Feedback effekti: AI kartına -1
+    if (persistentEffects.feedback === 'vsAi') {
+      card.cur = Math.max(0, card.cur - 1);
+    }
+  }
+
+  // Ampfibian persistent effekti: bu sahədə ampfibian varsa yeni karta +2
+  const sideKey = isPlayer ? `p_${rowType}` : `ai_${rowType}`;
+  if (persistentEffects.ampfibianRows.has(sideKey) && card.abilityFn !== 'ampfibian') {
+    card.cur += 2;
+  }
+
+  // Feedback effekti: player kartına -1
+  if (!isPlayer && persistentEffects.feedback === 'vsPlayer') {
+    // artıq yuxarıda işləndi
+  }
+  if (isPlayer && persistentEffects.feedback === 'vsAi') {
+    // player atır, feedback vsAi deyil
+  }
+
   applyAbility(card, isPlayer, rowType);
   renderAll();
 }
-
 const DEBUFF_FNS = new Set(['heatblast','xlr8','fourarms','snareoh','articguana','blitzwolfer','frankenstrike']);
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -1544,6 +1740,7 @@ function checkRoundEnd() {
 function nextRound() {
   GS.pRows={power:[],speed:[],light:[]}; GS.aiRows={power:[],speed:[],light:[]};
   GS.pPassed=false; GS.aiPassed=false; GS.busy=false;
+  resetPersistentEffects(); // ← bunu əlavə et
   const btn = document.getElementById('passBtn');
   btn.textContent = '⏭ PASS'; btn.classList.remove('passed'); btn.disabled = false;
   renderAll();
