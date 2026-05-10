@@ -16,7 +16,8 @@
   --row-cosmic:#ffffff;
   --enemy:#ff3a4a;--enemy-dim:rgba(255,58,74,0.12);--enemy-glow:rgba(255,58,74,0.35);
   --card-w:68px;--card-h:96px;--card-w-sm:56px;--card-h-sm:78px;
---rarity-common:#7a9a80;--rarity-rare:#4a8aff;--rarity-epic:#aa44ff;--rarity-legendary:#ffaa00;--rarity-ultimate:#ff2200;  --coin:#ffd700;
+  --rarity-common:#7a9a80;--rarity-rare:#4a8aff;--rarity-epic:#aa44ff;--rarity-legendary:#ffaa00;--rarity-ultimate:#ff2200;
+  --coin:#ffd700;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Rajdhani',sans-serif;color:var(--text);}
@@ -26,7 +27,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .screen.hidden{display:none!important;}
 .screen::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:0.35;}
 
-/* ── COIN BAR (global) ── */
+/* ── COIN BAR ── */
 #coinBar{position:fixed;top:0;left:0;right:0;height:44px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end;padding:0 14px;z-index:600;gap:8px;}
 #coinDisplay{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--coin);letter-spacing:0.08em;}
 .coin-icon{font-size:16px;}
@@ -44,8 +45,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .nav-btn.active{color:var(--green);}
 .nav-btn.active .nav-ico{filter:drop-shadow(0 0 6px var(--green));}
 
-/* ── TOP PADDING (below coin bar, above nav) ── */
+/* ── PAGE CONTENT ── */
 .page-content{padding-top:44px;padding-bottom:70px;flex:1;width:100%;display:flex;flex-direction:column;align-items:center;overflow-y:auto;}
+
 /* ════════════════ HOME ════════════════ */
 #homeScreen{justify-content:flex-start;}
 .home-inner{display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%;width:100%;max-width:400px;padding:20px 24px 20px;}
@@ -54,7 +56,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .logo-main{font-family:'Orbitron',monospace;font-weight:900;line-height:1;}
 .logo-ben{font-size:52px;color:var(--green);text-shadow:0 0 50px var(--green-glow),0 0 100px rgba(0,255,136,0.2);}
 .logo-10{font-size:52px;color:var(--text);}
-.logo-sub{font-family:'Orbitron',monospace;font-size:16px;letter-spacing:0.35em;color:var(--text-mid);margin-top:6px;}
 .omnitrix-ring{width:130px;height:130px;border-radius:50%;border:2px solid var(--green);box-shadow:0 0 40px var(--green-glow),inset 0 0 40px var(--green-dim);display:flex;align-items:center;justify-content:center;animation:pulseRing 3s ease-in-out infinite;}
 .omnitrix-hex{width:64px;height:64px;background:var(--green);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;animation:spinSlow 18s linear infinite;box-shadow:0 0 24px var(--green);}
 .omnitrix-hex svg{width:32px;height:32px;fill:#000;}
@@ -68,7 +69,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .home-stat-val{font-family:'Orbitron',monospace;font-size:18px;font-weight:700;color:var(--green);}
 .home-stat-lbl{font-family:'Orbitron',monospace;font-size:8px;color:var(--text-dim);margin-top:2px;letter-spacing:0.08em;}
 
-/* ════════════════ AUTH SCREEN ════════════════ */
+/* ════════════════ AUTH ════════════════ */
 #authScreen{justify-content:flex-start;}
 .auth-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;width:100%;max-width:340px;padding:30px 20px;flex:1;}
 .auth-title{font-family:'Orbitron',monospace;font-size:15px;font-weight:700;color:var(--green);letter-spacing:0.15em;text-align:center;}
@@ -105,6 +106,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .card-mini.rarity-rare{border-color:var(--rarity-rare);}
 .card-mini.rarity-epic{border-color:var(--rarity-epic);}
 .card-mini.rarity-legendary{border-color:var(--rarity-legendary);}
+.card-mini.rarity-ultimate{border-color:var(--rarity-ultimate);}
 .redraw-footer{flex-shrink:0;padding:12px 16px 16px;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:10px;width:100%;max-width:500px;position:sticky;bottom:0;z-index:10;}
 .btn-redraw-confirm{flex:1;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:0.12em;padding:14px 8px;background:transparent;color:var(--orange);border:1.5px solid var(--orange);cursor:pointer;transition:all 0.2s;}
 .btn-redraw-confirm:disabled{opacity:0.3;cursor:not-allowed;}
@@ -135,9 +137,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .row.row-power{border-color:rgba(0,204,255,0.25);}
 .row.row-speed{border-color:rgba(255,204,0,0.25);}
 .row.row-light{border-color:rgba(255,136,255,0.25);}
-.row.row-power.can-drop{border-color:var(--row-power);box-shadow:0 0 12px var(--row-power-dim) inset;}
-.row.row-speed.can-drop{border-color:var(--row-speed);box-shadow:0 0 12px var(--row-speed-dim) inset;}
-.row.row-light.can-drop{border-color:var(--row-light);box-shadow:0 0 12px var(--row-light-dim) inset;}
 .row-type-tag{position:absolute;top:3px;right:4px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:0.1em;opacity:0.3;pointer-events:none;}
 .row-power .row-type-tag{color:var(--row-power);}
 .row-speed .row-type-tag{color:var(--row-speed);}
@@ -173,7 +172,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 @keyframes ultimateGlow{0%,100%{box-shadow:0 0 20px rgba(255,34,0,0.5),0 0 8px rgba(255,34,0,0.3)}50%{box-shadow:0 0 40px rgba(255,34,0,0.9),0 0 18px rgba(255,34,0,0.6)}}
 .card-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#040a05;}
 .card-img img{width:100%;height:100%;object-fit:contain;display:block;}
-.card-back{width:var(--card-w-sm);height:var(--card-h-sm);border-radius:5px;border:1.5px solid var(--enemy-dim);background:var(--enemy-dim);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;color:var(--enemy);}
 @keyframes cardPlay{from{transform:scale(1.25) translateY(-10px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
 .play-anim{animation:cardPlay 0.25s ease-out;}
 .row.highlight-power{border-color:var(--row-power)!important;box-shadow:0 0 14px var(--row-power-dim) inset;animation:rowPulse 1s ease-in-out infinite;}
@@ -189,12 +187,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .col-head{width:100%;padding:0 16px;height:44px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;z-index:1;margin-top:44px;}
 .col-title{font-family:'Orbitron',monospace;font-size:12px;color:var(--green);flex:1;text-align:center;}
 .col-count{font-family:'Orbitron',monospace;font-size:9px;color:var(--text-dim);white-space:nowrap;flex-shrink:0;}
+.col-tabs{display:flex;width:100%;border-bottom:1px solid var(--border);background:var(--bg2);flex-shrink:0;}
+.col-tab{flex:1;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:0.08em;padding:13px 4px;text-align:center;cursor:pointer;background:none;border:none;color:var(--text-dim);border-bottom:2.5px solid transparent;transition:all 0.2s;}
+.col-tab.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,255,136,0.04);}
 .col-grid{flex:1;overflow-y:auto;padding:10px;padding-bottom:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:500px;align-content:start;}
 .col-item{border-radius:8px;border:1.5px solid var(--border2);background:#060f08;display:flex;flex-direction:column;align-items:center;padding:8px 4px 7px;gap:3px;position:relative;}
 .col-item.rarity-common{border-color:var(--rarity-common);}
 .col-item.rarity-rare{border-color:var(--rarity-rare);}
 .col-item.rarity-epic{border-color:var(--rarity-epic);}
 .col-item.rarity-legendary{border-color:var(--rarity-legendary);}
+.col-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
 .col-img{width:54px;height:70px;border-radius:4px;overflow:hidden;background:#040a05;display:flex;align-items:center;justify-content:center;font-size:28px;}
 .col-img img{width:100%;height:100%;object-fit:cover;}
 .col-name{font-family:'Orbitron',monospace;font-size:5.5px;text-align:center;color:var(--text);line-height:1.3;}
@@ -205,16 +207,44 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .badge-epic{color:var(--rarity-epic);border:1px solid var(--rarity-epic);}
 .badge-legendary{color:var(--rarity-legendary);border:1px solid var(--rarity-legendary);}
 .badge-ultimate{color:var(--rarity-ultimate);border:1px solid var(--rarity-ultimate);}
-.col-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
-.market-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
-.reveal-card.rarity-ultimate{border-color:var(--rarity-ultimate);box-shadow:0 0 30px rgba(255,34,0,0.7);animation:ultimateGlow 1.5s ease-in-out infinite;}
-.reveal-card-rarity.rarity-ultimate{color:var(--rarity-ultimate);background:rgba(255,34,0,0.18);border:1px solid var(--rarity-ultimate);}
-.card-mini.rarity-ultimate{border-color:var(--rarity-ultimate);}
 .col-stack-badge{position:absolute;top:4px;right:4px;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;background:rgba(0,0,0,0.8);color:var(--green);padding:1px 5px;border-radius:3px;border:1px solid var(--green);line-height:1.4;}
 .col-sell-btn{width:100%;margin-top:2px;font-family:'Orbitron',monospace;font-size:7px;letter-spacing:0.05em;background:transparent;border:1px solid var(--border2);color:var(--text-dim);padding:4px 0;cursor:pointer;transition:all 0.15s;border-radius:2px;}
 .col-sell-btn:active{border-color:var(--enemy);color:var(--enemy);background:rgba(255,58,74,0.08);}
 
-/* ════════════════ SHOP SCREEN ════════════════ */
+/* ════════════════ DECK TAB ════════════════ */
+.deck-top{width:100%;max-width:500px;padding:8px 10px 4px;flex-shrink:0;}
+.deck-top-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.12em;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
+.deck-top-count{font-family:'Orbitron',monospace;font-size:11px;color:var(--green);}
+.deck-top-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:8px;min-height:80px;}
+.deck-slot{border-radius:5px;border:1.5px dashed var(--border2);background:#060f08;display:flex;align-items:center;justify-content:center;aspect-ratio:5/7;position:relative;cursor:pointer;overflow:hidden;}
+.deck-slot.filled{border-style:solid;}
+.deck-slot.filled img{width:100%;height:100%;object-fit:contain;border-radius:4px;}
+.deck-slot .slot-empty{font-size:16px;opacity:0.2;}
+.deck-slot .slot-minus{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;font-size:22px;border-radius:4px;color:var(--enemy);}
+.deck-slot.show-minus .slot-minus{display:flex;}
+.deck-slot.rarity-common{border-color:var(--rarity-common);}
+.deck-slot.rarity-rare{border-color:var(--rarity-rare);}
+.deck-slot.rarity-epic{border-color:var(--rarity-epic);}
+.deck-slot.rarity-legendary{border-color:var(--rarity-legendary);}
+.deck-slot.rarity-ultimate{border-color:var(--rarity-ultimate);}
+.deck-pool-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.12em;padding:8px 10px 4px;width:100%;max-width:500px;}
+.deck-pool-grid{flex:1;overflow-y:auto;padding:6px 8px;padding-bottom:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:500px;align-content:start;scrollbar-width:none;}
+.deck-pool-grid::-webkit-scrollbar{display:none;}
+.deck-pool-item{border-radius:8px;border:1.5px solid var(--border2);background:#060f08;display:flex;flex-direction:column;align-items:center;padding:8px 4px 7px;gap:3px;position:relative;cursor:pointer;}
+.deck-pool-item.rarity-common{border-color:var(--rarity-common);}
+.deck-pool-item.rarity-rare{border-color:var(--rarity-rare);}
+.deck-pool-item.rarity-epic{border-color:var(--rarity-epic);}
+.deck-pool-item.rarity-legendary{border-color:var(--rarity-legendary);}
+.deck-pool-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
+.deck-pool-item.in-deck{opacity:0.3;}
+.deck-pool-img{width:54px;height:70px;border-radius:4px;overflow:hidden;background:#040a05;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.deck-pool-img img{width:100%;height:100%;object-fit:cover;}
+.deck-pool-name{font-family:'Orbitron',monospace;font-size:5.5px;text-align:center;color:var(--text);line-height:1.3;}
+.deck-pool-pow{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--green);}
+.deck-action-btn{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;font-size:28px;border-radius:7px;color:var(--green);}
+.deck-pool-item.show-plus .deck-action-btn{display:flex;}
+
+/* ════════════════ SHOP ════════════════ */
 #shopScreen{justify-content:flex-start;}
 .shop-head{width:100%;padding:0 16px;height:44px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;margin-top:44px;}
 .shop-title{font-family:'Orbitron',monospace;font-size:12px;color:var(--green);flex:1;text-align:center;}
@@ -223,8 +253,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .shop-tab.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,255,136,0.04);}
 .shop-inner{flex:1;overflow-y:auto;padding:12px;padding-bottom:70px;display:flex;flex-direction:column;gap:12px;width:100%;max-width:500px;}
 .shop-section-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:2px;}
-
-/* Pack cards */
 .pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));padding:14px 12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;min-height:90px;}
 .pack-card:active{transform:scale(0.98);}
 .pack-card.pack-common{border-color:var(--rarity-common);}
@@ -266,7 +294,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .stocked-open-btn.epic{color:var(--rarity-epic);border:1.5px solid var(--rarity-epic);}
 .stocked-open-btn:active{opacity:0.7;transform:scale(0.96);}
 
-/* ════════════════ CARD MARKET ════════════════ */
+/* ════════════════ MARKET ════════════════ */
 .market-refresh-info{font-size:11px;color:var(--text-dim);text-align:center;padding:4px 0;}
 .market-refresh-info span{color:var(--orange);}
 .market-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding-bottom:8px;}
@@ -275,6 +303,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .market-item.rarity-rare{border-color:var(--rarity-rare);}
 .market-item.rarity-epic{border-color:var(--rarity-epic);}
 .market-item.rarity-legendary{border-color:var(--rarity-legendary);}
+.market-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
 .market-img{width:64px;height:82px;border-radius:6px;overflow:hidden;background:#040a05;display:flex;align-items:center;justify-content:center;font-size:32px;}
 .market-img img{width:100%;height:100%;object-fit:cover;}
 .market-name{font-family:'Orbitron',monospace;font-size:7px;text-align:center;color:var(--text);line-height:1.4;}
@@ -285,7 +314,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .market-buy-btn:disabled{opacity:0.3;cursor:not-allowed;}
 .market-owned-badge{position:absolute;top:6px;right:6px;font-family:'Orbitron',monospace;font-size:7px;background:rgba(0,0,0,0.8);color:var(--green);padding:2px 5px;border-radius:3px;border:1px solid var(--green);}
 
-/* ════════════════ PACK OPEN OVERLAY ════════════════ */
+/* ════════════════ PACK OPEN ════════════════ */
 #packOpenOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:700;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s;padding:20px 16px;}
 #packOpenOverlay.show{opacity:1;pointer-events:all;}
 .pack-open-title{font-family:'Orbitron',monospace;font-size:12px;letter-spacing:0.25em;color:var(--text-dim);margin-bottom:28px;text-align:center;}
@@ -306,6 +335,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .reveal-card.rarity-rare{border-color:var(--rarity-rare);box-shadow:0 0 16px rgba(74,138,255,0.45);}
 .reveal-card.rarity-epic{border-color:var(--rarity-epic);box-shadow:0 0 22px rgba(170,68,255,0.55);}
 .reveal-card.rarity-legendary{border-color:var(--rarity-legendary);box-shadow:0 0 30px rgba(255,170,0,0.65);animation:legendGlow 1.5s ease-in-out infinite;}
+.reveal-card.rarity-ultimate{border-color:var(--rarity-ultimate);box-shadow:0 0 30px rgba(255,34,0,0.7);animation:ultimateGlow 1.5s ease-in-out infinite;}
 .reveal-card-art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
 .reveal-card-art img{width:100%;height:85%;object-fit:contain;}
 .reveal-card-footer{position:relative;z-index:2;width:100%;background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,transparent 100%);padding:18px 6px 0;display:flex;flex-direction:column;align-items:center;gap:3px;}
@@ -315,6 +345,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .reveal-card-rarity.rarity-rare{color:var(--rarity-rare);background:rgba(74,138,255,0.18);border:1px solid var(--rarity-rare);}
 .reveal-card-rarity.rarity-epic{color:var(--rarity-epic);background:rgba(170,68,255,0.18);border:1px solid var(--rarity-epic);}
 .reveal-card-rarity.rarity-legendary{color:var(--rarity-legendary);background:rgba(255,170,0,0.18);border:1px solid var(--rarity-legendary);}
+.reveal-card-rarity.rarity-ultimate{color:var(--rarity-ultimate);background:rgba(255,34,0,0.18);border:1px solid var(--rarity-ultimate);}
 .btn-collect{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:0.15em;padding:16px 40px;background:transparent;color:var(--green);border:1.5px solid var(--green);cursor:pointer;transition:all 0.2s;margin-top:4px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);width:100%;max-width:300px;}
 .btn-collect:active{background:var(--green-dim);}
 .particle{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;}
@@ -358,7 +389,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 
 /* ════════════════ LEVEL GRID ════════════════ */
 .level-row{background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all 0.2s;position:relative;}
-.level-row.unlocked{border-color:var(--border2);}
 .level-row.unlocked:active{transform:scale(0.98);}
 .level-row.completed{border-color:var(--green);background:rgba(0,255,136,0.04);}
 .level-row.locked{opacity:0.4;cursor:not-allowed;}
@@ -370,10 +400,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .level-reward{font-family:'Orbitron',monospace;font-size:10px;color:var(--coin);margin-left:auto;}
 .level-check{font-size:14px;margin-left:6px;}
 .level-difficulty{font-size:9px;color:var(--text-dim);margin-top:2px;}
-
-/* ════════════════ RESULT OVERLAY LEVEL ════════════════ */
 .level-complete-badge{background:var(--green-dim);border:1px solid var(--green);border-radius:6px;padding:8px 16px;font-family:'Orbitron',monospace;font-size:11px;color:var(--green);text-align:center;margin-top:8px;}
-
 </style>
 </head>
 <body>
@@ -436,18 +463,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
         </div>
       </div>
       <div class="home-stats">
-        <div class="home-stat">
-          <div class="home-stat-val" id="homeWins">0</div>
-          <div class="home-stat-lbl">QALIBIYYƏT</div>
-        </div>
-        <div class="home-stat">
-          <div class="home-stat-val" id="homeCards">0</div>
-          <div class="home-stat-lbl">KART</div>
-        </div>
-        <div class="home-stat">
-          <div class="home-stat-val" id="homeGames">0</div>
-          <div class="home-stat-lbl">OYUN</div>
-        </div>
+        <div class="home-stat"><div class="home-stat-val" id="homeWins">0</div><div class="home-stat-lbl">QALIBIYYƏT</div></div>
+        <div class="home-stat"><div class="home-stat-val" id="homeCards">0</div><div class="home-stat-lbl">KART</div></div>
+        <div class="home-stat"><div class="home-stat-val" id="homeGames">0</div><div class="home-stat-lbl">OYUN</div></div>
       </div>
       <button class="home-play-btn" onclick="navTo('game-start')" style="margin-top:12px;">▶ &nbsp;OYNAMAĞA BAŞLA</button>
     </div>
@@ -459,7 +477,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
   <div class="page-content" style="justify-content:center;">
     <div class="auth-inner fade-up" id="authInner">
       <div class="auth-title">HESABIM</div>
-      <!-- filled by JS -->
     </div>
   </div>
 </div>
@@ -468,7 +485,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 <div id="redrawScreen" class="screen hidden">
   <div class="redraw-header">
     <div class="redraw-title">ELİNİZDƏKİ KARTLAR</div>
-    <div class="redraw-sub">12 kart random verildi — 2 kartı seçib dəyişə bilərsiniz</div>
+    <div class="redraw-sub">Kartlarınız hazırdı — 2 kartı seçib dəyişə bilərsiniz</div>
     <div class="redraw-select-info" id="redrawInfo">0 / 2 seçildi</div>
   </div>
   <div class="redraw-grid" id="redrawGrid"></div>
@@ -483,20 +500,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
   <div class="page-content" style="padding-top:44px;padding-bottom:70px;">
     <div style="width:100%;max-width:500px;padding:16px;">
       <div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--green);letter-spacing:0.15em;text-align:center;margin-bottom:18px;">OYUN REJİMİ</div>
-      
-      <!-- Single Player Button -->
-      <div style="background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:16px;margin-bottom:18px;cursor:pointer;transition:all 0.2s;" onclick="startSinglePlayer()" id="spBtn">
+      <div style="background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:16px;margin-bottom:18px;cursor:pointer;" onclick="startSinglePlayer()">
         <div style="display:flex;align-items:center;gap:12px;">
           <div style="font-size:32px;">🎮</div>
           <div>
             <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--green);">TEK OYUNÇU</div>
-            <div style="font-size:11px;color:var(--text-dim);margin-top:3px;">Kolleksiyandan kart seç, AI ilə oyna</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:3px;">Deck və ya kolleksiyandan kart seç, AI ilə oyna</div>
           </div>
           <div style="margin-left:auto;color:var(--text-dim);font-size:20px;">›</div>
         </div>
       </div>
-
-      <!-- Levels Section -->
       <div style="font-family:'Orbitron',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:10px;">🏆 MƏRHƏLƏLƏR (20 Level)</div>
       <div id="levelGrid" style="display:flex;flex-direction:column;gap:8px;"></div>
     </div>
@@ -505,7 +518,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 
 <!-- GAME SCREEN -->
 <div id="gameScreen" class="screen hidden">
-  <div class="game-layout"><div id="levelBanner" style="display:none;background:linear-gradient(90deg,var(--bg2),rgba(0,255,136,0.08));border-bottom:1px solid var(--green);padding:5px 12px;text-align:center;font-family:'Orbitron',monospace;font-size:9px;color:var(--green);letter-spacing:0.12em;flex-shrink:0;"></div>
+  <div class="game-layout">
+    <div id="levelBanner" style="display:none;background:linear-gradient(90deg,var(--bg2),rgba(0,255,136,0.08));border-bottom:1px solid var(--green);padding:5px 12px;text-align:center;font-family:'Orbitron',monospace;font-size:9px;color:var(--green);letter-spacing:0.12em;flex-shrink:0;"></div>
     <div class="scoreboard">
       <div class="score-side">
         <div class="score-name" id="aiScoreName">YAPay ZEKA</div>
@@ -524,32 +538,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
     </div>
     <div class="board">
       <div class="row-wrap">
-        <div class="row-label-col">
-          <div class="row-icon">💡</div>
-          <div class="row-total" style="color:var(--row-light)" id="ai-light-total">0</div>
-        </div>
+        <div class="row-label-col"><div class="row-icon">💡</div><div class="row-total" style="color:var(--row-light)" id="ai-light-total">0</div></div>
         <div class="row row-light" id="ai-row-light" data-side="ai" data-type="light">
           <div class="row-type-tag">İŞIQ</div>
           <div class="ai-tag" id="aiThink">AI düşünür...</div>
         </div>
       </div>
       <div class="row-wrap">
-        <div class="row-label-col">
-          <div class="row-icon">⚡</div>
-          <div class="row-total" style="color:var(--row-speed)" id="ai-speed-total">0</div>
-        </div>
-        <div class="row row-speed" id="ai-row-speed" data-side="ai" data-type="speed">
-          <div class="row-type-tag">SÜRƏT</div>
-        </div>
+        <div class="row-label-col"><div class="row-icon">⚡</div><div class="row-total" style="color:var(--row-speed)" id="ai-speed-total">0</div></div>
+        <div class="row row-speed" id="ai-row-speed" data-side="ai" data-type="speed"><div class="row-type-tag">SÜRƏT</div></div>
       </div>
       <div class="row-wrap">
-        <div class="row-label-col">
-          <div class="row-icon">💪</div>
-          <div class="row-total" style="color:var(--row-power)" id="ai-power-total">0</div>
-        </div>
-        <div class="row row-power" id="ai-row-power" data-side="ai" data-type="power">
-          <div class="row-type-tag">GÜC</div>
-        </div>
+        <div class="row-label-col"><div class="row-icon">💪</div><div class="row-total" style="color:var(--row-power)" id="ai-power-total">0</div></div>
+        <div class="row row-power" id="ai-row-power" data-side="ai" data-type="power"><div class="row-type-tag">GÜC</div></div>
       </div>
       <div class="board-divider">
         <div class="div-line"></div>
@@ -557,31 +558,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
         <div class="div-line"></div>
       </div>
       <div class="row-wrap">
-        <div class="row-label-col">
-          <div class="row-icon">💪</div>
-          <div class="row-total" style="color:var(--row-power)" id="p-power-total">0</div>
-        </div>
-        <div class="row row-power" id="p-row-power" data-side="player" data-type="power" onclick="onRowClick('power')">
-          <div class="row-type-tag">GÜC</div>
-        </div>
+        <div class="row-label-col"><div class="row-icon">💪</div><div class="row-total" style="color:var(--row-power)" id="p-power-total">0</div></div>
+        <div class="row row-power" id="p-row-power" data-side="player" data-type="power" onclick="onRowClick('power')"><div class="row-type-tag">GÜC</div></div>
       </div>
       <div class="row-wrap">
-        <div class="row-label-col">
-          <div class="row-icon">⚡</div>
-          <div class="row-total" style="color:var(--row-speed)" id="p-speed-total">0</div>
-        </div>
-        <div class="row row-speed" id="p-row-speed" data-side="player" data-type="speed" onclick="onRowClick('speed')">
-          <div class="row-type-tag">SÜRƏT</div>
-        </div>
+        <div class="row-label-col"><div class="row-icon">⚡</div><div class="row-total" style="color:var(--row-speed)" id="p-speed-total">0</div></div>
+        <div class="row row-speed" id="p-row-speed" data-side="player" data-type="speed" onclick="onRowClick('speed')"><div class="row-type-tag">SÜRƏT</div></div>
       </div>
       <div class="row-wrap">
-        <div class="row-label-col">
-          <div class="row-icon">💡</div>
-          <div class="row-total" style="color:var(--row-light)" id="p-light-total">0</div>
-        </div>
-        <div class="row row-light" id="p-row-light" data-side="player" data-type="light" onclick="onRowClick('light')">
-          <div class="row-type-tag">İŞIQ</div>
-        </div>
+        <div class="row-label-col"><div class="row-icon">💡</div><div class="row-total" style="color:var(--row-light)" id="p-light-total">0</div></div>
+        <div class="row row-light" id="p-row-light" data-side="player" data-type="light" onclick="onRowClick('light')"><div class="row-type-tag">İŞIQ</div></div>
       </div>
     </div>
     <div class="hand-bar">
@@ -600,16 +586,33 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 <!-- COLLECTION SCREEN -->
 <div id="colScreen" class="screen hidden">
   <div class="col-head">
-    <div class="col-title">KOLLEKSİYA</div>
+    <div class="col-title" id="colScreenTitle">KOLLEKSİYA</div>
     <div class="col-count" id="colCount"></div>
   </div>
+  <div class="col-tabs">
+    <button class="col-tab active" id="ctab-col" onclick="switchColTab('col')">🃏 KOLLEKSİYA</button>
+    <button class="col-tab" id="ctab-deck" onclick="switchColTab('deck')">⚔️ DECK</button>
+  </div>
+  <!-- Collection panel -->
   <div class="col-grid" id="colPanel"></div>
+  <!-- Deck panel -->
+  <div id="deckPanel" style="display:none;flex-direction:column;align-items:center;width:100%;flex:1;overflow-y:auto;">
+    <div class="deck-top">
+      <div class="deck-top-title">
+        <span>DECKİNİZ</span>
+        <span class="deck-top-count"><span id="deckCount">0</span> / 20</span>
+      </div>
+      <div class="deck-top-grid" id="deckTopGrid"></div>
+    </div>
+    <div class="deck-pool-title">KOLLEKSİYANIZDAN ƏLAVƏ EDİN</div>
+    <div class="deck-pool-grid" id="deckPoolGrid"></div>
+  </div>
 </div>
 
 <!-- SHOP SCREEN -->
 <div id="shopScreen" class="screen hidden">
   <div class="shop-head">
-    <div class="shop-title" id="shopTitle">MAĞAZA</div>
+    <div class="shop-title">MAĞAZA</div>
   </div>
   <div class="shop-tabs">
     <button class="shop-tab active" id="stab-packs" onclick="switchShopTab('packs')">📦 PAKETLƏR</button>
@@ -654,50 +657,50 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 //  DATA
 // ═══════════════════════════════════
 const CARDS = [
-  {id:1, name:'HEATBLAST',            type:'light',  power:6,  rarity:'common',    abilityFn:'lightVsSpeed'},
-  {id:2, name:'DIAMONDHEAD',          type:'light',  power:5,  rarity:'common',    abilityFn:null},
-  {id:3, name:'RİPJAWS',             type:'speed',  power:4,  rarity:'common',    abilityFn:null},
-  {id:4, name:'XLR8',                type:'speed',  power:4,  rarity:'common',    abilityFn:'speedVsPower1'},
-  {id:5, name:'GHOSTFREAK',          type:'speed',  power:6,  rarity:'common',    abilityFn:null},
-  {id:6, name:'STINKFLY',            type:'speed',  power:3,  rarity:'common',    abilityFn:null},
-  {id:7, name:'CANNONBOLT',          type:'speed',  power:7,  rarity:'rare',      abilityFn:null},
-  {id:8, name:'BLITZWOLFER',         type:'speed',  power:6,  rarity:'epic',      abilityFn:'frankenPartner'},
-  {id:9, name:'WILDMUTT',            type:'power',  power:6,  rarity:'common',    abilityFn:null},
-  {id:10,name:'FOUR ARMS',           type:'power',  power:8,  rarity:'common',    abilityFn:'powerVsLight1'},
-  {id:11,name:'WILDVINE',            type:'power',  power:5,  rarity:'rare',      abilityFn:null},
-  {id:12,name:'SNARE-OH',            type:'power',  power:7,  rarity:'epic',      abilityFn:'frankenPartner'},
-  {id:13,name:'EYE GUY',             type:'power',  power:5,  rarity:'rare',      abilityFn:null},
-  {id:14,name:'UOCHUCK',             type:'light',  power:3,  rarity:'rare',      abilityFn:null},
-  {id:15,name:'ARTICGUANA',          type:'light',  power:5,  rarity:'epic',      abilityFn:'lightVsSpeed'},
-  {id:16,name:'WAY BIG',             type:'cosmic', power:12, rarity:'legendary', abilityFn:'wayBig'},
-  {id:17,name:'FRANKENSTRIKE',       type:'cosmic', power:8,  rarity:'epic',      abilityFn:'frankenstrike'},
-  {id:18,name:'GREY MATTER',         type:'cosmic', power:2,  rarity:'common',    abilityFn:'doubleStrongest'},
-  {id:19,name:'UPGRADE',             type:'cosmic', power:7,  rarity:'common',    abilityFn:'doubleStrongest'},
-  {id:20,name:'DITTO',               type:'cosmic', power:4,  rarity:'rare',      abilityFn:'ditto'},
-  {id:21,name:'ECHO ECHO',           type:'speed',  power:5,  rarity:'common',    abilityFn:'ditto'},
-  {id:22,name:'HUMUNGASAUR',         type:'power',  power:10, rarity:'common',    abilityFn:'powerVsLight1'},
-  {id:23,name:'JETRAY',              type:'speed',  power:6,  rarity:'common',    abilityFn:'speedVsPower2'},
-  {id:24,name:'BIG CHILL',           type:'light',  power:5,  rarity:'common',    abilityFn:'lightVsSpeed'},
-  {id:25,name:'CHROMASTONE',         type:'light',  power:8,  rarity:'rare',      abilityFn:null},
-  {id:26,name:'BRAINSTORM',          type:'cosmic', power:3,  rarity:'common',    abilityFn:'doubleStrongest'},
-  {id:27,name:'SPIDERMONKEY',        type:'speed',  power:5,  rarity:'rare',      abilityFn:null},
-  {id:28,name:'GOOP',                type:'power',  power:5,  rarity:'rare',      abilityFn:null},
-  {id:29,name:'SWAMPFIRE',           type:'light',  power:9,  rarity:'epic',      abilityFn:null},
-  {id:30,name:'ALIEN X',             type:'cosmic', power:14, rarity:'legendary', abilityFn:'alienX'},
-  {id:31,name:'LODESTAR',            type:'cosmic', power:8,  rarity:'epic',      abilityFn:'lodestar'},
-  {id:32,name:'RATH',                type:'power',  power:10, rarity:'epic',      abilityFn:'powerVsLight1'},
-  {id:33,name:'NANOMECH',            type:'light',  power:2,  rarity:'rare',      abilityFn:'lightVsSpeed2'},
-  {id:34,name:'FASTTRACK',           type:'speed',  power:3,  rarity:'rare',      abilityFn:'speedVsPower2'},
-  {id:35,name:'CHAMALIEN',           type:'light',  power:3,  rarity:'epic',      abilityFn:null},
-  {id:36,name:'CLOCKWORK',           type:'cosmic', power:5,  rarity:'legendary', abilityFn:'clockwork'},
-  {id:37,name:'NRG',                 type:'power',  power:7,  rarity:'epic',      abilityFn:'teamSynergy'},
-  {id:38,name:'TERRASPIN',           type:'speed',  power:6,  rarity:'rare',      abilityFn:'teamSynergy'},
-  {id:39,name:'ARMODRILLO',          type:'power',  power:7,  rarity:'rare',      abilityFn:'teamSynergy'},
-  {id:40,name:'AMPFEBIAN',           type:'cosmic', power:9,  rarity:'legendary', abilityFn:'ampfibian'},
-  {id:41,name:'WATER HAZARD',        type:'light',  power:8,  rarity:'epic',      abilityFn:'teamSynergy'},
-  {id:42,name:'ECHO ECHO (ULT)',     type:'speed',  power:8,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:21},
-  {id:43,name:'HUMUNGOUSAUR (ULT)',  type:'power',  power:12, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:22},
-  {id:44,name:'SWAMPFIRE (ULT)',     type:'light',  power:12, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:29},
+  {id:1, name:'HEATBLAST',           type:'light',  power:6,  rarity:'common',    abilityFn:'lightVsSpeed'},
+  {id:2, name:'DIAMONDHEAD',         type:'light',  power:5,  rarity:'common',    abilityFn:null},
+  {id:3, name:'RİPJAWS',            type:'speed',  power:4,  rarity:'common',    abilityFn:null},
+  {id:4, name:'XLR8',               type:'speed',  power:4,  rarity:'common',    abilityFn:'speedVsPower1'},
+  {id:5, name:'GHOSTFREAK',         type:'speed',  power:6,  rarity:'common',    abilityFn:null},
+  {id:6, name:'STINKFLY',           type:'speed',  power:3,  rarity:'common',    abilityFn:null},
+  {id:7, name:'CANNONBOLT',         type:'speed',  power:7,  rarity:'rare',      abilityFn:null},
+  {id:8, name:'BLITZWOLFER',        type:'speed',  power:6,  rarity:'epic',      abilityFn:'frankenPartner'},
+  {id:9, name:'WILDMUTT',           type:'power',  power:6,  rarity:'common',    abilityFn:null},
+  {id:10,name:'FOUR ARMS',          type:'power',  power:8,  rarity:'common',    abilityFn:'powerVsLight1'},
+  {id:11,name:'WILDVINE',           type:'power',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:12,name:'SNARE-OH',           type:'power',  power:7,  rarity:'epic',      abilityFn:'frankenPartner'},
+  {id:13,name:'EYE GUY',            type:'power',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:14,name:'UOCHUCK',            type:'light',  power:3,  rarity:'rare',      abilityFn:null},
+  {id:15,name:'ARTICGUANA',         type:'light',  power:5,  rarity:'epic',      abilityFn:'lightVsSpeed'},
+  {id:16,name:'WAY BIG',            type:'cosmic', power:12, rarity:'legendary', abilityFn:'wayBig'},
+  {id:17,name:'FRANKENSTRIKE',      type:'cosmic', power:8,  rarity:'epic',      abilityFn:'frankenstrike'},
+  {id:18,name:'GREY MATTER',        type:'cosmic', power:2,  rarity:'common',    abilityFn:'doubleStrongest'},
+  {id:19,name:'UPGRADE',            type:'cosmic', power:7,  rarity:'common',    abilityFn:'doubleStrongest'},
+  {id:20,name:'DITTO',              type:'cosmic', power:4,  rarity:'rare',      abilityFn:'ditto'},
+  {id:21,name:'ECHO ECHO',          type:'speed',  power:5,  rarity:'common',    abilityFn:'ditto'},
+  {id:22,name:'HUMUNGASAUR',        type:'power',  power:10, rarity:'common',    abilityFn:'powerVsLight1'},
+  {id:23,name:'JETRAY',             type:'speed',  power:6,  rarity:'common',    abilityFn:'speedVsPower2'},
+  {id:24,name:'BIG CHILL',          type:'light',  power:5,  rarity:'common',    abilityFn:'lightVsSpeed'},
+  {id:25,name:'CHROMASTONE',        type:'light',  power:8,  rarity:'rare',      abilityFn:null},
+  {id:26,name:'BRAINSTORM',         type:'cosmic', power:3,  rarity:'common',    abilityFn:'doubleStrongest'},
+  {id:27,name:'SPIDERMONKEY',       type:'speed',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:28,name:'GOOP',               type:'power',  power:5,  rarity:'rare',      abilityFn:null},
+  {id:29,name:'SWAMPFIRE',          type:'light',  power:9,  rarity:'epic',      abilityFn:null},
+  {id:30,name:'ALIEN X',            type:'cosmic', power:14, rarity:'legendary', abilityFn:'alienX'},
+  {id:31,name:'LODESTAR',           type:'cosmic', power:8,  rarity:'epic',      abilityFn:'lodestar'},
+  {id:32,name:'RATH',               type:'power',  power:10, rarity:'epic',      abilityFn:'powerVsLight1'},
+  {id:33,name:'NANOMECH',           type:'light',  power:2,  rarity:'rare',      abilityFn:'lightVsSpeed2'},
+  {id:34,name:'FASTTRACK',          type:'speed',  power:3,  rarity:'rare',      abilityFn:'speedVsPower2'},
+  {id:35,name:'CHAMALIEN',          type:'light',  power:3,  rarity:'epic',      abilityFn:null},
+  {id:36,name:'CLOCKWORK',          type:'cosmic', power:5,  rarity:'legendary', abilityFn:'clockwork'},
+  {id:37,name:'NRG',                type:'power',  power:7,  rarity:'epic',      abilityFn:'teamSynergy'},
+  {id:38,name:'TERRASPIN',          type:'speed',  power:6,  rarity:'rare',      abilityFn:'teamSynergy'},
+  {id:39,name:'ARMODRILLO',         type:'power',  power:7,  rarity:'rare',      abilityFn:'teamSynergy'},
+  {id:40,name:'AMPFEBIAN',          type:'cosmic', power:9,  rarity:'legendary', abilityFn:'ampfibian'},
+  {id:41,name:'WATER HAZARD',       type:'light',  power:8,  rarity:'epic',      abilityFn:'teamSynergy'},
+  {id:42,name:'ECHO ECHO (ULT)',    type:'speed',  power:8,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:21},
+  {id:43,name:'HUMUNGOUSAUR (ULT)', type:'power',  power:12, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:22},
+  {id:44,name:'SWAMPFIRE (ULT)',    type:'light',  power:12, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:29},
   {id:45,name:'SPIDERMONKEY (ULT)', type:'power',  power:9,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:27},
   {id:46,name:'BIG CHILL (ULT)',    type:'light',  power:8,  rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:24},
   {id:47,name:'CANNONBOLT (ULT)',   type:'speed',  power:10, rarity:'ultimate',  abilityFn:'ultimateSynergy', baseId:7},
@@ -706,30 +709,28 @@ const CARDS = [
   {id:50,name:'FEEDBACK',           type:'cosmic', power:10, rarity:'legendary', abilityFn:'feedback'},
 ];
 
-const SELL_PRICE = {common:12, rare:70, epic:210, legendary:1000, ultimate:3000};
-const BUY_PRICE  = {common:24, rare:140, epic:420, legendary:2000, ultimate:6000};
-const PACK_PRICE = {common:100, rare:200, epic:500, common2:100, rare2:200, epic2:500, cosmic:2000, ultimate:2500};
+const SELL_PRICE = {common:12,rare:70,epic:210,legendary:1000,ultimate:3000};
+const BUY_PRICE  = {common:24,rare:140,epic:420,legendary:2000,ultimate:6000};
+const PACK_PRICE = {common:100,rare:200,epic:500,common2:100,rare2:200,epic2:500,cosmic:2000,ultimate:2500};
 const PACK_ODDS  = {
-  common:   {common:70,rare:25,epic:5,legendary:0},
-  rare:     {common:50,rare:30,epic:18,legendary:2},
-  epic:     {common:30,rare:30,epic:30,legendary:10},
-  common2:  {common:70,rare:25,epic:5,legendary:0},
-  rare2:    {common:50,rare:30,epic:18,legendary:2},
-  epic2:    {common:30,rare:30,epic:30,legendary:10},
-  cosmic:   {common:0,rare:0,epic:90,legendary:10},
-  ultimate: {common:0,rare:0,epic:70,legendary:20,ultimate:10}
+  common:  {common:70,rare:25,epic:5,legendary:0},
+  rare:    {common:50,rare:30,epic:18,legendary:2},
+  epic:    {common:30,rare:30,epic:30,legendary:10},
+  common2: {common:70,rare:25,epic:5,legendary:0},
+  rare2:   {common:50,rare:30,epic:18,legendary:2},
+  epic2:   {common:30,rare:30,epic:30,legendary:10},
+  cosmic:  {common:0,rare:0,epic:90,legendary:10},
+  ultimate:{common:0,rare:0,epic:70,legendary:20,ultimate:10}
 };
-
-// Paket üzrə çıxa biləcək kart ID-ləri
 const PACK_CARD_POOL = {
-  common:   [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-  rare:     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-  epic:     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-  common2:  [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
-  rare2:    [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
-  epic2:    [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
-  cosmic:   [36,37,38,39,40,41,42],
-  ultimate: [43,44,45,46,47,48,49]
+  common:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  rare:    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  epic:    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  common2: [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
+  rare2:   [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
+  epic2:   [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
+  cosmic:  [36,37,38,39,40,41,42],
+  ultimate:[43,44,45,46,47,48,49]
 };
 const RARITY_AZ = {common:'ADİ',rare:'NADİR',epic:'EPİK',legendary:'LEGENDƏRİ',ultimate:'ULTIMATE'};
 const ROWS = ['power','speed','light'];
@@ -740,59 +741,53 @@ const ROWS = ['power','speed','light'];
 let playerInventory = {};
 let packetStock = {};
 let playerCoins = 0;
-let playerStats = {wins:0, games:0};
+let playerStats = {wins:0,games:0};
 let marketCards = [];
 let marketRefreshTime = 0;
+let playerDeck = [];
+let _activeDeckSlot = null;
 
 let GS = {};
 let selectedCard = null;
 let redrawSelected = new Set();
 
 // ═══════════════════════════════════
-//  LEVEL SYSTEM
+//  LEVELS
 // ═══════════════════════════════════
 const LEVELS = [
-  {level:1,  name:'Başlanğıc',    stars:'⭐',    coinReward:50,  aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.1, aiSmartness:0.2},
-  {level:2,  name:'Yeni Başlayan',stars:'⭐',    coinReward:55,  aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.1, aiSmartness:0.25},
-  {level:3,  name:'Həvəskar',     stars:'⭐',    coinReward:60,  aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.15,aiSmartness:0.3},
-  {level:4,  name:'İdmançı',      stars:'⭐⭐',  coinReward:65,  aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.2, aiSmartness:0.35},
-  {level:5,  name:'Güclü',        stars:'⭐⭐',  coinReward:70,  aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.2, aiSmartness:0.4},
-  {level:6,  name:'Cəngavər',     stars:'⭐⭐',  coinReward:75,  aiHandSize:8,  aiPassThreshold:6, aiDebuffChance:0.25,aiSmartness:0.45},
-  {level:7,  name:'Şampion',      stars:'⭐⭐⭐',coinReward:80,  aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.3, aiSmartness:0.5},
-  {level:8,  name:'Usta',         stars:'⭐⭐⭐',coinReward:85,  aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.35,aiSmartness:0.55},
-  {level:9,  name:'Ekspert',      stars:'⭐⭐⭐',coinReward:90,  aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.4, aiSmartness:0.6},
-  {level:10, name:'Veteran',      stars:'⭐⭐⭐',coinReward:95,  aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.45,aiSmartness:0.65},
-  {level:11, name:'Əfsanə',       stars:'🌟🌟', coinReward:100, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.5, aiSmartness:0.7},
-  {level:12, name:'Titan',        stars:'🌟🌟', coinReward:105, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.55,aiSmartness:0.72},
-  {level:13, name:'İlahi',        stars:'🌟🌟', coinReward:110, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.6, aiSmartness:0.75},
-  {level:14, name:'Omnipotent',   stars:'🌟🌟🌟',coinReward:115, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.65,aiSmartness:0.78},
-  {level:15, name:'Galaktik',     stars:'🌟🌟🌟',coinReward:120, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.7, aiSmartness:0.8},
-  {level:16, name:'Kosmik',       stars:'🌟🌟🌟',coinReward:125, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.75,aiSmartness:0.83},
-  {level:17, name:'Sonsuz',       stars:'💫💫',  coinReward:130, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.8, aiSmartness:0.85},
-  {level:18, name:'Ultim8',       stars:'💫💫',  coinReward:135, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.85,aiSmartness:0.88},
-  {level:19, name:'Omnitrix',     stars:'💫💫💫',coinReward:140, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.9, aiSmartness:0.9},
-  {level:20, name:'Alien X',      stars:'💫💫💫',coinReward:145, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:1.0, aiSmartness:1.0},
+  {level:1, name:'Başlanğıc',    stars:'⭐',     coinReward:50,  aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.1, aiSmartness:0.2},
+  {level:2, name:'Yeni Başlayan',stars:'⭐',     coinReward:55,  aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.1, aiSmartness:0.25},
+  {level:3, name:'Həvəskar',     stars:'⭐',     coinReward:60,  aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.15,aiSmartness:0.3},
+  {level:4, name:'İdmançı',      stars:'⭐⭐',   coinReward:65,  aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.2, aiSmartness:0.35},
+  {level:5, name:'Güclü',        stars:'⭐⭐',   coinReward:70,  aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.2, aiSmartness:0.4},
+  {level:6, name:'Cəngavər',     stars:'⭐⭐',   coinReward:75,  aiHandSize:8,  aiPassThreshold:6, aiDebuffChance:0.25,aiSmartness:0.45},
+  {level:7, name:'Şampion',      stars:'⭐⭐⭐', coinReward:80,  aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.3, aiSmartness:0.5},
+  {level:8, name:'Usta',         stars:'⭐⭐⭐', coinReward:85,  aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.35,aiSmartness:0.55},
+  {level:9, name:'Ekspert',      stars:'⭐⭐⭐', coinReward:90,  aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.4, aiSmartness:0.6},
+  {level:10,name:'Veteran',      stars:'⭐⭐⭐', coinReward:95,  aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.45,aiSmartness:0.65},
+  {level:11,name:'Əfsanə',       stars:'🌟🌟',  coinReward:100, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.5, aiSmartness:0.7},
+  {level:12,name:'Titan',        stars:'🌟🌟',  coinReward:105, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.55,aiSmartness:0.72},
+  {level:13,name:'İlahi',        stars:'🌟🌟',  coinReward:110, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.6, aiSmartness:0.75},
+  {level:14,name:'Omnipotent',   stars:'🌟🌟🌟',coinReward:115, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.65,aiSmartness:0.78},
+  {level:15,name:'Galaktik',     stars:'🌟🌟🌟',coinReward:120, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.7, aiSmartness:0.8},
+  {level:16,name:'Kosmik',       stars:'🌟🌟🌟',coinReward:125, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.75,aiSmartness:0.83},
+  {level:17,name:'Sonsuz',       stars:'💫💫',  coinReward:130, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.8, aiSmartness:0.85},
+  {level:18,name:'Ultim8',       stars:'💫💫',  coinReward:135, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.85,aiSmartness:0.88},
+  {level:19,name:'Omnitrix',     stars:'💫💫💫',coinReward:140, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.9, aiSmartness:0.9},
+  {level:20,name:'Alien X',      stars:'💫💫💫',coinReward:145, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:1.0, aiSmartness:1.0},
 ];
-
-// First 20 cards for AI in level mode
 const LEVEL_AI_CARD_IDS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-
-let currentLevelData = null; // null = single player free mode
+let currentLevelData = null;
 let playerLevelProgress = {};
 
 function loadLevelProgress() {
   try { playerLevelProgress = JSON.parse(localStorage.getItem('b10_levels') || '{}'); }
   catch(e) { playerLevelProgress = {}; }
 }
+function saveLevelProgress() { localStorage.setItem('b10_levels', JSON.stringify(playerLevelProgress)); }
+function isLevelUnlocked(lvl) { return lvl === 1 || !!playerLevelProgress[lvl-1]; }
 
-function saveLevelProgress() {
-  localStorage.setItem('b10_levels', JSON.stringify(playerLevelProgress));
-}
-
-function isLevelUnlocked(lvl) {
-  if (lvl === 1) return true;
-  return !!playerLevelProgress[lvl - 1];
-}
+Object.defineProperty(window,'playerLevelProgress',{get(){return playerLevelProgress;},set(v){playerLevelProgress=v;}});
 
 // ═══════════════════════════════════
 //  STORAGE
@@ -800,12 +795,9 @@ function isLevelUnlocked(lvl) {
 const STARTER_CARD_IDS = [1,2,3,4,5,6,9,10,18,19];
 
 function grantStarterCards() {
-  // Only grant if never granted before
   if (localStorage.getItem('b10_starter_granted')) return;
-  STARTER_CARD_IDS.forEach(id => {
-    playerInventory[id] = (playerInventory[id] || 0) + 1;
-  });
-  localStorage.setItem('b10_starter_granted', '1');
+  STARTER_CARD_IDS.forEach(id => { playerInventory[id] = (playerInventory[id]||0)+1; });
+  localStorage.setItem('b10_starter_granted','1');
   saveAll();
 }
 
@@ -815,15 +807,13 @@ function loadLocal() {
     packetStock     = JSON.parse(localStorage.getItem('b10_pkt') || '{}');
     playerCoins     = parseInt(localStorage.getItem('b10_coins') || '0');
     playerStats     = JSON.parse(localStorage.getItem('b10_stats') || '{"wins":0,"games":0}');
+    playerDeck      = JSON.parse(localStorage.getItem('b10_deck') || '[]');
     const mktData   = JSON.parse(localStorage.getItem('b10_market') || 'null');
-    if (mktData && Date.now() - mktData.ts < 3600000) {
-      marketCards = mktData.cards;
-      marketRefreshTime = mktData.ts;
-    } else {
-      refreshMarket();
-    }
+    if (mktData && Date.now()-mktData.ts < 3600000) {
+      marketCards = mktData.cards; marketRefreshTime = mktData.ts;
+    } else { refreshMarket(); }
   } catch(e) {
-    playerInventory={}; packetStock={}; playerCoins=0; playerStats={wins:0,games:0};
+    playerInventory={}; packetStock={}; playerCoins=0; playerStats={wins:0,games:0}; playerDeck=[];
     refreshMarket();
   }
   grantStarterCards();
@@ -834,11 +824,9 @@ function saveAll() {
   localStorage.setItem('b10_pkt', JSON.stringify(packetStock));
   localStorage.setItem('b10_coins', String(playerCoins));
   localStorage.setItem('b10_stats', JSON.stringify(playerStats));
+  localStorage.setItem('b10_deck', JSON.stringify(playerDeck));
   pushToFirestore();
 }
-
-function saveInventory() { saveAll(); }
-function savePackets()   { saveAll(); }
 
 function updateCoinDisplay() {
   document.getElementById('coinDisplay').textContent = playerCoins.toLocaleString();
@@ -848,17 +836,15 @@ function updateCoinDisplay() {
 //  MARKET
 // ═══════════════════════════════════
 function refreshMarket() {
-  const shuffled = [...CARDS].sort(() => Math.random() - 0.5);
-  marketCards = shuffled.slice(0, 10);
+  const shuffled = [...CARDS].sort(()=>Math.random()-0.5);
+  marketCards = shuffled.slice(0,10);
   marketRefreshTime = Date.now();
-  localStorage.setItem('b10_market', JSON.stringify({cards: marketCards.map(c=>c.id), ts: marketRefreshTime}));
+  localStorage.setItem('b10_market', JSON.stringify({cards:marketCards.map(c=>c.id),ts:marketRefreshTime}));
 }
-
 function getMarketTimeLeft() {
-  const diff = 3600000 - (Date.now() - marketRefreshTime);
-  if (diff <= 0) return '00:00';
-  const m = Math.floor(diff / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
+  const diff = 3600000-(Date.now()-marketRefreshTime);
+  if (diff<=0) return '00:00';
+  const m=Math.floor(diff/60000), s=Math.floor((diff%60000)/1000);
   return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
@@ -869,45 +855,35 @@ const SCREENS = ['homeScreen','authScreen','redrawScreen','gameScreen','colScree
 const NAV_MAP = {'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen','game-start':'gameStartScreen'};
 
 function showScreen(id) {
-  SCREENS.forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  const navId = Object.entries({'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen','game-start':'gameStartScreen'})
-    .find(([k,v]) => v === id);
-  if (navId) document.getElementById('nav-' + navId[0])?.classList.add('active');
-  // gameScreen and redrawScreen also highlight game nav
-  if (id === 'gameScreen' || id === 'redrawScreen') {
-    document.getElementById('nav-game')?.classList.add('active');
-  }
+  SCREENS.forEach(s => document.getElementById(s).classList.toggle('hidden', s!==id));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const navId = Object.entries({'home':'homeScreen','auth':'authScreen','col':'colScreen','shop':'shopScreen','game-start':'gameStartScreen'}).find(([k,v])=>v===id);
+  if (navId) document.getElementById('nav-'+navId[0])?.classList.add('active');
+  if (id==='gameScreen'||id==='redrawScreen') document.getElementById('nav-game')?.classList.add('active');
 }
 
 function navTo(dest) {
-  if (dest === 'game-start') { showGameStartScreen(); return; }
+  if (dest==='game-start') { showGameStartScreen(); return; }
   if (NAV_MAP[dest]) {
     showScreen(NAV_MAP[dest]);
-    if (dest === 'col') { renderCollectionPanel(); }
-    if (dest === 'shop') { switchShopTab('packs'); }
-    if (dest === 'home') { updateHomeStats(); document.getElementById('resultOverlay').classList.remove('show'); }
-    if (dest === 'auth') { renderAuthScreen(); }
+    if (dest==='col') { switchColTab('col'); }
+    if (dest==='shop') { switchShopTab('packs'); }
+    if (dest==='home') { updateHomeStats(); document.getElementById('resultOverlay').classList.remove('show'); }
+    if (dest==='auth') { renderAuthScreen(); }
   }
 }
 
-// Make playerLevelProgress accessible globally for Firebase
-Object.defineProperty(window, 'playerLevelProgress', {
-  get() { return playerLevelProgress; },
-  set(v) { playerLevelProgress = v; }
-});
-
 function updateHomeStats() {
-  const uniq = Object.keys(playerInventory).filter(id => playerInventory[id] > 0).length;
+  const uniq = Object.keys(playerInventory).filter(id=>playerInventory[id]>0).length;
   document.getElementById('homeWins').textContent = playerStats.wins;
   document.getElementById('homeCards').textContent = uniq;
   document.getElementById('homeGames').textContent = playerStats.games;
 }
 
 // ═══════════════════════════════════
-//  AUTH SCREEN
+//  AUTH
 // ═══════════════════════════════════
-let _currentUser = null, _currentNick = '';
+let _currentUser=null, _currentNick='';
 
 function renderAuthScreen() {
   const inner = document.getElementById('authInner');
@@ -915,8 +891,8 @@ function renderAuthScreen() {
     inner.innerHTML = `
       <div class="auth-title">HESABIM</div>
       <div class="auth-logged-box">
-        ${_currentUser.photoURL ? `<img class="auth-user-av" src="${_currentUser.photoURL}" referrerpolicy="no-referrer">` : '<span style="font-size:40px">👤</span>'}
-        <div class="auth-user-name">${_currentNick || _currentUser.displayName || 'Oyunçu'}</div>
+        ${_currentUser.photoURL?`<img class="auth-user-av" src="${_currentUser.photoURL}" referrerpolicy="no-referrer">`:'<span style="font-size:40px">👤</span>'}
+        <div class="auth-user-name">${_currentNick||_currentUser.displayName||'Oyunçu'}</div>
         <div class="auth-user-email">${_currentUser.email}</div>
         <div style="font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim)">🪙 ${playerCoins.toLocaleString()} COIN</div>
       </div>
@@ -925,9 +901,7 @@ function renderAuthScreen() {
     inner.innerHTML = `
       <div class="auth-title">GİRİŞ ET</div>
       <div class="auth-sub">Hesabınla giriş et,<br>kolleksiyanu saxla.</div>
-      <button class="auth-google-btn" onclick="onAuthBtnClick()">
-        <span class="auth-google-icon">🔵</span> GOOGLE İLƏ GİRİŞ
-      </button>
+      <button class="auth-google-btn" onclick="onAuthBtnClick()"><span class="auth-google-icon">🔵</span> GOOGLE İLƏ GİRİŞ</button>
       <div class="auth-benefits">
         <div class="auth-ben-title">GİRİŞİN ÜSTÜNLÜKLƏRI</div>
         <div class="auth-ben-item">✅ Kolleksiyun buluda saxlanır</div>
@@ -937,10 +911,10 @@ function renderAuthScreen() {
   }
 }
 
-function updateAuthBar(user, nick) {
+function updateAuthBar(user,nick) {
   const btn = document.getElementById('authStatusBtn');
-  const photoHTML = user?.photoURL ? `<img class="auth-av" src="${user.photoURL}" referrerpolicy="no-referrer">` : '👤';
-  btn.innerHTML = `${photoHTML} <span style="font-family:'Orbitron',monospace;font-size:9px;max-width:80px;overflow:hidden;text-overflow:ellipsis">${nick || user?.displayName || 'Oyunçu'}</span>`;
+  const photoHTML = user?.photoURL?`<img class="auth-av" src="${user.photoURL}" referrerpolicy="no-referrer">`:'👤';
+  btn.innerHTML = `${photoHTML} <span style="font-family:'Orbitron',monospace;font-size:9px;max-width:80px;overflow:hidden;text-overflow:ellipsis">${nick||user?.displayName||'Oyunçu'}</span>`;
   document.getElementById('authSignoutBtn').style.display = 'inline-block';
 }
 
@@ -950,13 +924,135 @@ function resetAuthBar() {
 }
 
 // ═══════════════════════════════════
+//  DECK SYSTEM
+// ═══════════════════════════════════
+function switchColTab(tab) {
+  document.getElementById('ctab-col').classList.toggle('active', tab==='col');
+  document.getElementById('ctab-deck').classList.toggle('active', tab==='deck');
+  const colPanel  = document.getElementById('colPanel');
+  const deckPanel = document.getElementById('deckPanel');
+  const colCount  = document.getElementById('colCount');
+  const colTitle  = document.getElementById('colScreenTitle');
+  if (tab==='col') {
+    colPanel.style.display  = 'grid';
+    deckPanel.style.display = 'none';
+    colTitle.textContent = 'KOLLEKSİYA';
+    renderCollectionPanel();
+  } else {
+    colPanel.style.display  = 'none';
+    deckPanel.style.display = 'flex';
+    colTitle.textContent = 'DECK';
+    colCount.textContent = '';
+    renderDeckPanel();
+  }
+  _activeDeckSlot = null;
+}
+
+function renderDeckPanel() { renderDeckTop(); renderDeckPool(); }
+
+function renderDeckTop() {
+  const grid    = document.getElementById('deckTopGrid');
+  const countEl = document.getElementById('deckCount');
+  grid.innerHTML = '';
+  countEl.textContent = playerDeck.length;
+
+  for (let i=0; i<20; i++) {
+    const cardId = playerDeck[i];
+    const slot   = document.createElement('div');
+    const card   = cardId ? CARDS.find(c=>c.id===cardId) : null;
+    slot.className = 'deck-slot' + (cardId ? ` filled rarity-${card?.rarity||'common'}` : '');
+
+    if (cardId && card) {
+      const slotKey = `deck_${i}`;
+      slot.innerHTML = `<img src="cards/${cardId}.png" alt="${card.name}" onerror="this.style.display='none'"><div class="slot-minus">−</div>`;
+      slot.onclick = (e) => {
+        e.stopPropagation();
+        if (_activeDeckSlot===slotKey) {
+          removeFromDeck(i);
+        } else {
+          _activeDeckSlot = slotKey;
+          document.querySelectorAll('.deck-slot').forEach(s=>s.classList.remove('show-minus'));
+          document.querySelectorAll('.deck-pool-item').forEach(s=>s.classList.remove('show-plus'));
+          slot.classList.add('show-minus');
+        }
+      };
+    } else {
+      slot.innerHTML = `<div class="slot-empty">+</div>`;
+    }
+    grid.appendChild(slot);
+  }
+}
+
+function renderDeckPool() {
+  const grid = document.getElementById('deckPoolGrid');
+  grid.innerHTML = '';
+  const ORDER = {legendary:0,epic:1,rare:2,common:3,ultimate:4};
+  const ownedCards = [...CARDS]
+    .filter(c=>(playerInventory[c.id]||0)>0)
+    .sort((a,b)=>ORDER[a.rarity]-ORDER[b.rarity]);
+
+  ownedCards.forEach(card => {
+    const inDeck = playerDeck.includes(card.id);
+    const item   = document.createElement('div');
+    item.className = `deck-pool-item rarity-${card.rarity}${inDeck?' in-deck':''}`;
+    item.innerHTML = `
+      <div class="deck-pool-img">
+        <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span>👾</span>'">
+      </div>
+      <div class="deck-pool-name">${card.name}</div>
+      <div class="deck-pool-pow">${card.power}</div>
+      <div class="deck-action-btn">＋</div>`;
+
+    item.onclick = (e) => {
+      e.stopPropagation();
+      if (inDeck) { showToast('Bu kart artıq deckdədir'); return; }
+      const itemKey = `pool_${card.id}`;
+      if (_activeDeckSlot===itemKey) {
+        addToDeck(card.id);
+      } else {
+        document.querySelectorAll('.deck-pool-item').forEach(s=>s.classList.remove('show-plus'));
+        document.querySelectorAll('.deck-slot').forEach(s=>s.classList.remove('show-minus'));
+        _activeDeckSlot = itemKey;
+        item.classList.add('show-plus');
+      }
+    };
+    grid.appendChild(item);
+  });
+}
+
+function addToDeck(cardId) {
+  if (playerDeck.length>=20) { showToast('Deck doludur! (20/20)'); return; }
+  if (playerDeck.includes(cardId)) { showToast('Bu kart artıq deckdədir'); return; }
+  playerDeck.push(cardId);
+  _activeDeckSlot = null;
+  saveAll();
+  renderDeckPanel();
+  showToast('Deckə əlavə edildi!');
+}
+
+function removeFromDeck(index) {
+  playerDeck.splice(index,1);
+  _activeDeckSlot = null;
+  saveAll();
+  renderDeckPanel();
+  showToast('Kartdan çıxarıldı');
+}
+
+document.addEventListener('click', () => {
+  if (_activeDeckSlot) {
+    _activeDeckSlot = null;
+    document.querySelectorAll('.deck-slot').forEach(s=>s.classList.remove('show-minus'));
+    document.querySelectorAll('.deck-pool-item').forEach(s=>s.classList.remove('show-plus'));
+  }
+});
+
+// ═══════════════════════════════════
 //  SHOP
 // ═══════════════════════════════════
 function switchShopTab(tab) {
-  document.getElementById('stab-packs').classList.toggle('active', tab === 'packs');
-  document.getElementById('stab-market').classList.toggle('active', tab === 'market');
-  if (tab === 'packs') renderPacksTab();
-  else renderMarketTab();
+  document.getElementById('stab-packs').classList.toggle('active',tab==='packs');
+  document.getElementById('stab-market').classList.toggle('active',tab==='market');
+  if (tab==='packs') renderPacksTab(); else renderMarketTab();
 }
 
 function renderPacksTab() {
@@ -965,102 +1061,64 @@ function renderPacksTab() {
     <div class="shop-section-title">🟩 SERIYA 1 — KARTlar 1-20</div>
     <div class="pack-card pack-common" onclick="buyPack('common')">
       <div class="pack-icon pi-common">🟢<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name cn">ADİ PAKET S1</div>
-        <div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.common}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name cn">ADİ PAKET S1</div><div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div><div class="pack-price">🪙 ${PACK_PRICE.common}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common')">AL</button>
     </div>
     <div class="pack-card pack-rare" onclick="buyPack('rare')">
       <div class="pack-icon pi-rare">🔵<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name rn">NADİR PAKET S1</div>
-        <div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.rare}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name rn">NADİR PAKET S1</div><div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div><div class="pack-price">🪙 ${PACK_PRICE.rare}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare')">AL</button>
     </div>
     <div class="pack-card pack-epic" onclick="buyPack('epic')">
       <div class="pack-icon pi-epic">🟣<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name en">EPİK PAKET S1</div>
-        <div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.epic}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name en">EPİK PAKET S1</div><div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.epic}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic')">AL</button>
     </div>
-
     <div class="shop-section-title" style="margin-top:8px">🟦 SERIYA 2 — KARTlar 21-36 + 50</div>
     <div class="pack-card pack-common" onclick="buyPack('common2')">
       <div class="pack-icon pi-common">🟢<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name cn">ADİ PAKET S2</div>
-        <div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.common2}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name cn">ADİ PAKET S2</div><div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div><div class="pack-price">🪙 ${PACK_PRICE.common2}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common2')">AL</button>
     </div>
     <div class="pack-card pack-rare" onclick="buyPack('rare2')">
       <div class="pack-icon pi-rare">🔵<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name rn">NADİR PAKET S2</div>
-        <div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.rare2}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name rn">NADİR PAKET S2</div><div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div><div class="pack-price">🪙 ${PACK_PRICE.rare2}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare2')">AL</button>
     </div>
     <div class="pack-card pack-epic" onclick="buyPack('epic2')">
       <div class="pack-icon pi-epic">🟣<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name en">EPİK PAKET S2</div>
-        <div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.epic2}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name en">EPİK PAKET S2</div><div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.epic2}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic2')">AL</button>
     </div>
-
     <div class="shop-section-title" style="margin-top:8px">🌌 XÜSUSİ PAKETLƏR</div>
     <div class="pack-card pack-epic" onclick="buyPack('cosmic')">
       <div class="pack-icon pi-epic">🌌<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name en">COSMİC PAKET</div>
-        <div class="pack-odds">EPİK <span>90%</span> · Xüsusi <span>10%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.cosmic}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name en">COSMİC PAKET</div><div class="pack-odds">EPİK <span>90%</span> · Xüsusi <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.cosmic}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('cosmic')">AL</button>
     </div>
     <div class="pack-card pack-epic" onclick="buyPack('ultimate')" style="border-color:#ff4400;">
       <div class="pack-icon pi-epic" style="border-color:#ff4400;">⚡<div class="pack-icon-shine"></div></div>
-      <div class="pack-info">
-        <div class="pack-name en" style="color:#ff4400;">ULTIMATE PAKET</div>
-        <div class="pack-odds">EPİK <span>70%</span> · LEGEND <span>20%</span> · ULT <span>10%</span></div>
-        <div class="pack-price">🪙 ${PACK_PRICE.ultimate}</div>
-      </div>
+      <div class="pack-info"><div class="pack-name en" style="color:#ff4400;">ULTIMATE PAKET</div><div class="pack-odds">EPİK <span>70%</span> · LEGEND <span>20%</span> · ULT <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.ultimate}</div></div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('ultimate')" style="color:#ff4400;border-color:#ff4400;">AL</button>
     </div>
-
     <div class="shop-section-title" style="margin-top:4px">STOKDAKI PAKETLƏR</div>
     <div class="stocked-packs" id="stockedPacks"></div>`;
   renderStockedPacks();
 }
 
 function renderMarketTab() {
-  // check refresh
-  if (Date.now() - marketRefreshTime >= 3600000) refreshMarket();
+  if (Date.now()-marketRefreshTime>=3600000) refreshMarket();
   const el = document.getElementById('shopInner');
-  const cards = marketCards.map(c => typeof c === 'number' ? CARDS.find(x => x.id === c) : c).filter(Boolean);
+  const cards = marketCards.map(c=>typeof c==='number'?CARDS.find(x=>x.id===c):c).filter(Boolean);
   let html = `<div class="market-refresh-info">Yenilənir: <span id="mktTimer">${getMarketTimeLeft()}</span></div><div class="market-grid">`;
   cards.forEach(card => {
     const price = BUY_PRICE[card.rarity];
-    const owned = playerInventory[card.id] || 0;
-    const canBuy = playerCoins >= price;
+    const owned = playerInventory[card.id]||0;
+    const canBuy = playerCoins>=price;
     html += `
       <div class="market-item rarity-${card.rarity}">
-        ${owned > 0 ? `<div class="market-owned-badge">x${owned}</div>` : ''}
-        <div class="market-img">
-          <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span>👾</span>'">
-        </div>
+        ${owned>0?`<div class="market-owned-badge">x${owned}</div>`:''}
+        <div class="market-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span>👾</span>'"></div>
         <div class="market-name">${card.name}</div>
         <div class="market-pow">${card.power}</div>
         <div class="col-rarity-badge badge-${card.rarity}">${RARITY_AZ[card.rarity]}</div>
@@ -1076,55 +1134,50 @@ function renderMarketTab() {
 let _mktInterval;
 function startMarketTimer() {
   clearInterval(_mktInterval);
-  _mktInterval = setInterval(() => {
-    const el = document.getElementById('mktTimer');
+  _mktInterval = setInterval(()=>{
+    const el=document.getElementById('mktTimer');
     if (!el) { clearInterval(_mktInterval); return; }
-    const left = getMarketTimeLeft();
-    el.textContent = left;
-    if (left === '00:00') { refreshMarket(); renderMarketTab(); }
-  }, 1000);
+    const left=getMarketTimeLeft(); el.textContent=left;
+    if (left==='00:00') { refreshMarket(); renderMarketTab(); }
+  },1000);
 }
 
 function buyCardFromMarket(cardId) {
-  const card = CARDS.find(c => c.id === cardId);
-  if (!card) return;
-  const price = BUY_PRICE[card.rarity];
-  if (playerCoins < price) { showToast('Kifayət qədər coin yoxdur!'); return; }
-  playerCoins -= price;
-  playerInventory[card.id] = (playerInventory[card.id] || 0) + 1;
-  updateCoinDisplay();
-  saveAll();
+  const card=CARDS.find(c=>c.id===cardId); if (!card) return;
+  const price=BUY_PRICE[card.rarity];
+  if (playerCoins<price) { showToast('Kifayət qədər coin yoxdur!'); return; }
+  playerCoins-=price;
+  playerInventory[card.id]=(playerInventory[card.id]||0)+1;
+  updateCoinDisplay(); saveAll();
   showToast(`${card.name} alındı!`);
   renderMarketTab();
 }
 
 function buyPack(type) {
-  const price = PACK_PRICE[type];
-  if (playerCoins < price) { showToast(`Kifayət qədər coin yoxdur! Lazım: 🪙${price}`); return; }
-  playerCoins -= price;
-  packetStock[type] = (packetStock[type] || 0) + 1;
-  updateCoinDisplay();
-  saveAll();
-  showToast(`${type==='common'?'Adi':type==='rare'?'Nadir':'Epik'} paket alındı!`);
+  const price=PACK_PRICE[type];
+  if (playerCoins<price) { showToast(`Kifayət qədər coin yoxdur! Lazım: 🪙${price}`); return; }
+  playerCoins-=price;
+  packetStock[type]=(packetStock[type]||0)+1;
+  updateCoinDisplay(); saveAll();
+  showToast('Paket alındı!');
   renderStockedPacks();
 }
 
 function renderStockedPacks() {
-  const el = document.getElementById('stockedPacks');
-  if (!el) return;
-const types = [
-  {key:'common',label:'ADİ PAKET S1',cls:'common'},
-  {key:'rare',label:'NADİR PAKET S1',cls:'rare'},
-  {key:'epic',label:'EPİK PAKET S1',cls:'epic'},
-  {key:'common2',label:'ADİ PAKET S2',cls:'common'},
-  {key:'rare2',label:'NADİR PAKET S2',cls:'rare'},
-  {key:'epic2',label:'EPİK PAKET S2',cls:'epic'},
-  {key:'cosmic',label:'COSMİC PAKET',cls:'epic'},
-  {key:'ultimate',label:'ULTIMATE PAKET',cls:'epic'},
-];
-  const rows = types.filter(t => (packetStock[t.key] || 0) > 0);
-  if (!rows.length) { el.innerHTML = '<div style="font-size:11px;color:var(--text-dim);padding:8px 0">Heç bir paket yoxdur</div>'; return; }
-  el.innerHTML = rows.map(t => `
+  const el=document.getElementById('stockedPacks'); if (!el) return;
+  const types=[
+    {key:'common', label:'ADİ PAKET S1',    cls:'common'},
+    {key:'rare',   label:'NADİR PAKET S1',  cls:'rare'},
+    {key:'epic',   label:'EPİK PAKET S1',   cls:'epic'},
+    {key:'common2',label:'ADİ PAKET S2',    cls:'common'},
+    {key:'rare2',  label:'NADİR PAKET S2',  cls:'rare'},
+    {key:'epic2',  label:'EPİK PAKET S2',   cls:'epic'},
+    {key:'cosmic', label:'COSMİC PAKET',    cls:'epic'},
+    {key:'ultimate',label:'ULTIMATE PAKET', cls:'epic'},
+  ];
+  const rows=types.filter(t=>(packetStock[t.key]||0)>0);
+  if (!rows.length) { el.innerHTML='<div style="font-size:11px;color:var(--text-dim);padding:8px 0">Heç bir paket yoxdur</div>'; return; }
+  el.innerHTML=rows.map(t=>`
     <div class="stocked-pack-row">
       <div class="stocked-pack-info">
         <div class="stocked-pack-dot ${t.cls}"></div>
@@ -1139,38 +1192,34 @@ const types = [
 //  COLLECTION
 // ═══════════════════════════════════
 function renderCollectionPanel() {
-  const grid = document.getElementById('colPanel');
-  grid.innerHTML = '';
-  const ORDER = {legendary:0,epic:1,rare:2,common:3};
-  [...CARDS].sort((a,b) => ORDER[a.rarity] - ORDER[b.rarity]).forEach(card => {
-    const count = playerInventory[card.id] || 0;
-    const div = document.createElement('div');
-    div.className = `col-item rarity-${card.rarity}`;
-    div.style.opacity = count === 0 ? '0.3' : '1';
-    div.innerHTML = `
-      ${count > 0 ? `<div class="col-stack-badge">x${count}</div>` : ''}
-      <div class="col-img">
-        <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span style=\\'font-size:28px\\'>👾</span>'">
-      </div>
+  const grid=document.getElementById('colPanel'); grid.innerHTML='';
+  const ORDER={legendary:0,epic:1,rare:2,common:3,ultimate:4};
+  [...CARDS].sort((a,b)=>ORDER[a.rarity]-ORDER[b.rarity]).forEach(card=>{
+    const count=playerInventory[card.id]||0;
+    const div=document.createElement('div');
+    div.className=`col-item rarity-${card.rarity}`;
+    div.style.opacity=count===0?'0.3':'1';
+    div.innerHTML=`
+      ${count>0?`<div class="col-stack-badge">x${count}</div>`:''}
+      <div class="col-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span style=\\'font-size:28px\\'>👾</span>'"></div>
       <div class="col-name">${card.name}</div>
       <div class="col-pow">${card.power}</div>
       <div class="col-rarity-badge badge-${card.rarity}">${RARITY_AZ[card.rarity]}</div>
-      ${count > 1 ? `<button class="col-sell-btn" onclick="sellCard(${card.id},event)">SAT 🪙${SELL_PRICE[card.rarity]}</button>` : ''}`;
+      ${count>1?`<button class="col-sell-btn" onclick="sellCard(${card.id},event)">SAT 🪙${SELL_PRICE[card.rarity]}</button>`:''}`;
     grid.appendChild(div);
   });
-  const uniq = Object.keys(playerInventory).filter(id => playerInventory[id] > 0).length;
-  document.getElementById('colCount').textContent = `${uniq}/${CARDS.length}`;
+  const uniq=Object.keys(playerInventory).filter(id=>playerInventory[id]>0).length;
+  document.getElementById('colCount').textContent=`${uniq}/${CARDS.length}`;
 }
 
-function sellCard(cardId, e) {
+function sellCard(cardId,e) {
   e.stopPropagation();
-  const card = CARDS.find(c => c.id === cardId);
-  if (!card || !playerInventory[cardId] || playerInventory[cardId] === 0) return;
+  const card=CARDS.find(c=>c.id===cardId);
+  if (!card||!playerInventory[cardId]||playerInventory[cardId]===0) return;
   playerInventory[cardId]--;
-  if (playerInventory[cardId] === 0) delete playerInventory[cardId];
-  playerCoins += SELL_PRICE[card.rarity];
-  updateCoinDisplay();
-  saveAll();
+  if (playerInventory[cardId]===0) delete playerInventory[cardId];
+  playerCoins+=SELL_PRICE[card.rarity];
+  updateCoinDisplay(); saveAll();
   showToast(`Kart satıldı +🪙${SELL_PRICE[card.rarity]}`);
   renderCollectionPanel();
 }
@@ -1178,114 +1227,102 @@ function sellCard(cardId, e) {
 // ═══════════════════════════════════
 //  PACK OPEN
 // ═══════════════════════════════════
-let pendingRevealCards = [], currentOpenPackType = '';
+let pendingRevealCards=[], currentOpenPackType='';
 
 function rollRarity(pt) {
-  const o = PACK_ODDS[pt], r = Math.random() * 100;
-  if (r < o.legendary) return 'legendary';
-  if (r < o.legendary + o.epic) return 'epic';
-  if (r < o.legendary + o.epic + o.rare) return 'rare';
+  const o=PACK_ODDS[pt], r=Math.random()*100;
+  if (r<(o.ultimate||0)) return 'ultimate';
+  if (r<(o.ultimate||0)+o.legendary) return 'legendary';
+  if (r<(o.ultimate||0)+o.legendary+o.epic) return 'epic';
+  if (r<(o.ultimate||0)+o.legendary+o.epic+o.rare) return 'rare';
   return 'common';
 }
 
 function generatePack(pt) {
-  const ORDER = {common:0,rare:1,epic:2,legendary:3,ultimate:4};
-  const results = [];
-  const allowedIds = PACK_CARD_POOL[pt] || CARDS.map(c=>c.id);
-  const allowedCards = CARDS.filter(c => allowedIds.includes(c.id));
-
-  for (let i = 0; i < 5; i++) {
-    if (pt === 'ultimate' && Math.random() < 0.10) {
-      // 10% ultimate kartlar (ID 43-49)
-      const ultCards = CARDS.filter(c => [43,44,45,46,47,48,49].includes(c.id));
-      results.push(ultCards[Math.floor(Math.random() * ultCards.length)]);
-    } else if (pt === 'cosmic' && Math.random() < 0.10) {
-      // 10% cosmic xüsusi kartlar (ID 36-42)
-      const cosmicSpec = CARDS.filter(c => [36,37,38,39,40,41,42].includes(c.id));
-      results.push(cosmicSpec[Math.floor(Math.random() * cosmicSpec.length)]);
+  const ORDER={common:0,rare:1,epic:2,legendary:3,ultimate:4};
+  const results=[];
+  const allowedIds=PACK_CARD_POOL[pt]||CARDS.map(c=>c.id);
+  const allowedCards=CARDS.filter(c=>allowedIds.includes(c.id));
+  for (let i=0;i<5;i++) {
+    if (pt==='ultimate'&&Math.random()<0.10) {
+      const ultCards=CARDS.filter(c=>[43,44,45,46,47,48,49].includes(c.id));
+      results.push(ultCards[Math.floor(Math.random()*ultCards.length)]);
+    } else if (pt==='cosmic'&&Math.random()<0.10) {
+      const cosmicSpec=CARDS.filter(c=>[36,37,38,39,40,41,42].includes(c.id));
+      results.push(cosmicSpec[Math.floor(Math.random()*cosmicSpec.length)]);
     } else {
-      const rarity = rollRarity(pt);
-      const pool = allowedCards.filter(c => c.rarity === rarity);
-      const fallback = allowedCards;
-      const chosen = pool.length ? pool : fallback;
-      results.push(chosen[Math.floor(Math.random() * chosen.length)]);
+      const rarity=rollRarity(pt);
+      const pool=allowedCards.filter(c=>c.rarity===rarity);
+      const chosen=pool.length?pool:allowedCards;
+      results.push(chosen[Math.floor(Math.random()*chosen.length)]);
     }
   }
-  return results.sort((a,b) => ORDER[a.rarity] - ORDER[b.rarity]);
+  return results.sort((a,b)=>ORDER[a.rarity]-ORDER[b.rarity]);
 }
+
 function openPack(type) {
-  if (!packetStock[type] || packetStock[type] <= 0) return;
-  currentOpenPackType = type;
-  pendingRevealCards = generatePack(type);
-  const overlay = document.getElementById('packOpenOverlay');
-  document.getElementById('packOpenStep1').style.display = 'flex';
-  document.getElementById('packOpenStep2').style.display = 'none';
-  document.getElementById('revealCardsRow').innerHTML = '';
-  document.getElementById('btnCollect').style.display = 'none';
-  const names = {common:'ADİ PAKET',rare:'NADİR PAKET',epic:'EPİK PAKET'};
-  const emojis = {common:'🟢',rare:'🔵',epic:'🟣'};
-  document.getElementById('packOpenLabel').textContent = names[type];
-  const burst = document.getElementById('packBurst');
-  burst.className = `pack-burst ${type}`;
-  burst.textContent = emojis[type];
-  burst.style.transform = '';
-  burst.style.opacity = '';
-  burst.style.animation = '';
-  overlay.classList.add('show');
+  if (!packetStock[type]||packetStock[type]<=0) return;
+  currentOpenPackType=type;
+  pendingRevealCards=generatePack(type);
+  document.getElementById('packOpenStep1').style.display='flex';
+  document.getElementById('packOpenStep2').style.display='none';
+  document.getElementById('revealCardsRow').innerHTML='';
+  document.getElementById('btnCollect').style.display='none';
+  const names={common:'ADİ PAKET',rare:'NADİR PAKET',epic:'EPİK PAKET',common2:'ADİ PAKET S2',rare2:'NADİR PAKET S2',epic2:'EPİK PAKET S2',cosmic:'COSMİC PAKET',ultimate:'ULTIMATE PAKET'};
+  const emojis={common:'🟢',rare:'🔵',epic:'🟣',common2:'🟢',rare2:'🔵',epic2:'🟣',cosmic:'🌌',ultimate:'⚡'};
+  document.getElementById('packOpenLabel').textContent=names[type]||'PAKET';
+  const burst=document.getElementById('packBurst');
+  burst.className=`pack-burst ${['rare','epic'].includes(type)?type:'common'}`;
+  burst.textContent=emojis[type]||'📦';
+  burst.style.transform=''; burst.style.opacity=''; burst.style.animation='';
+  document.getElementById('packOpenOverlay').classList.add('show');
 }
 
 async function startReveal() {
-  const burst = document.getElementById('packBurst');
-  burst.style.animation = 'none';
-  burst.style.transform = 'scale(1.4)';
-  burst.style.opacity = '0';
+  const burst=document.getElementById('packBurst');
+  burst.style.animation='none'; burst.style.transform='scale(1.4)'; burst.style.opacity='0';
   await delay(280);
-  document.getElementById('packOpenStep1').style.display = 'none';
-  document.getElementById('packOpenStep2').style.display = 'flex';
-  const row = document.getElementById('revealCardsRow');
-  for (let i = 0; i < pendingRevealCards.length; i++) {
-    const card = pendingRevealCards[i];
-    const div = document.createElement('div');
-    div.className = `reveal-card rarity-${card.rarity}`;
-    div.innerHTML = `
-      <div class="reveal-card-art">
-        <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\\'font-size:36px\\'>👾</span>'">
-      </div>
+  document.getElementById('packOpenStep1').style.display='none';
+  document.getElementById('packOpenStep2').style.display='flex';
+  const row=document.getElementById('revealCardsRow');
+  for (let i=0;i<pendingRevealCards.length;i++) {
+    const card=pendingRevealCards[i];
+    const div=document.createElement('div');
+    div.className=`reveal-card rarity-${card.rarity}`;
+    div.innerHTML=`
+      <div class="reveal-card-art"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\\'font-size:36px\\'>👾</span>'"></div>
       <div class="reveal-card-footer">
         <div class="reveal-card-name">${card.name}</div>
         <div class="reveal-card-rarity rarity-${card.rarity}">${RARITY_AZ[card.rarity]}</div>
       </div>`;
     row.appendChild(div);
-    await delay({common:320,rare:480,epic:680,legendary:900}[card.rarity] || 400);
+    await delay({common:320,rare:480,epic:680,legendary:900,ultimate:1100}[card.rarity]||400);
     div.classList.add('show');
-    if (card.rarity === 'legendary' || card.rarity === 'epic') spawnParticles(div, card.rarity);
-    if (card.rarity === 'legendary') showToast(`⭐ LEGENDƏRİ: ${card.name}!`);
+    if (['legendary','epic','ultimate'].includes(card.rarity)) spawnParticles(div,card.rarity);
+    if (card.rarity==='legendary'||card.rarity==='ultimate') showToast(`⭐ ${RARITY_AZ[card.rarity]}: ${card.name}!`);
   }
   await delay(500);
-  document.getElementById('btnCollect').style.display = 'block';
+  document.getElementById('btnCollect').style.display='block';
 }
 
-function spawnParticles(el, rarity) {
-  const colors = {epic:'#aa44ff',legendary:'#ffaa00'};
-  const color = colors[rarity] || '#fff';
-  const rect = el.getBoundingClientRect();
-  const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
-  for (let i = 0; i < 12; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const angle = Math.PI * 2 * i / 12, dist = 50 + Math.random() * 50;
-    p.style.cssText = `left:${cx}px;top:${cy}px;background:${color};--dx:${Math.cos(angle)*dist}px;--dy:${Math.sin(angle)*dist}px;animation:particleFly 0.7s ease-out forwards;position:fixed;z-index:800;`;
+function spawnParticles(el,rarity) {
+  const colors={epic:'#aa44ff',legendary:'#ffaa00',ultimate:'#ff2200'};
+  const color=colors[rarity]||'#fff';
+  const rect=el.getBoundingClientRect();
+  const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+  for (let i=0;i<12;i++) {
+    const p=document.createElement('div'); p.className='particle';
+    const angle=Math.PI*2*i/12, dist=50+Math.random()*50;
+    p.style.cssText=`left:${cx}px;top:${cy}px;background:${color};--dx:${Math.cos(angle)*dist}px;--dy:${Math.sin(angle)*dist}px;animation:particleFly 0.7s ease-out forwards;position:fixed;z-index:800;`;
     document.body.appendChild(p);
-    setTimeout(() => p.remove(), 800);
+    setTimeout(()=>p.remove(),800);
   }
 }
 
 function collectCards() {
-  pendingRevealCards.forEach(card => {
-    playerInventory[card.id] = (playerInventory[card.id] || 0) + 1;
-  });
+  pendingRevealCards.forEach(card=>{ playerInventory[card.id]=(playerInventory[card.id]||0)+1; });
   packetStock[currentOpenPackType]--;
-  if (packetStock[currentOpenPackType] <= 0) delete packetStock[currentOpenPackType];
+  if (packetStock[currentOpenPackType]<=0) delete packetStock[currentOpenPackType];
   saveAll();
   document.getElementById('packOpenOverlay').classList.remove('show');
   renderStockedPacks();
@@ -1293,28 +1330,69 @@ function collectCards() {
 }
 
 // ═══════════════════════════════════
-//  GAME
+//  GAME ENGINE
 // ═══════════════════════════════════
-function newCard(def) { return {...def, uid: Math.random().toString(36).slice(2,9), cur: def.power}; }
-function shuffle(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+function newCard(def) { return {...def, uid:Math.random().toString(36).slice(2,9), cur:def.power}; }
+function shuffle(arr) { for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+
+// ── Persistent Effects ──
+let persistentEffects = {};
+
+function resetPersistentEffects() {
+  persistentEffects = {
+    feedback: null,          // 'vsAi' | 'vsPlayer' | null
+    ampfibianRows: new Set(),// Set of 'p_power' etc.
+    frankenActive: false,    // frankenstrike on field
+  };
+}
+
+const TEAM_SYNERGY_IDS  = new Set([40,37,41,38,39]);
+const FRANKEN_PARTNER_IDS = new Set([12,8]);
+const ULTIMATE_BASE_MAP = {42:21,43:22,44:29,45:27,46:24,47:7,48:9,49:16};
+
+function getAllFieldCards(rows) { return [...rows.power,...rows.speed,...rows.light]; }
 
 function initGS() {
-  GS = {round:1,pWins:0,aiWins:0,pHand:[],aiHand:[],pRows:{power:[],speed:[],light:[]},aiRows:{power:[],speed:[],light:[]},pPassed:false,aiPassed:false,busy:false,over:false};
-  resetPersistentEffects(); // ← bunu əlavə et
+  GS={round:1,pWins:0,aiWins:0,pHand:[],aiHand:[],pRows:{power:[],speed:[],light:[]},aiRows:{power:[],speed:[],light:[]},pPassed:false,aiPassed:false,busy:false,over:false};
+  resetPersistentEffects();
 }
 
+function rowTotal(rows,type) { return rows[type].reduce((s,c)=>s+c.cur,0); }
+function sideTotal(rows) { return ROWS.reduce((s,t)=>s+rowTotal(rows,t),0); }
+
+// ── Deal Hands ──
 function dealFullHands() {
-  const ownedIds = Object.keys(playerInventory).map(Number);
-  let pool = ownedIds.length >= 5
-    ? shuffle([...CARDS.filter(c => ownedIds.includes(c.id))])
-    : shuffle([...CARDS]);
-  GS.pHand  = pool.slice(0, Math.min(12, pool.length)).map(newCard);
-  GS.aiHand = shuffle([...CARDS]).slice(0, 12).map(newCard);
+  let pool;
+  if (playerDeck.length>0) {
+    pool=shuffle([...CARDS.filter(c=>playerDeck.includes(c.id))]);
+  } else {
+    const ownedIds=Object.keys(playerInventory).map(Number);
+    pool=ownedIds.length>=5
+      ? shuffle([...CARDS.filter(c=>ownedIds.includes(c.id))])
+      : shuffle([...CARDS]);
+  }
+  GS.pHand=pool.slice(0,Math.min(12,pool.length)).map(newCard);
+  GS.aiHand=shuffle([...CARDS]).slice(0,12).map(newCard);
 }
 
-function rowTotal(rows, type) { return rows[type].reduce((s,c) => s+c.cur, 0); }
-function sideTotal(rows) { return ROWS.reduce((s,t) => s + rowTotal(rows,t), 0); }
+function dealFullHandsForLevel() {
+  let pool;
+  if (playerDeck.length>0) {
+    pool=shuffle([...CARDS.filter(c=>playerDeck.includes(c.id))]);
+  } else {
+    const ownedIds=Object.keys(playerInventory).map(Number);
+    pool=ownedIds.length>=5
+      ? shuffle([...CARDS.filter(c=>ownedIds.includes(c.id))])
+      : shuffle([...CARDS]);
+  }
+  GS.pHand=pool.slice(0,Math.min(12,pool.length)).map(newCard);
 
+  const aiPool=shuffle([...CARDS.filter(c=>LEVEL_AI_CARD_IDS.includes(c.id))]);
+  const aiSize=currentLevelData?currentLevelData.aiHandSize:12;
+  GS.aiHand=aiPool.slice(0,Math.min(aiSize,aiPool.length)).map(newCard);
+}
+
+// ── REDRAW ──
 function showRedrawScreen() {
   redrawSelected.clear();
   showScreen('redrawScreen');
@@ -1323,13 +1401,12 @@ function showRedrawScreen() {
 }
 
 function renderRedrawGrid() {
-  const grid = document.getElementById('redrawGrid');
-  grid.innerHTML = '';
-  GS.pHand.forEach(card => {
-    const wrap = document.createElement('div');
-    wrap.className = 'redraw-card-wrap' + (redrawSelected.has(card.uid) ? ' chosen' : '');
-    wrap.onclick = () => toggleRedrawCard(card.uid, wrap);
-    wrap.innerHTML = `
+  const grid=document.getElementById('redrawGrid'); grid.innerHTML='';
+  GS.pHand.forEach(card=>{
+    const wrap=document.createElement('div');
+    wrap.className='redraw-card-wrap'+(redrawSelected.has(card.uid)?' chosen':'');
+    wrap.onclick=()=>toggleRedrawCard(card.uid,wrap);
+    wrap.innerHTML=`
       <div class="card-mini rarity-${card.rarity}">
         <img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<div class=\\'no-img\\'>👾</div>'">
       </div>
@@ -1339,29 +1416,32 @@ function renderRedrawGrid() {
   });
 }
 
-function toggleRedrawCard(uid, wrapEl) {
+function toggleRedrawCard(uid,wrapEl) {
   if (redrawSelected.has(uid)) { redrawSelected.delete(uid); wrapEl.classList.remove('chosen'); }
   else {
-    if (redrawSelected.size >= 2) { showToast('Maksimum 2 kart seçə bilərsiniz!'); return; }
+    if (redrawSelected.size>=2) { showToast('Maksimum 2 kart seçə bilərsiniz!'); return; }
     redrawSelected.add(uid); wrapEl.classList.add('chosen');
   }
   updateRedrawInfo();
 }
 
 function updateRedrawInfo() {
-  const n = redrawSelected.size;
-  document.getElementById('redrawInfo').textContent = `${n} / 2 seçildi`;
-  document.getElementById('redrawConfirmBtn').disabled = (n === 0);
+  const n=redrawSelected.size;
+  document.getElementById('redrawInfo').textContent=`${n} / 2 seçildi`;
+  document.getElementById('redrawConfirmBtn').disabled=(n===0);
 }
 
 function confirmRedraw() {
-  if (redrawSelected.size === 0) return;
-  const usedIds = new Set(GS.pHand.map(c => c.id));
-  const pool = shuffle(CARDS.filter(c => !usedIds.has(c.id)));
-  let pi = 0;
-  GS.pHand = GS.pHand.map(card =>
+  if (redrawSelected.size===0) return;
+  const deckPool = playerDeck.length>0
+    ? CARDS.filter(c=>playerDeck.includes(c.id))
+    : CARDS;
+  const usedIds=new Set(GS.pHand.map(c=>c.id));
+  const pool=shuffle(deckPool.filter(c=>!usedIds.has(c.id)));
+  let pi=0;
+  GS.pHand=GS.pHand.map(card=>
     redrawSelected.has(card.uid)
-      ? (pi < pool.length ? newCard(pool[pi++]) : newCard(CARDS[Math.floor(Math.random()*CARDS.length)]))
+      ? (pi<pool.length?newCard(pool[pi++]):newCard(deckPool[Math.floor(Math.random()*deckPool.length)]))
       : card
   );
   startGameAfterRedraw();
@@ -1371,317 +1451,242 @@ function skipRedraw() { startGameAfterRedraw(); }
 
 function startGameAfterRedraw() {
   showScreen('gameScreen');
-  selectedCard = null;
-  const btn = document.getElementById('passBtn');
-  btn.textContent = '⏭ PASS'; btn.classList.remove('passed'); btn.disabled = false;
-  // Show level banner
-  const banner = document.getElementById('levelBanner');
+  selectedCard=null;
+  const btn=document.getElementById('passBtn');
+  btn.textContent='⏭ PASS'; btn.classList.remove('passed'); btn.disabled=false;
+  const banner=document.getElementById('levelBanner');
   if (currentLevelData) {
-    banner.style.display = 'block';
-    banner.textContent = `${currentLevelData.stars} LEVEL ${currentLevelData.level}: ${currentLevelData.name.toUpperCase()} — Mükafat: 🪙${currentLevelData.coinReward}`;
+    banner.style.display='block';
+    banner.textContent=`${currentLevelData.stars} LEVEL ${currentLevelData.level}: ${currentLevelData.name.toUpperCase()} — Mükafat: 🪙${currentLevelData.coinReward}`;
   } else {
-    banner.style.display = 'none';
+    banner.style.display='none';
   }
   renderAll();
 }
 
-// Abilities
-// Global persistent effects tracker
-let persistentEffects = {
-  feedback: false,        // rəqibin sonrakı kartlarına -1
-  ampfibianRows: new Set(), // hansı sahələrdə ampfibian effekti var
-  frankenActive: false,   // frankenstrike aktiv
-};
-
-function resetPersistentEffects() {
-  persistentEffects = {
-    feedback: false,
-    ampfibianRows: new Set(),
-    frankenActive: false,
-  };
-}
-
-const TEAM_SYNERGY_IDS = new Set([40, 37, 41, 38, 39]); // Ampfibian,NRG,WaterHazard,Terraspin,Armodrillo
-const FRANKEN_PARTNER_IDS = new Set([12, 8]); // Snare-Oh, Blitzwolfer
-const ULTIMATE_BASE_MAP = {42:21, 43:22, 44:29, 45:27, 46:24, 47:7, 48:9, 49:16};
-
-function getAllFieldCards(rows) {
-  return [...rows.power, ...rows.speed, ...rows.light];
-}
-
+// ── ABILITIES ──
 function applyAbility(card, isPlayer, rowType) {
-  const myRows = isPlayer ? GS.pRows : GS.aiRows;
+  const myRows  = isPlayer ? GS.pRows  : GS.aiRows;
   const oppRows = isPlayer ? GS.aiRows : GS.pRows;
-  const myRow = myRows[rowType];
-  const oppRow = oppRows[rowType];
+  const myRow   = myRows[rowType];
+  const oppRow  = oppRows[rowType];
 
-  // ── ULTIMATE SYNERGY ──────────────────────────────
-  if (card.abilityFn === 'ultimateSynergy') {
-    const baseId = ULTIMATE_BASE_MAP[card.id];
-    if (!baseId) return;
-    // Normal kart əvvəl atılıbmı yoxla
-    const baseCardOnField = getAllFieldCards(myRows).find(c => c.id === baseId);
-    if (baseCardOnField) {
-      // Hər ikisinin cəmini tap, 2x et
-      const combined = baseCardOnField.cur + card.cur;
-      baseCardOnField.cur = combined;
-      card.cur = combined;
+  // ── ULTIMATE SYNERGY ──────────────────────────────────────
+  if (card.abilityFn==='ultimateSynergy') {
+    const baseId=ULTIMATE_BASE_MAP[card.id]; if (!baseId) return;
+    const baseCard=getAllFieldCards(myRows).find(c=>c.id===baseId);
+    if (baseCard) {
+      // Normal atılıb, sonra ultimate: her ikisinin cəmi 2x
+      const combined=baseCard.cur+card.cur;
+      baseCard.cur=combined;
+      card.cur=combined;
     }
+    // Tərsinə (əvvəl ultimate, sonra normal): effekt yoxdur — heç nə etmirik
     return;
   }
 
-  // ── TYPE ADVANTAGE DEBUFFS ────────────────────────
-  // Power → Light (-1)
-  if (card.abilityFn === 'powerVsLight1') {
-    oppRows['light'].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
-    return;
+  // ── TYPE ADVANTAGE ────────────────────────────────────────
+  if (card.abilityFn==='powerVsLight1') {
+    oppRows['light'].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); return;
   }
-  // Light → Speed (-1)
-  if (card.abilityFn === 'lightVsSpeed') {
-    oppRows['speed'].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
-    return;
+  if (card.abilityFn==='lightVsSpeed') {
+    oppRows['speed'].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); return;
   }
-  // Light → Speed (-2) — Nanomech
-  if (card.abilityFn === 'lightVsSpeed2') {
-    oppRows['speed'].forEach(c => { c.cur = Math.max(0, c.cur - 2); });
-    return;
+  if (card.abilityFn==='lightVsSpeed2') {
+    oppRows['speed'].forEach(c=>{c.cur=Math.max(0,c.cur-2);}); return;
   }
-  // Speed → Power (-1)
-  if (card.abilityFn === 'speedVsPower1') {
-    oppRows['power'].forEach(c => { c.cur = Math.max(0, c.cur - 1); });
-    return;
+  if (card.abilityFn==='speedVsPower1') {
+    oppRows['power'].forEach(c=>{c.cur=Math.max(0,c.cur-1);}); return;
   }
-  // Speed → Power (-2) — Jetray, Fasttrack
-  if (card.abilityFn === 'speedVsPower2') {
-    oppRows['power'].forEach(c => { c.cur = Math.max(0, c.cur - 2); });
-    return;
+  if (card.abilityFn==='speedVsPower2') {
+    oppRows['power'].forEach(c=>{c.cur=Math.max(0,c.cur-2);}); return;
   }
 
-  // ── LEGENDARY: ALIEN X ───────────────────────────
-  if (card.abilityFn === 'alienX') {
-    oppRow.forEach(c => { c.cur = 2; });
-    return;
+  // ── LEGENDARY: ALIEN X ───────────────────────────────────
+  if (card.abilityFn==='alienX') {
+    oppRow.forEach(c=>{c.cur=2;}); return;
   }
 
-  // ── LEGENDARY: WAY BIG ───────────────────────────
-  if (card.abilityFn === 'wayBig') {
-    const sorted = [...oppRow].sort((a, b) => b.cur - a.cur);
-    const toRemove = sorted.slice(0, 2).map(c => c.uid);
-    toRemove.forEach(uid => {
-      oppRows['power'] = oppRows['power'].filter(c => c.uid !== uid);
-      oppRows['speed'] = oppRows['speed'].filter(c => c.uid !== uid);
-      oppRows['light'] = oppRows['light'].filter(c => c.uid !== uid);
-      if (isPlayer) { GS.aiRows = oppRows; } else { GS.pRows = oppRows; }
+  // ── LEGENDARY: WAY BIG ───────────────────────────────────
+  if (card.abilityFn==='wayBig') {
+    const sorted=[...oppRow].sort((a,b)=>b.cur-a.cur);
+    const toRemove=sorted.slice(0,2).map(c=>c.uid);
+    toRemove.forEach(uid=>{
+      oppRows['power']=oppRows['power'].filter(c=>c.uid!==uid);
+      oppRows['speed']=oppRows['speed'].filter(c=>c.uid!==uid);
+      oppRows['light']=oppRows['light'].filter(c=>c.uid!==uid);
     });
+    if (isPlayer) GS.aiRows=oppRows; else GS.pRows=oppRows;
     return;
   }
 
-  // ── LEGENDARY: AMPFIBIAN ─────────────────────────
-  if (card.abilityFn === 'ampfibian') {
-    // Mövcud kartlara +2 (özü istisna)
-    myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 2; });
-    // Bu sahəni persistent effekt kimi qeyd et
-    persistentEffects.ampfibianRows.add(isPlayer ? `p_${rowType}` : `ai_${rowType}`);
+  // ── LEGENDARY: AMPFIBIAN ─────────────────────────────────
+  if (card.abilityFn==='ampfibian') {
+    myRow.forEach(c=>{if(c.uid!==card.uid)c.cur+=2;});
+    persistentEffects.ampfibianRows.add(isPlayer?`p_${rowType}`:`ai_${rowType}`);
     return;
   }
 
-  // ── LEGENDARY: FEEDBACK ──────────────────────────
-  if (card.abilityFn === 'feedback') {
-    // Bütün sahələrdəki mövcud kartlara -1
-    getAllFieldCards(oppRows).forEach(c => { c.cur = Math.max(0, c.cur - 1); });
-    // Persistent: sonrakı kartlara da -1
-    persistentEffects.feedback = isPlayer ? 'vsAi' : 'vsPlayer';
+  // ── LEGENDARY: FEEDBACK ──────────────────────────────────
+  if (card.abilityFn==='feedback') {
+    getAllFieldCards(oppRows).forEach(c=>{c.cur=Math.max(0,c.cur-1);});
+    persistentEffects.feedback=isPlayer?'vsAi':'vsPlayer';
     return;
   }
 
-  // ── LEGENDARY: CLOCKWORK ─────────────────────────
-  if (card.abilityFn === 'clockwork') {
-    const toReturn = myRow.filter(c => c.uid !== card.uid);
-    toReturn.forEach(c => {
-      if (isPlayer) GS.pHand.push(c);
-      else GS.aiHand.push(c);
-    });
-    myRows[rowType] = [card]; // yalnız clockwork qalır
-    if (isPlayer) GS.pRows = myRows; else GS.aiRows = myRows;
+  // ── LEGENDARY: CLOCKWORK ─────────────────────────────────
+  if (card.abilityFn==='clockwork') {
+    const toReturn=myRow.filter(c=>c.uid!==card.uid);
+    toReturn.forEach(c=>{ if(isPlayer) GS.pHand.push(c); else GS.aiHand.push(c); });
+    myRows[rowType]=[card];
+    if (isPlayer) GS.pRows=myRows; else GS.aiRows=myRows;
     return;
   }
 
-  // ── EPIC: FRANKENSTRIKE ──────────────────────────
-  if (card.abilityFn === 'frankenstrike') {
-    persistentEffects.frankenActive = true;
+  // ── EPIC: FRANKENSTRIKE ──────────────────────────────────
+  if (card.abilityFn==='frankenstrike') {
+    persistentEffects.frankenActive=true;
     applyFrankenBonus(isPlayer);
     return;
   }
 
-  // frankenPartner (Snare-Oh, Blitzwolfer) atılanda da yoxla
-  if (card.abilityFn === 'frankenPartner') {
-    if (persistentEffects.frankenActive) {
-      applyFrankenBonus(isPlayer);
+  // frankenPartner: Snare-Oh, Blitzwolfer
+  if (card.abilityFn==='frankenPartner') {
+    if (persistentEffects.frankenActive) applyFrankenBonus(isPlayer);
+    return;
+  }
+
+  // ── EPIC: LODESTAR ───────────────────────────────────────
+  if (card.abilityFn==='lodestar') {
+    myRow.forEach(c=>{if(c.uid!==card.uid)c.cur+=1;}); return;
+  }
+
+  // ── DITTO / ECHO ECHO ────────────────────────────────────
+  if (card.abilityFn==='ditto') {
+    const count=myRow.length-1;
+    if (count<=0) return;
+    for (let i=0;i<count;i++) {
+      myRow.push({...card, uid:Math.random().toString(36).slice(2,9)});
     }
     return;
   }
 
-  // ── EPIC: LODESTAR ───────────────────────────────
-  if (card.abilityFn === 'lodestar') {
-    myRow.forEach(c => { if (c.uid !== card.uid) c.cur += 1; });
-    return;
-  }
-
-  // ── DITTO / ECHO ECHO ────────────────────────────
-  if (card.abilityFn === 'ditto') {
-    const count = myRow.length - 1; // özü artıq əlavə olunub
-    if (count <= 0) return; // heç kart yoxdusa 1 qalır
-    for (let i = 0; i < count; i++) {
-      myRow.push({ ...card, uid: Math.random().toString(36).slice(2, 9) });
-    }
-    return;
-  }
-
-  // ── GREY MATTER / UPGRADE / BRAINSTORM ───────────
-  if (card.abilityFn === 'doubleStrongest') {
-    const others = myRow.filter(c => c.uid !== card.uid);
+  // ── GREY MATTER / UPGRADE / BRAINSTORM ───────────────────
+  if (card.abilityFn==='doubleStrongest') {
+    const others=myRow.filter(c=>c.uid!==card.uid);
     if (!others.length) return;
-    const strongest = others.reduce((a, b) => b.cur > a.cur ? b : a);
-    strongest.cur *= 2;
+    const strongest=others.reduce((a,b)=>b.cur>a.cur?b:a);
+    strongest.cur*=2;
     return;
   }
 
-  // ── TEAM SYNERGY ─────────────────────────────────
-  if (card.abilityFn === 'teamSynergy') {
-    updateTeamSynergy(isPlayer);
-    return;
+  // ── TEAM SYNERGY ─────────────────────────────────────────
+  if (card.abilityFn==='teamSynergy') {
+    updateTeamSynergy(isPlayer); return;
   }
 }
 
-// ── FRANKENSTRIKE BONUS HELPER ───────────────────
 function applyFrankenBonus(isPlayer) {
-  const myRows = isPlayer ? GS.pRows : GS.aiRows;
-  const allMy = getAllFieldCards(myRows);
-  const franken = allMy.find(c => c.abilityFn === 'frankenstrike');
-  const partners = allMy.filter(c => FRANKEN_PARTNER_IDS.has(c.id));
-  if (!franken || partners.length === 0) return;
-  const group = [franken, ...partners];
-  const totalBase = group.reduce((s, c) => s + CARDS.find(x => x.uid === c.uid || x.id === c.id)?.power || c.cur, 0);
-  // 2x total gücü bütün qrupa bərabər böl
-  const doubled = totalBase * 2;
-  group.forEach(c => { c.cur = Math.round(doubled / group.length); });
+  const myRows=isPlayer?GS.pRows:GS.aiRows;
+  const allMy=getAllFieldCards(myRows);
+  const franken=allMy.find(c=>c.abilityFn==='frankenstrike');
+  const partners=allMy.filter(c=>FRANKEN_PARTNER_IDS.has(c.id));
+  if (!franken||partners.length===0) return;
+  const group=[franken,...partners];
+  // Hər kartın orijinal power dəyərini götürüb 2x et, bərabər böl
+  const totalBase=group.reduce((s,c)=>{
+    const orig=CARDS.find(x=>x.id===c.id);
+    return s+(orig?orig.power:c.cur);
+  },0);
+  const doubled=totalBase*2;
+  group.forEach(c=>{c.cur=Math.round(doubled/group.length);});
 }
 
-// ── TEAM SYNERGY HELPER ──────────────────────────
 function updateTeamSynergy(isPlayer) {
-  const myRows = isPlayer ? GS.pRows : GS.aiRows;
-  const allMy = getAllFieldCards(myRows);
-  const synCards = allMy.filter(c => TEAM_SYNERGY_IDS.has(c.id));
-  const count = synCards.length;
-  if (count < 2) return;
-  synCards.forEach(c => {
-    const base = CARDS.find(x => x.id === c.id)?.power || c.cur;
-    c.cur = base + count;
+  // Hər iki tərəf üçün öz synergy kartlarını tap
+  const myRows=isPlayer?GS.pRows:GS.aiRows;
+  const allMy=getAllFieldCards(myRows);
+  const synCards=allMy.filter(c=>TEAM_SYNERGY_IDS.has(c.id));
+  const count=synCards.length;
+  if (count<2) return;
+  // Hansı sahədə olmasından asılı olmayaraq +count verir
+  synCards.forEach(c=>{
+    const base=CARDS.find(x=>x.id===c.id)?.power||c.cur;
+    c.cur=base+count;
   });
 }
 
+// ── PLAY CARD ──
 function playCard(card, isPlayer, rowType) {
   if (isPlayer) {
-    GS.pHand = GS.pHand.filter(c => c.uid !== card.uid);
+    GS.pHand=GS.pHand.filter(c=>c.uid!==card.uid);
     GS.pRows[rowType].push(card);
+    // Player kartına feedback -1
+    if (persistentEffects.feedback==='vsPlayer') {
+      card.cur=Math.max(0,card.cur-1);
+    }
   } else {
-    GS.aiHand = GS.aiHand.filter(c => c.uid !== card.uid);
+    GS.aiHand=GS.aiHand.filter(c=>c.uid!==card.uid);
     GS.aiRows[rowType].push(card);
-    // Feedback effekti: AI kartına -1
-    if (persistentEffects.feedback === 'vsAi') {
-      card.cur = Math.max(0, card.cur - 1);
+    // AI kartına feedback -1
+    if (persistentEffects.feedback==='vsAi') {
+      card.cur=Math.max(0,card.cur-1);
     }
   }
 
-  // Ampfibian persistent effekti: bu sahədə ampfibian varsa yeni karta +2
-  const sideKey = isPlayer ? `p_${rowType}` : `ai_${rowType}`;
-  if (persistentEffects.ampfibianRows.has(sideKey) && card.abilityFn !== 'ampfibian') {
-    card.cur += 2;
-  }
-
-  // Feedback effekti: player kartına -1
-  if (!isPlayer && persistentEffects.feedback === 'vsPlayer') {
-    // artıq yuxarıda işləndi
-  }
-  if (isPlayer && persistentEffects.feedback === 'vsAi') {
-    // player atır, feedback vsAi deyil
+  // Ampfibian persistent: bu sahəyə gələn yeni karta +2
+  const sideKey=isPlayer?`p_${rowType}`:`ai_${rowType}`;
+  if (persistentEffects.ampfibianRows.has(sideKey) && card.abilityFn!=='ampfibian') {
+    card.cur+=2;
   }
 
   applyAbility(card, isPlayer, rowType);
   renderAll();
 }
-const DEBUFF_FNS = new Set(['heatblast','xlr8','fourarms','snareoh','articguana','blitzwolfer','frankenstrike']);
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ── AI ──
+const DEBUFF_FNS = new Set(['powerVsLight1','lightVsSpeed','lightVsSpeed2','speedVsPower1','speedVsPower2']);
+function delay(ms) { return new Promise(r=>setTimeout(r,ms)); }
 
 async function runAiTurns() {
-  if (GS.over || GS.aiPassed) { checkRoundEnd(); return; }
-  // Get level config (default to hard free mode if no level)
-  const lvlCfg = currentLevelData || {aiPassThreshold:6, aiDebuffChance:0.4, aiSmartness:0.6};
-  while (!GS.over && !GS.aiPassed) {
-    if (GS.aiHand.length === 0) { aiDoPass(); return; }
+  if (GS.over||GS.aiPassed) { checkRoundEnd(); return; }
+  const lvlCfg=currentLevelData||{aiPassThreshold:6,aiDebuffChance:0.4,aiSmartness:0.6};
+  while (!GS.over&&!GS.aiPassed) {
+    if (GS.aiHand.length===0) { aiDoPass(); return; }
     const pTot=sideTotal(GS.pRows), aTot=sideTotal(GS.aiRows), gap=aTot-pTot;
-    // AI pass logic based on level threshold
-    if (GS.pPassed && gap > 0) { aiDoPass(); return; }
-    // Smarter AI holds longer at higher levels
-    const passGapThreshold = lvlCfg.aiPassThreshold;
-    const passRandChance = 0.4 - (lvlCfg.aiSmartness * 0.3); // lower chance to pass early at high levels
-    if (!GS.pPassed && gap > passGapThreshold && GS.aiHand.length > 4 && Math.random() < passRandChance) {
-      aiDoPass(); return;
-    }
+    if (GS.pPassed&&gap>0) { aiDoPass(); return; }
+    const passRandChance=0.4-(lvlCfg.aiSmartness*0.3);
+    if (!GS.pPassed&&gap>lvlCfg.aiPassThreshold&&GS.aiHand.length>4&&Math.random()<passRandChance) { aiDoPass(); return; }
 
-    let chosen = null;
+    let chosen=null;
 
-    // Debuff logic: use debuff cards when behind, based on debuffChance
-    if (gap < -2 && Math.random() < lvlCfg.aiDebuffChance) {
+    if (gap<-2&&Math.random()<lvlCfg.aiDebuffChance) {
       const d=GS.aiHand.filter(c=>DEBUFF_FNS.has(c.abilityFn));
-      if(d.length) chosen=d.sort((a,b)=>b.power-a.power)[0];
+      if (d.length) chosen=d.sort((a,b)=>b.power-a.power)[0];
     }
 
-    // Smart buff analysis: at high smartness, prefer buff cards that give net gain
-    if (!chosen && lvlCfg.aiSmartness > 0.5 && Math.random() < lvlCfg.aiSmartness - 0.3) {
-      // Find cards with buffRow or greymatter abilities that can multiply advantage
-      const buffCards = GS.aiHand.filter(c => ['buffRow','greymatter','swampfire','alienx','frankenstrike'].includes(c.abilityFn));
-      if (buffCards.length) {
-        // Prefer buff if AI already has cards in that row
-        for (const bc of buffCards.sort((a,b)=>b.power-a.power)) {
-          const rowType = bc.type === 'cosmic'
-            ? ROWS.reduce((best,t)=>rowTotal(GS.aiRows,t)<rowTotal(GS.aiRows,best)?t:best,ROWS[0])
-            : bc.type;
-          if (GS.aiRows[rowType].length > 0) { chosen = bc; break; }
-        }
-      }
+    if (!chosen&&lvlCfg.aiSmartness>0.7) {
+      const weakRow=ROWS.reduce((worst,t)=>{
+        const diff=rowTotal(GS.aiRows,t)-rowTotal(GS.pRows,t);
+        const wdiff=rowTotal(GS.aiRows,worst)-rowTotal(GS.pRows,worst);
+        return diff<wdiff?t:worst;
+      },ROWS[0]);
+      const rowCards=GS.aiHand.filter(c=>c.type===weakRow||c.type==='cosmic');
+      chosen=rowCards.length?rowCards.sort((a,b)=>b.power-a.power)[0]:[...GS.aiHand].sort((a,b)=>b.power-a.power)[0];
     }
 
-    if (!chosen) {
-      if (lvlCfg.aiSmartness > 0.7) {
-        // High smartness: pick best card for weakest row that player is winning
-        const weakRow = ROWS.reduce((worst, t) => {
-          const diff = rowTotal(GS.aiRows, t) - rowTotal(GS.pRows, t);
-          const wdiff = rowTotal(GS.aiRows, worst) - rowTotal(GS.pRows, worst);
-          return diff < wdiff ? t : worst;
-        }, ROWS[0]);
-        const rowCards = GS.aiHand.filter(c => c.type === weakRow || c.type === 'cosmic');
-        chosen = rowCards.length
-          ? rowCards.sort((a,b) => b.power - a.power)[0]
-          : [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
-      } else {
-        chosen = [...GS.aiHand].sort((a,b) => b.power - a.power)[0];
-      }
-    }
+    if (!chosen) chosen=[...GS.aiHand].sort((a,b)=>b.power-a.power)[0];
 
-    let chosenRow = (chosen.type === 'cosmic')
-      ? ROWS.reduce((best,t) => rowTotal(GS.aiRows,t) < rowTotal(GS.aiRows,best) ? t : best, ROWS[0])
+    const chosenRow=chosen.type==='cosmic'
+      ? ROWS.reduce((best,t)=>rowTotal(GS.aiRows,t)<rowTotal(GS.aiRows,best)?t:best,ROWS[0])
       : chosen.type;
 
-    // Think delay: faster at higher levels
-    const thinkMs = currentLevelData
-      ? Math.max(300, 900 - (currentLevelData.level * 30))
-      : 600;
+    const thinkMs=currentLevelData?Math.max(300,900-(currentLevelData.level*30)):600;
     showAiThink(true);
-    await delay(thinkMs + Math.random() * 300);
+    await delay(thinkMs+Math.random()*300);
     showAiThink(false);
-    if (GS.over || GS.aiPassed) return;
-    playCard(chosen, false, chosenRow);
+    if (GS.over||GS.aiPassed) return;
+    playCard(chosen,false,chosenRow);
     await delay(150);
     if (!GS.pPassed) return;
   }
@@ -1689,320 +1694,257 @@ async function runAiTurns() {
 
 function aiDoPass() {
   if (GS.aiPassed) return;
-  GS.aiPassed = true;
+  GS.aiPassed=true;
   showToast('AI pass etdi');
-  setTimeout(() => checkRoundEnd(), 400);
+  setTimeout(()=>checkRoundEnd(),400);
 }
 
-function onCardClick(card, el) {
-  if (GS.busy || GS.pPassed || GS.over) return;
-  if (selectedCard && selectedCard.uid === card.uid) { clearSelection(); return; }
-  clearSelection(); selectedCard = card; el.classList.add('selected'); highlightRows(card.type);
-  showToast(card.type !== 'cosmic' ? `"${card.name}" → seçildi` : `"${card.name}" → istənilən sahəyə`);
+function onCardClick(card,el) {
+  if (GS.busy||GS.pPassed||GS.over) return;
+  if (selectedCard&&selectedCard.uid===card.uid) { clearSelection(); return; }
+  clearSelection(); selectedCard=card; el.classList.add('selected'); highlightRows(card.type);
+  showToast(card.type!=='cosmic'?`"${card.name}" → seçildi`:`"${card.name}" → istənilən sahəyə`);
 }
 
 function onRowClick(rowType) {
-  if (!selectedCard || GS.busy || GS.pPassed || GS.over) return;
-  const card = selectedCard;
-  if (card.type !== 'cosmic' && card.type !== rowType) {
-    const TYPE_NAME = {power:'GÜC',speed:'SÜRƏT',light:'İŞIQ'};
+  if (!selectedCard||GS.busy||GS.pPassed||GS.over) return;
+  const card=selectedCard;
+  if (card.type!=='cosmic'&&card.type!==rowType) {
+    const TYPE_NAME={power:'GÜC',speed:'SÜRƏT',light:'İŞIQ'};
     showToast(`Bu kart yalnız ${TYPE_NAME[card.type]} sahəsinə gedə bilər!`);
     return;
   }
   clearSelection();
-  playCard(card, true, rowType);
+  playCard(card,true,rowType);
   if (GS.aiPassed) checkRoundEnd(); else runAiTurns();
 }
 
 function playerPass() {
-  if (GS.busy || GS.pPassed || GS.over) return;
-  clearSelection(); GS.pPassed = true;
-  const btn = document.getElementById('passBtn');
-  btn.textContent = '✓ PASS ETDİNİZ'; btn.classList.add('passed');
+  if (GS.busy||GS.pPassed||GS.over) return;
+  clearSelection(); GS.pPassed=true;
+  const btn=document.getElementById('passBtn');
+  btn.textContent='✓ PASS ETDİNİZ'; btn.classList.add('passed');
   showToast('Pass etdiniz');
   if (GS.aiPassed) checkRoundEnd(); else runAiTurns();
 }
 
 function checkRoundEnd() {
-  if (!GS.pPassed || !GS.aiPassed) return;
-  const pT = sideTotal(GS.pRows), aT = sideTotal(GS.aiRows);
-  setTimeout(() => {
-    let msg = '';
-    if (pT > aT) { GS.pWins++; msg = `Raund ${GS.round} qazandınız! (${pT}:${aT})`; }
-    else if (aT > pT) { GS.aiWins++; msg = `AI raund ${GS.round} qazandı! (${aT}:${pT})`; }
-    else { msg = `Raund ${GS.round} bərabər!`; }
+  if (!GS.pPassed||!GS.aiPassed) return;
+  const pT=sideTotal(GS.pRows), aT=sideTotal(GS.aiRows);
+  setTimeout(()=>{
+    let msg='';
+    if (pT>aT) { GS.pWins++; msg=`Raund ${GS.round} qazandınız! (${pT}:${aT})`; }
+    else if (aT>pT) { GS.aiWins++; msg=`AI raund ${GS.round} qazandı! (${aT}:${pT})`; }
+    else { msg=`Raund ${GS.round} bərabər!`; }
     showToast(msg); renderScoreboard();
-    if (GS.pWins >= 2 || GS.aiWins >= 2 || GS.round >= 3) setTimeout(() => endGame(), 1400);
-    else { GS.round++; setTimeout(() => nextRound(), 1600); }
-  }, 300);
+    if (GS.pWins>=2||GS.aiWins>=2||GS.round>=3) setTimeout(()=>endGame(),1400);
+    else { GS.round++; setTimeout(()=>nextRound(),1600); }
+  },300);
 }
 
 function nextRound() {
   GS.pRows={power:[],speed:[],light:[]}; GS.aiRows={power:[],speed:[],light:[]};
   GS.pPassed=false; GS.aiPassed=false; GS.busy=false;
-  resetPersistentEffects(); // ← bunu əlavə et
-  const btn = document.getElementById('passBtn');
-  btn.textContent = '⏭ PASS'; btn.classList.remove('passed'); btn.disabled = false;
+  resetPersistentEffects();
+  const btn=document.getElementById('passBtn');
+  btn.textContent='⏭ PASS'; btn.classList.remove('passed'); btn.disabled=false;
   renderAll();
 }
 
 function endGame() {
-  GS.over = true;
-  playerStats.games++;
-  const won = GS.pWins > GS.aiWins;
-  const draw = GS.pWins === GS.aiWins;
-  const title = document.getElementById('resultTitle');
-  const sub = document.getElementById('resultSub');
-  const box = document.getElementById('resultBox');
-  const btns = document.querySelector('#resultBox .ov-btns');
+  GS.over=true; playerStats.games++;
+  const won=GS.pWins>GS.aiWins, draw=GS.pWins===GS.aiWins;
+  const title=document.getElementById('resultTitle');
+  const sub=document.getElementById('resultSub');
+  const box=document.getElementById('resultBox');
+  const btns=document.querySelector('#resultBox .ov-btns');
 
   if (won) {
     playerStats.wins++;
-    let coinGain = 12;
-    let extraHtml = '';
-
+    let coinGain=12, extraHtml='';
     if (currentLevelData) {
-      // Level mode win
-      coinGain = currentLevelData.coinReward;
-      const lvlNum = currentLevelData.level;
-      // Mark level as completed (if not already or this is first time)
-      const alreadyDone = !!playerLevelProgress[lvlNum];
-      if (!alreadyDone) {
-        playerLevelProgress[lvlNum] = { coins: coinGain, completedAt: Date.now() };
-        saveLevelProgress();
-      }
-      extraHtml = `<div class="level-complete-badge">⭐ Level ${lvlNum} Tamamlandı!</div>`;
-      const nextLevel = LEVELS.find(l => l.level === lvlNum + 1);
-      if (nextLevel && !alreadyDone) {
-        extraHtml += `<div style="font-size:11px;color:var(--text-dim);margin-top:6px;font-family:'Orbitron',monospace;">🔓 Level ${nextLevel.level} açıldı!</div>`;
-      }
-      // Update result buttons for level mode
+      coinGain=currentLevelData.coinReward;
+      const lvlNum=currentLevelData.level;
+      const alreadyDone=!!playerLevelProgress[lvlNum];
+      if (!alreadyDone) { playerLevelProgress[lvlNum]={coins:coinGain,completedAt:Date.now()}; saveLevelProgress(); }
+      extraHtml=`<div class="level-complete-badge">⭐ Level ${lvlNum} Tamamlandı!</div>`;
+      const nextLevel=LEVELS.find(l=>l.level===lvlNum+1);
+      if (nextLevel&&!alreadyDone) extraHtml+=`<div style="font-size:11px;color:var(--text-dim);margin-top:6px;font-family:'Orbitron',monospace;">🔓 Level ${nextLevel.level} açıldı!</div>`;
       if (btns) {
-        const nextLvl = LEVELS.find(l => l.level === lvlNum + 1);
-        btns.innerHTML = `
-          ${nextLvl ? `<button class="btn-menu" onclick="startLevelGame(${nextLvl.level})">▶ NƏZİR LEVEL</button>` : ''}
+        const nextLvl=LEVELS.find(l=>l.level===lvlNum+1);
+        btns.innerHTML=`
+          ${nextLvl?`<button class="btn-menu" onclick="startLevelGame(${nextLvl.level})">▶ NƏZİR LEVEL</button>`:''}
           <button class="btn-menu" onclick="startLevelGame(${lvlNum})">🔄 TƏKRARla</button>
           <button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`;
       }
     } else {
-      // Single player win - random common card
-      const commons = CARDS.filter(c => c.rarity === 'common');
-      const bonus = commons[Math.floor(Math.random() * commons.length)];
-      playerInventory[bonus.id] = (playerInventory[bonus.id] || 0) + 1;
-      extraHtml = `🃏 +1 ${bonus.name}`;
-      if (btns) {
-        btns.innerHTML = `
-          <button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button>
-          <button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
-      }
+      const commons=CARDS.filter(c=>c.rarity==='common');
+      const bonus=commons[Math.floor(Math.random()*commons.length)];
+      playerInventory[bonus.id]=(playerInventory[bonus.id]||0)+1;
+      extraHtml=`🃏 +1 ${bonus.name}`;
+      if (btns) btns.innerHTML=`<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button><button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
     }
-
-    playerCoins += coinGain;
-    updateCoinDisplay();
-    saveAll();
-
-    title.textContent = 'QALİB!'; title.className = 'ov-title'; box.className = 'overlay-box';
-    sub.innerHTML = `AI-ı məğlub etdiniz!<br>Raund: ${GS.pWins} — ${GS.aiWins}<br><br>🪙 +${coinGain} COIN<br>${extraHtml}`;
-
+    playerCoins+=coinGain; updateCoinDisplay(); saveAll();
+    title.textContent='QALİB!'; title.className='ov-title'; box.className='overlay-box';
+    sub.innerHTML=`AI-ı məğlub etdiniz!<br>Raund: ${GS.pWins} — ${GS.aiWins}<br><br>🪙 +${coinGain} COIN<br>${extraHtml}`;
   } else if (draw) {
     saveAll();
-    title.textContent = 'BƏRABƏR!'; title.className = 'ov-title'; box.className = 'overlay-box';
-    sub.innerHTML = `Güclər bərabər idi<br>Raund: ${GS.pWins} — ${GS.aiWins}`;
-    if (btns) {
-      btns.innerHTML = currentLevelData
-        ? `<button class="btn-menu" onclick="startLevelGame(${currentLevelData.level})">🔄 TƏKRARla</button>
-           <button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`
-        : `<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button>
-           <button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
-    }
+    title.textContent='BƏRABƏR!'; title.className='ov-title'; box.className='overlay-box';
+    sub.innerHTML=`Güclər bərabər idi<br>Raund: ${GS.pWins} — ${GS.aiWins}`;
+    if (btns) btns.innerHTML=currentLevelData
+      ?`<button class="btn-menu" onclick="startLevelGame(${currentLevelData.level})">🔄 TƏKRARla</button><button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`
+      :`<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button><button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
   } else {
     saveAll();
-    title.textContent = 'MƏĞLUB!'; title.className = 'ov-title lose'; box.className = 'overlay-box lose';
-    sub.innerHTML = `AI sizi məğlub etdi<br>Raund: ${GS.pWins} — ${GS.aiWins}`;
-    if (btns) {
-      btns.innerHTML = currentLevelData
-        ? `<button class="btn-menu" onclick="startLevelGame(${currentLevelData.level})">🔄 TƏKRARla</button>
-           <button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`
-        : `<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button>
-           <button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
-    }
+    title.textContent='MƏĞLUB!'; title.className='ov-title lose'; box.className='overlay-box lose';
+    sub.innerHTML=`AI sizi məğlub etdi<br>Raund: ${GS.pWins} — ${GS.aiWins}`;
+    if (btns) btns.innerHTML=currentLevelData
+      ?`<button class="btn-menu" onclick="startLevelGame(${currentLevelData.level})">🔄 TƏKRARla</button><button class="btn-menu sec" onclick="showGameStartScreen()">← LEVELLƏR</button>`
+      :`<button class="btn-menu" onclick="startGame()">▶ YENİDƏN OYNA</button><button class="btn-menu sec" onclick="navTo('home')">← ANA SƏHIFƏ</button>`;
   }
   document.getElementById('resultOverlay').classList.add('show');
 }
 
+// ── RENDER ──
 function renderAll() { renderRows(); renderHand(); renderScoreboard(); updateDivText(); }
 
 function renderRows() {
-  ROWS.forEach(type => {
-    renderRow(`p-row-${type}`, GS.pRows[type], true);
-    renderRow(`ai-row-${type}`, GS.aiRows[type], false);
-    document.getElementById(`p-${type}-total`).textContent = rowTotal(GS.pRows, type);
-    document.getElementById(`ai-${type}-total`).textContent = rowTotal(GS.aiRows, type);
+  ROWS.forEach(type=>{
+    renderRow(`p-row-${type}`,GS.pRows[type],true);
+    renderRow(`ai-row-${type}`,GS.aiRows[type],false);
+    document.getElementById(`p-${type}-total`).textContent=rowTotal(GS.pRows,type);
+    document.getElementById(`ai-${type}-total`).textContent=rowTotal(GS.aiRows,type);
   });
 }
 
-function renderRow(elId, cards, isPlayer) {
-  const el = document.getElementById(elId);
-  const aiTag = el.querySelector('.ai-tag'), rowTag = el.querySelector('.row-type-tag');
-  el.innerHTML = '';
+function renderRow(elId,cards,isPlayer) {
+  const el=document.getElementById(elId);
+  const aiTag=el.querySelector('.ai-tag'), rowTag=el.querySelector('.row-type-tag');
+  el.innerHTML='';
   if (aiTag) el.appendChild(aiTag);
   if (rowTag) el.appendChild(rowTag);
-  cards.forEach(card => {
-    const div = document.createElement('div');
-    div.className = `card on-field rarity-${card.rarity} play-anim`;
-    div.innerHTML = `<div class="card-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\\'no-img\\'>👾</span>'"></div>`;
+  cards.forEach(card=>{
+    const div=document.createElement('div');
+    div.className=`card on-field rarity-${card.rarity} play-anim`;
+    div.innerHTML=`<div class="card-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\\'no-img\\'>👾</span>'"></div>`;
     el.appendChild(div);
   });
 }
 
 function renderHand() {
-  const el = document.getElementById('handCards');
-  el.innerHTML = '';
-  GS.pHand.forEach(card => {
-    const div = document.createElement('div');
-    div.className = `card in-hand rarity-${card.rarity}`;
-    div.innerHTML = `<div class="card-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\\'no-img\\'>👾</span>'"></div>`;
-    div.onclick = () => onCardClick(card, div);
-    if (selectedCard && selectedCard.uid === card.uid) div.classList.add('selected');
+  const el=document.getElementById('handCards'); el.innerHTML='';
+  GS.pHand.forEach(card=>{
+    const div=document.createElement('div');
+    div.className=`card in-hand rarity-${card.rarity}`;
+    div.innerHTML=`<div class="card-img"><img src="cards/${card.id}.png" alt="${card.name}" onerror="this.parentNode.innerHTML='<span class=\\'no-img\\'>👾</span>'"></div>`;
+    div.onclick=()=>onCardClick(card,div);
+    if (selectedCard&&selectedCard.uid===card.uid) div.classList.add('selected');
     el.appendChild(div);
   });
-  document.getElementById('handCount').textContent = GS.pHand.length;
+  document.getElementById('handCount').textContent=GS.pHand.length;
 }
 
 function renderScoreboard() {
-  document.getElementById('playerScore').textContent = GS.pWins;
-  document.getElementById('aiScore').textContent = GS.aiWins;
-  document.getElementById('roundNum').textContent = `${GS.round} / 3`;
-  const aiNameEl = document.getElementById('aiScoreName');
-  if (aiNameEl && currentLevelData) {
-    aiNameEl.textContent = `LVL ${currentLevelData.level}`;
-  } else if (aiNameEl) {
-    aiNameEl.textContent = 'YAPay ZEKA';
-  }
-  ['player','ai'].forEach(side => {
-    const wins = side === 'player' ? GS.pWins : GS.aiWins;
-    const losses = side === 'player' ? GS.aiWins : GS.pWins;
-    const el = document.getElementById(`${side}Gems`);
-    el.innerHTML = '';
-    for (let i = 0; i < 2; i++) {
-      const gem = document.createElement('div');
-      gem.className = 'gem';
-      if (i < wins) gem.classList.add(side === 'player' ? 'win' : 'lose');
-      else if (i < losses) gem.classList.add(side === 'player' ? 'lose' : 'win');
+  document.getElementById('playerScore').textContent=GS.pWins;
+  document.getElementById('aiScore').textContent=GS.aiWins;
+  document.getElementById('roundNum').textContent=`${GS.round} / 3`;
+  const aiNameEl=document.getElementById('aiScoreName');
+  if (aiNameEl) aiNameEl.textContent=currentLevelData?`LVL ${currentLevelData.level}`:'YAPay ZEKA';
+  ['player','ai'].forEach(side=>{
+    const wins=side==='player'?GS.pWins:GS.aiWins;
+    const losses=side==='player'?GS.aiWins:GS.pWins;
+    const el=document.getElementById(`${side}Gems`); el.innerHTML='';
+    for (let i=0;i<2;i++) {
+      const gem=document.createElement('div'); gem.className='gem';
+      if (i<wins) gem.classList.add(side==='player'?'win':'lose');
+      else if (i<losses) gem.classList.add(side==='player'?'lose':'win');
       el.appendChild(gem);
     }
   });
 }
 
 function updateDivText() {
-  const el = document.getElementById('divText');
-  const state = GS.pPassed && GS.aiPassed ? 'BİTDİ' : GS.pPassed ? 'AI OYNAYIR' : 'OYNA';
-  el.innerHTML = `RAUND <span>${GS.round}</span> — ${state}`;
+  const el=document.getElementById('divText');
+  const state=GS.pPassed&&GS.aiPassed?'BİTDİ':GS.pPassed?'AI OYNAYIR':'OYNA';
+  el.innerHTML=`RAUND <span>${GS.round}</span> — ${state}`;
 }
 
 function clearSelection() {
-  selectedCard = null;
-  document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+  selectedCard=null;
+  document.querySelectorAll('.card.selected').forEach(c=>c.classList.remove('selected'));
   clearHighlights();
 }
-
 function clearHighlights() {
-  ROWS.forEach(t => {
-    const el = document.getElementById(`p-row-${t}`);
+  ROWS.forEach(t=>{
+    const el=document.getElementById(`p-row-${t}`);
     el.classList.remove('highlight-power','highlight-speed','highlight-light','highlight-cosmic');
   });
 }
-
 function highlightRows(cardType) {
   clearHighlights();
-  ROWS.forEach(t => {
-    const el = document.getElementById(`p-row-${t}`);
-    if (cardType === 'cosmic' || cardType === t)
-      el.classList.add(cardType === 'cosmic' ? 'highlight-cosmic' : `highlight-${cardType}`);
+  ROWS.forEach(t=>{
+    const el=document.getElementById(`p-row-${t}`);
+    if (cardType==='cosmic'||cardType===t)
+      el.classList.add(cardType==='cosmic'?'highlight-cosmic':`highlight-${cardType}`);
   });
 }
 
-function showAiThink(show) { document.getElementById('aiThink').classList.toggle('show', show); }
+function showAiThink(show) { document.getElementById('aiThink').classList.toggle('show',show); }
 
 let _toastTimer;
 function showToast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('show');
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
   clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+  _toastTimer=setTimeout(()=>el.classList.remove('show'),2500);
 }
 
 // ═══════════════════════════════════
-//  GAME START SCREEN & LEVEL SYSTEM
+//  GAME START & LEVELS
 // ═══════════════════════════════════
 function showGameStartScreen() {
   document.getElementById('resultOverlay').classList.remove('show');
-  loadLevelProgress();
-  renderLevelGrid();
+  loadLevelProgress(); renderLevelGrid();
   showScreen('gameStartScreen');
   document.getElementById('nav-game').classList.add('active');
 }
 
 function renderLevelGrid() {
-  const grid = document.getElementById('levelGrid');
-  if (!grid) return;
-  grid.innerHTML = '';
-  LEVELS.forEach(lvl => {
-    const unlocked = isLevelUnlocked(lvl.level);
-    const completed = !!playerLevelProgress[lvl.level];
-    const row = document.createElement('div');
-    const diffLabels = ['','Çox Asan','Asan','Asan','Orta','Orta','Orta','Çətin','Çətin','Çətin','Çətin','Ekspert','Ekspert','Ekspert','Çox Çətin','Çox Çətin','Çox Çətin','Master','Master','Grandmaster','İmpossible'];
-    row.className = `level-row ${completed ? 'completed' : unlocked ? 'unlocked' : 'locked'}`;
-    row.innerHTML = `
+  const grid=document.getElementById('levelGrid'); if (!grid) return;
+  grid.innerHTML='';
+  const diffLabels=['','Çox Asan','Asan','Asan','Orta','Orta','Orta','Çətin','Çətin','Çətin','Çətin','Ekspert','Ekspert','Ekspert','Çox Çətin','Çox Çətin','Çox Çətin','Master','Master','Grandmaster','İmpossible'];
+  LEVELS.forEach(lvl=>{
+    const unlocked=isLevelUnlocked(lvl.level);
+    const completed=!!playerLevelProgress[lvl.level];
+    const row=document.createElement('div');
+    row.className=`level-row ${completed?'completed':unlocked?'unlocked':'locked'}`;
+    row.innerHTML=`
       <div class="level-num">${lvl.level}</div>
       <div class="level-info">
         <div class="level-name">${lvl.name}</div>
         <div class="level-stars">${lvl.stars}</div>
-        <div class="level-difficulty">${diffLabels[lvl.level] || ''}</div>
+        <div class="level-difficulty">${diffLabels[lvl.level]||''}</div>
       </div>
       <div class="level-reward">🪙 ${lvl.coinReward}</div>
-      ${completed ? '<div class="level-check">✅</div>' : unlocked ? '<div class="level-check" style="color:var(--text-dim)">▶</div>' : '<div class="level-check">🔒</div>'}`;
-    if (unlocked) {
-      row.onclick = () => startLevelGame(lvl.level);
-    }
+      ${completed?'<div class="level-check">✅</div>':unlocked?'<div class="level-check" style="color:var(--text-dim)">▶</div>':'<div class="level-check">🔒</div>'}`;
+    if (unlocked) row.onclick=()=>startLevelGame(lvl.level);
     grid.appendChild(row);
   });
 }
 
-function startSinglePlayer() {
-  currentLevelData = null;
-  startGame();
-}
+function startSinglePlayer() { currentLevelData=null; startGame(); }
 
 function startLevelGame(levelNum) {
-  currentLevelData = LEVELS.find(l => l.level === levelNum);
+  currentLevelData=LEVELS.find(l=>l.level===levelNum);
   if (!currentLevelData) return;
   document.getElementById('resultOverlay').classList.remove('show');
   initGS(); dealFullHandsForLevel(); showRedrawScreen();
 }
 
-function dealFullHandsForLevel() {
-  // Player hand from owned cards
-  const ownedIds = Object.keys(playerInventory).map(Number);
-  let pool = ownedIds.length >= 5
-    ? shuffle([...CARDS.filter(c => ownedIds.includes(c.id))])
-    : shuffle([...CARDS]);
-  GS.pHand = pool.slice(0, Math.min(12, pool.length)).map(newCard);
-
-  // AI hand: only cards with IDs 1-20, sized by level difficulty
-  const aiPool = shuffle([...CARDS.filter(c => LEVEL_AI_CARD_IDS.includes(c.id))]);
-  const aiSize = currentLevelData ? currentLevelData.aiHandSize : 12;
-  GS.aiHand = aiPool.slice(0, Math.min(aiSize, aiPool.length)).map(newCard);
-}
-
 function startGame() {
   document.getElementById('resultOverlay').classList.remove('show');
   initGS();
-  if (currentLevelData) {
-    dealFullHandsForLevel();
-  } else {
-    dealFullHands();
-  }
+  if (currentLevelData) dealFullHandsForLevel(); else dealFullHands();
   showRedrawScreen();
 }
 
@@ -2014,6 +1956,7 @@ loadLevelProgress();
 updateCoinDisplay();
 showScreen('homeScreen');
 updateHomeStats();
+window.pushToFirestore = function() {};
 </script>
 
 <!-- FIREBASE -->
@@ -2033,122 +1976,112 @@ const firebaseConfig = {
   appId:"1:79170987156:web:381b35b22961dffed18081"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const provider=new GoogleAuthProvider();
 
-getRedirectResult(auth).catch(() => {});
+getRedirectResult(auth).catch(()=>{});
 
-onAuthStateChanged(auth, async (user) => {
-  window._currentUser = user;
+onAuthStateChanged(auth, async(user)=>{
+  window._currentUser=user;
   if (user) {
-    const ref = doc(db, 'users', user.uid);
-    const snap = await getDoc(ref);
-    if (!snap.exists() || !snap.data().nickname) {
-      window._currentNick = '';
+    const ref=doc(db,'users',user.uid);
+    const snap=await getDoc(ref);
+    if (!snap.exists()||!snap.data().nickname) {
+      window._currentNick='';
       document.getElementById('nickModal').classList.add('show');
       document.getElementById('nickInput').focus();
     } else {
-      window._currentNick = snap.data().nickname;
-      updateAuthBar(user, snap.data().nickname);
+      window._currentNick=snap.data().nickname;
+      updateAuthBar(user,snap.data().nickname);
       await syncFromFirestore(user.uid);
     }
   } else {
-    window._currentUser = null;
-    window._currentNick = '';
+    window._currentUser=null; window._currentNick='';
     resetAuthBar();
   }
 });
 
 async function syncFromFirestore(uid) {
   try {
-    const snap = await getDoc(doc(db, 'inventories', uid));
+    const snap=await getDoc(doc(db,'inventories',uid));
     if (snap.exists()) {
-      const d = snap.data();
-      window.playerInventory = d.cards || {};
-      window.packetStock = d.packets || {};
-      window.playerCoins = d.coins || 0;
-      window.playerStats = d.stats || {wins:0,games:0};
-      window.playerLevelProgress = d.levels || {};
-      localStorage.setItem('b10_inv', JSON.stringify(window.playerInventory));
-      localStorage.setItem('b10_pkt', JSON.stringify(window.packetStock));
-      localStorage.setItem('b10_coins', String(window.playerCoins));
-      localStorage.setItem('b10_stats', JSON.stringify(window.playerStats));
-      localStorage.setItem('b10_levels', JSON.stringify(window.playerLevelProgress));
-      updateCoinDisplay();
-      updateHomeStats();
+      const d=snap.data();
+      window.playerInventory=d.cards||{};
+      window.packetStock=d.packets||{};
+      window.playerCoins=d.coins||0;
+      window.playerStats=d.stats||{wins:0,games:0};
+      window.playerLevelProgress=d.levels||{};
+      window.playerDeck=d.deck||[];
+      localStorage.setItem('b10_inv',JSON.stringify(window.playerInventory));
+      localStorage.setItem('b10_pkt',JSON.stringify(window.packetStock));
+      localStorage.setItem('b10_coins',String(window.playerCoins));
+      localStorage.setItem('b10_stats',JSON.stringify(window.playerStats));
+      localStorage.setItem('b10_levels',JSON.stringify(window.playerLevelProgress));
+      localStorage.setItem('b10_deck',JSON.stringify(window.playerDeck));
+      updateCoinDisplay(); updateHomeStats();
     }
-  } catch(e) {}
+  } catch(e){}
 }
 
-window.pushToFirestore = async function() {
+window.pushToFirestore=async function(){
   if (!window._currentUser) return;
   try {
-    await setDoc(doc(db, 'inventories', window._currentUser.uid), {
-      cards: window.playerInventory,
-      packets: window.packetStock,
-      coins: window.playerCoins,
-      stats: window.playerStats,
-      levels: window.playerLevelProgress,
-      updatedAt: Date.now()
+    await setDoc(doc(db,'inventories',window._currentUser.uid),{
+      cards:window.playerInventory,
+      packets:window.packetStock,
+      coins:window.playerCoins,
+      stats:window.playerStats,
+      levels:window.playerLevelProgress,
+      deck:window.playerDeck,
+      updatedAt:Date.now()
     });
-  } catch(e) {}
+  } catch(e){}
 };
 
-window.onAuthBtnClick = async function() {
-  if (window._currentUser) {
-    navTo('auth');
-  } else {
-    try { await signInWithRedirect(auth, provider); }
-    catch(e) { showToast('Giriş uğursuz oldu'); }
-  }
+window.onAuthBtnClick=async function(){
+  if (window._currentUser) navTo('auth');
+  else { try { await signInWithRedirect(auth,provider); } catch(e) { showToast('Giriş uğursuz oldu'); } }
 };
 
-window.doSignOut = async function() {
+window.doSignOut=async function(){
   await fbSignOut(auth);
-  window._currentUser = null;
-  window._currentNick = '';
-  resetAuthBar();
-  navTo('home');
-  showToast('Çıxış edildi');
+  window._currentUser=null; window._currentNick='';
+  resetAuthBar(); navTo('home'); showToast('Çıxış edildi');
 };
 
-window.showNickModal = function() {
-  document.getElementById('nickModal').classList.add('show');
-};
-
-window.saveNickname = async function() {
-  const input = document.getElementById('nickInput');
-  const err = document.getElementById('nickErr');
-  const btn = document.getElementById('nickSaveBtn');
-  const nick = input.value.trim();
-  err.textContent = '';
-  if (nick.length < 2) { err.textContent = 'Minimum 2 hərf olmalıdır'; return; }
-  if (!/^[a-zA-Z0-9_\-\.]+$/.test(nick)) { err.textContent = 'Yalnız hərf, rəqəm, _ - . işlədə bilərsiniz'; return; }
-  btn.disabled = true; btn.textContent = 'Yoxlanır...';
+window.saveNickname=async function(){
+  const input=document.getElementById('nickInput');
+  const err=document.getElementById('nickErr');
+  const btn=document.getElementById('nickSaveBtn');
+  const nick=input.value.trim();
+  err.textContent='';
+  if (nick.length<2) { err.textContent='Minimum 2 hərf olmalıdır'; return; }
+  if (!/^[a-zA-Z0-9_\-\.]+$/.test(nick)) { err.textContent='Yalnız hərf, rəqəm, _ - . işlədə bilərsiniz'; return; }
+  btn.disabled=true; btn.textContent='Yoxlanır...';
   try {
-    const nickSnap = await getDoc(doc(db, 'nicknames', nick.toLowerCase()));
-    if (nickSnap.exists()) { err.textContent = 'Bu nickname artıq tutulub'; btn.disabled=false; btn.textContent='✓ TƏSDİQ ET'; return; }
+    const nickSnap=await getDoc(doc(db,'nicknames',nick.toLowerCase()));
+    if (nickSnap.exists()) { err.textContent='Bu nickname artıq tutulub'; btn.disabled=false; btn.textContent='✓ TƏSDİQ ET'; return; }
     await setDoc(doc(db,'users',window._currentUser.uid),{uid:window._currentUser.uid,email:window._currentUser.email,photo:window._currentUser.photoURL||'',nickname:nick,createdAt:Date.now()});
     await setDoc(doc(db,'nicknames',nick.toLowerCase()),{uid:window._currentUser.uid});
-    window._currentNick = nick;
+    window._currentNick=nick;
     document.getElementById('nickModal').classList.remove('show');
-    updateAuthBar(window._currentUser, nick);
+    updateAuthBar(window._currentUser,nick);
     showToast(`Xoş gəldin, ${nick}!`);
   } catch(e) { err.textContent='Xəta baş verdi'; btn.disabled=false; btn.textContent='✓ TƏSDİQ ET'; }
 };
 
-function updateAuthBar(user, nick) {
-  const btn = document.getElementById('authStatusBtn');
-  const photoHTML = user?.photoURL ? `<img class="auth-av" src="${user.photoURL}" referrerpolicy="no-referrer">` : '👤';
-  btn.innerHTML = `${photoHTML} <span style="font-family:'Orbitron',monospace;font-size:9px;max-width:80px;overflow:hidden;text-overflow:ellipsis">${nick || 'Oyunçu'}</span>`;
-  document.getElementById('authSignoutBtn').style.display = 'inline-block';
+function updateAuthBar(user,nick) {
+  const btn=document.getElementById('authStatusBtn');
+  const photoHTML=user?.photoURL?`<img class="auth-av" src="${user.photoURL}" referrerpolicy="no-referrer">`:'👤';
+  btn.innerHTML=`${photoHTML} <span style="font-family:'Orbitron',monospace;font-size:9px;max-width:80px;overflow:hidden;text-overflow:ellipsis">${nick||'Oyunçu'}</span>`;
+  document.getElementById('authSignoutBtn').style.display='inline-block';
 }
 
 function resetAuthBar() {
-  document.getElementById('authStatusBtn').innerHTML = 'G &nbsp;GİRİŞ ET';
-  document.getElementById('authSignoutBtn').style.display = 'none';
+  document.getElementById('authStatusBtn').innerHTML='G &nbsp;GİRİŞ ET';
+  document.getElementById('authSignoutBtn').style.display='none';
 }
 </script>
 </body>
