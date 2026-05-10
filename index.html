@@ -251,13 +251,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .shop-inner{flex:1;overflow-y:auto;padding:12px;padding-bottom:70px;display:flex;flex-direction:column;gap:12px;width:100%;max-width:500px;}
 .shop-section-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:2px;}
 /* ════════════════ SHOP — PACK CARDS (YENİ) ════════════════ */
-.pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));display:flex;align-items:stretch;gap:0;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));display:flex;align-items:stretch;gap:0;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;min-height:110px;}
 .pack-card:active{transform:scale(0.98);}
 .pack-card.pack-common{border-color:var(--rarity-common);}
 .pack-card.pack-rare{border-color:var(--rarity-rare);box-shadow:0 0 12px rgba(74,138,255,0.15);}
 .pack-card.pack-epic{border-color:var(--rarity-epic);box-shadow:0 0 16px rgba(170,68,255,0.2);}
 
-.pack-icon{width:110px;min-height:110px;flex-shrink:0;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;overflow:hidden;}
+.pack-icon{width:110px;height:110px;aspect-ratio:1/1;flex-shrink:0;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;overflow:hidden;}
 .pack-icon.pi-common{background:linear-gradient(135deg,#1a2e1e,#2a4a30);}
 .pack-icon.pi-rare{background:linear-gradient(135deg,#0d1a3a,#1a2e5a);}
 .pack-icon.pi-epic{background:linear-gradient(135deg,#1a0a2e,#2e1050);}
