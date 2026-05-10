@@ -250,26 +250,36 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .shop-tab.active{color:var(--green);border-bottom-color:var(--green);background:rgba(0,255,136,0.04);}
 .shop-inner{flex:1;overflow-y:auto;padding:12px;padding-bottom:70px;display:flex;flex-direction:column;gap:12px;width:100%;max-width:500px;}
 .shop-section-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:2px;}
-.pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));padding:14px 12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;min-height:90px;}
+/* ════════════════ SHOP — PACK CARDS (YENİ) ════════════════ */
+.pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));display:flex;align-items:stretch;gap:0;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
 .pack-card:active{transform:scale(0.98);}
 .pack-card.pack-common{border-color:var(--rarity-common);}
 .pack-card.pack-rare{border-color:var(--rarity-rare);box-shadow:0 0 12px rgba(74,138,255,0.15);}
 .pack-card.pack-epic{border-color:var(--rarity-epic);box-shadow:0 0 16px rgba(170,68,255,0.2);}
-.pack-icon{width:56px;height:72px;flex-shrink:0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;overflow:hidden;}
-.pack-icon.pi-common{background:linear-gradient(135deg,#1a2e1e,#2a4a30);border:1.5px solid var(--rarity-common);}
-.pack-icon.pi-rare{background:linear-gradient(135deg,#0d1a3a,#1a2e5a);border:1.5px solid var(--rarity-rare);}
-.pack-icon.pi-epic{background:linear-gradient(135deg,#1a0a2e,#2e1050);border:1.5px solid var(--rarity-epic);}
-.pack-icon-shine{position:absolute;top:-20px;left:-20px;width:30px;height:120px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:rotate(30deg);animation:packShine 3s ease-in-out infinite;}
-@keyframes packShine{0%,100%{transform:rotate(30deg) translateX(0)}50%{transform:rotate(30deg) translateX(60px)}}
-.pack-info{flex:1;min-width:0;}
-.pack-name{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;margin-bottom:5px;}
+
+.pack-icon{width:110px;min-height:110px;flex-shrink:0;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;overflow:hidden;}
+.pack-icon.pi-common{background:linear-gradient(135deg,#1a2e1e,#2a4a30);}
+.pack-icon.pi-rare{background:linear-gradient(135deg,#0d1a3a,#1a2e5a);}
+.pack-icon.pi-epic{background:linear-gradient(135deg,#1a0a2e,#2e1050);}
+.pack-icon.pi-ult{background:linear-gradient(135deg,#2e0a0a,#500a10);}
+
+.pack-icon-shine{position:absolute;top:-20px;left:-20px;width:30px;height:160px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:rotate(30deg);animation:packShine 3s ease-in-out infinite;}
+@keyframes packShine{0%,100%{transform:rotate(30deg) translateX(0)}50%{transform:rotate(30deg) translateX(80px)}}
+
+.pack-right{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:12px 14px;min-width:0;}
+
+.pack-name{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;margin-bottom:4px;}
 .pack-name.cn{color:var(--rarity-common);}
 .pack-name.rn{color:var(--rarity-rare);}
 .pack-name.en{color:var(--rarity-epic);}
-.pack-odds{font-size:11px;color:var(--text-dim);line-height:2;}
+.pack-name.un{color:#ff4400;}
+
+.pack-odds{font-size:10px;color:var(--text-dim);line-height:1.9;}
 .pack-odds span{color:var(--text-mid);}
-.pack-price{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--coin);margin-top:6px;}
-.pack-buy-btn{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:12px 16px;flex-shrink:0;background:transparent;border:1.5px solid;cursor:pointer;transition:all 0.2s;border-radius:6px;min-width:52px;}
+
+.pack-price{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--coin);margin-top:5px;}
+
+.pack-buy-btn{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:0.08em;padding:9px 0;width:100%;background:transparent;border:1.5px solid;cursor:pointer;transition:all 0.2s;border-radius:5px;margin-top:8px;display:block;}
 .pack-card.pack-common .pack-buy-btn{color:var(--rarity-common);border-color:var(--rarity-common);}
 .pack-card.pack-rare .pack-buy-btn{color:var(--rarity-rare);border-color:var(--rarity-rare);}
 .pack-card.pack-epic .pack-buy-btn{color:var(--rarity-epic);border-color:var(--rarity-epic);}
@@ -1162,52 +1172,152 @@ function switchShopTab(tab) {
 
 function renderPacksTab() {
   const el = document.getElementById('shopInner');
+
+  // ── EPİK PAKET S2 üçün SVG dizayn ──
+  const EPIC2_ART = `<svg width="100%" height="100%" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg" style="display:block;position:absolute;inset:0">
+    <defs>
+      <radialGradient id="ep2bg" cx="50%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#3d1570"/>
+        <stop offset="100%" stop-color="#0d0220"/>
+      </radialGradient>
+      <radialGradient id="ep2glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#aa44ff" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#aa44ff" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="110" height="110" fill="url(#ep2bg)"/>
+    <circle cx="55" cy="48" r="34" fill="url(#ep2glow)"/>
+    <!-- Dış hex çərçivə -->
+    <polygon points="55,20 75,31 75,54 55,65 35,54 35,31" fill="none" stroke="#aa44ff" stroke-width="1.5" opacity="0.85"/>
+    <!-- İç hex -->
+    <polygon points="55,29 68,36 68,50 55,57 42,50 42,36" fill="#aa44ff" opacity="0.1"/>
+    <!-- X işarəsi -->
+    <line x1="44" y1="35" x2="66" y2="57" stroke="#cc88ff" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
+    <line x1="66" y1="35" x2="44" y2="57" stroke="#cc88ff" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
+    <!-- Parıltı nöqtələri -->
+    <circle cx="24" cy="22" r="1.5" fill="#cc88ff" opacity="0.65"/>
+    <circle cx="90" cy="28" r="1" fill="#cc88ff" opacity="0.5"/>
+    <circle cx="16" cy="82" r="1" fill="#cc88ff" opacity="0.4"/>
+    <circle cx="93" cy="77" r="1.5" fill="#cc88ff" opacity="0.55"/>
+    <circle cx="80" cy="90" r="1" fill="#cc88ff" opacity="0.35"/>
+    <circle cx="55" cy="12" r="1" fill="#cc88ff" opacity="0.5"/>
+    <!-- S2 badge (yuxarı-sol) -->
+    <rect x="6" y="6" width="27" height="15" rx="3" fill="#aa44ff" opacity="0.92"/>
+    <text x="19.5" y="17" font-family="monospace" font-size="8.5" font-weight="900" text-anchor="middle" fill="white">S2</text>
+    <!-- Alt etiket -->
+    <rect x="6" y="91" width="98" height="13" rx="3" fill="#aa44ff" opacity="0.2"/>
+    <text x="55" y="101.5" font-family="monospace" font-size="7.5" font-weight="700" text-anchor="middle" fill="#cc88ff" letter-spacing="2">EPİK PAKET</text>
+  </svg>`;
+
+  // ── Hələ dizaynı olmayan paketlər üçün placeholder ──
+  const ph = (icon) => `<div class="pack-icon-shine"></div><span style="position:relative;z-index:1;font-size:36px">${icon}</span>`;
+
   el.innerHTML = `
-    <div class="shop-section-title">🟩 SERIYA 1 — KARTlar 1-20</div>
+    <div class="shop-section-title">🟩 SERİYA 1 — KARTLAR 1-20</div>
+
     <div class="pack-card pack-common" onclick="buyPack('common')">
-      <div class="pack-icon pi-common">🟢<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name cn">ADİ PAKET S1</div><div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div><div class="pack-price">🪙 ${PACK_PRICE.common}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common')">AL</button>
+      <div class="pack-icon pi-common">${ph('🟢')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name cn">ADİ PAKET S1</div>
+          <div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.common}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common')">AL</button>
+      </div>
     </div>
+
     <div class="pack-card pack-rare" onclick="buyPack('rare')">
-      <div class="pack-icon pi-rare">🔵<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name rn">NADİR PAKET S1</div><div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div><div class="pack-price">🪙 ${PACK_PRICE.rare}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare')">AL</button>
+      <div class="pack-icon pi-rare">${ph('🔵')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name rn">NADİR PAKET S1</div>
+          <div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.rare}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare')">AL</button>
+      </div>
     </div>
+
     <div class="pack-card pack-epic" onclick="buyPack('epic')">
-      <div class="pack-icon pi-epic">🟣<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name en">EPİK PAKET S1</div><div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.epic}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic')">AL</button>
+      <div class="pack-icon pi-epic">${ph('🟣')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name en">EPİK PAKET S1</div>
+          <div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.epic}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic')">AL</button>
+      </div>
     </div>
-    <div class="shop-section-title" style="margin-top:8px">🟦 SERIYA 2 — KARTlar 21-36 + 50</div>
+
+    <div class="shop-section-title" style="margin-top:8px">🟦 SERİYA 2 — KARTLAR 21-36 + 50</div>
+
     <div class="pack-card pack-common" onclick="buyPack('common2')">
-      <div class="pack-icon pi-common">🟢<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name cn">ADİ PAKET S2</div><div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div><div class="pack-price">🪙 ${PACK_PRICE.common2}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common2')">AL</button>
+      <div class="pack-icon pi-common">${ph('🟢')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name cn">ADİ PAKET S2</div>
+          <div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.common2}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common2')">AL</button>
+      </div>
     </div>
+
     <div class="pack-card pack-rare" onclick="buyPack('rare2')">
-      <div class="pack-icon pi-rare">🔵<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name rn">NADİR PAKET S2</div><div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div><div class="pack-price">🪙 ${PACK_PRICE.rare2}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare2')">AL</button>
+      <div class="pack-icon pi-rare">${ph('🔵')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name rn">NADİR PAKET S2</div>
+          <div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.rare2}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare2')">AL</button>
+      </div>
     </div>
+
     <div class="pack-card pack-epic" onclick="buyPack('epic2')">
-      <div class="pack-icon pi-epic">🟣<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name en">EPİK PAKET S2</div><div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.epic2}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic2')">AL</button>
+      <div class="pack-icon pi-epic" style="padding:0;position:relative">${EPIC2_ART}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name en">EPİK PAKET S2</div>
+          <div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.epic2}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic2')">AL</button>
+      </div>
     </div>
+
     <div class="shop-section-title" style="margin-top:8px">🌌 XÜSUSİ PAKETLƏR</div>
+
     <div class="pack-card pack-epic" onclick="buyPack('cosmic')">
-      <div class="pack-icon pi-epic">🌌<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name en">COSMİC PAKET</div><div class="pack-odds">EPİK <span>90%</span> · Xüsusi <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.cosmic}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('cosmic')">AL</button>
+      <div class="pack-icon pi-epic">${ph('🌌')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name en">COSMİC PAKET</div>
+          <div class="pack-odds">EPİK <span>90%</span> · Xüsusi <span>10%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.cosmic}</div>
+        </div>
+        <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('cosmic')">AL</button>
+      </div>
     </div>
-    <div class="pack-card pack-epic" onclick="buyPack('ultimate')" style="border-color:#ff4400;">
-      <div class="pack-icon pi-epic" style="border-color:#ff4400;">⚡<div class="pack-icon-shine"></div></div>
-      <div class="pack-info"><div class="pack-name en" style="color:#ff4400;">ULTIMATE PAKET</div><div class="pack-odds">EPİK <span>70%</span> · LEGEND <span>20%</span> · ULT <span>10%</span></div><div class="pack-price">🪙 ${PACK_PRICE.ultimate}</div></div>
-      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('ultimate')" style="color:#ff4400;border-color:#ff4400;">AL</button>
+
+    <div class="pack-card pack-epic" onclick="buyPack('ultimate')" style="border-color:#ff4400">
+      <div class="pack-icon pi-ult">${ph('⚡')}</div>
+      <div class="pack-right">
+        <div>
+          <div class="pack-name un">ULTIMATE PAKET</div>
+          <div class="pack-odds">EPİK <span>70%</span> · LEGEND <span>20%</span> · ULT <span>10%</span></div>
+          <div class="pack-price">🪙 ${PACK_PRICE.ultimate}</div>
+        </div>
+        <button class="pack-buy-btn" style="color:#ff4400;border-color:#ff4400" onclick="event.stopPropagation();buyPack('ultimate')">AL</button>
+      </div>
     </div>
+
     <div class="shop-section-title" style="margin-top:4px">STOKDAKI PAKETLƏR</div>
     <div class="stocked-packs" id="stockedPacks"></div>`;
+
   renderStockedPacks();
 }
 
