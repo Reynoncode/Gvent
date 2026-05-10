@@ -703,9 +703,9 @@ const CARDS = [
   {id:50,name:'FEEDBACK',           type:'cosmic', power:10, rarity:'legendary', abilityFn:'feedback'},
 ];
 
-const SELL_PRICE = {common:12,rare:70,epic:210,legendary:1000,ultimate:3000};
-const BUY_PRICE  = {common:24,rare:140,epic:420,legendary:2000,ultimate:6000};
-const PACK_PRICE = {common:100,rare:200,epic:500,common2:100,rare2:200,epic2:500,cosmic:2000,ultimate:2500};
+const SELL_PRICE = {common:10,rare:50,epic:150,legendary:600,ultimate:600};
+const BUY_PRICE  = {common:40,rare:200,epic:600,legendary:2400,ultimate:2400};
+const PACK_PRICE = {common:500,rare:2000,epic:5000,common2:500,rare2:2000,epic2:5000,cosmic:3000,ultimate:5000};
 const PACK_ODDS  = {
   common:  {common:70,rare:25,epic:5,legendary:0},
   rare:    {common:50,rare:30,epic:18,legendary:2},
@@ -775,115 +775,110 @@ let redrawSelected = new Set();
 //  LEVELS
 // ═══════════════════════════════════
 const LEVELS = [
-  // ── BLOK 1: Level 1-20 (Yeni başlayanlar) ──
-  {level:1,  name:'Başlanğıc',     stars:'⭐',      coinReward:50,  aiDeckBlock:1, aiHandSize:6,  aiPassThreshold:3, aiDebuffChance:0.05,aiSmartness:0.15},
-  {level:2,  name:'İlk Addım',     stars:'⭐',      coinReward:55,  aiDeckBlock:1, aiHandSize:6,  aiPassThreshold:3, aiDebuffChance:0.08,aiSmartness:0.18},
-  {level:3,  name:'Həvəskar',      stars:'⭐',      coinReward:60,  aiDeckBlock:1, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.10,aiSmartness:0.22},
-  {level:4,  name:'Öyrənən',       stars:'⭐',      coinReward:65,  aiDeckBlock:1, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.12,aiSmartness:0.25},
-  {level:5,  name:'Toplanır',      stars:'⭐',      coinReward:70,  aiDeckBlock:1, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.15,aiSmartness:0.28},
-  {level:6,  name:'Hazır',         stars:'⭐⭐',    coinReward:75,  aiDeckBlock:1, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.18,aiSmartness:0.30},
-  {level:7,  name:'Güclənir',      stars:'⭐⭐',    coinReward:80,  aiDeckBlock:1, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.20,aiSmartness:0.33},
-  {level:8,  name:'Savaşçı',       stars:'⭐⭐',    coinReward:85,  aiDeckBlock:1, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.22,aiSmartness:0.35},
-  {level:9,  name:'İdmançı',       stars:'⭐⭐',    coinReward:90,  aiDeckBlock:1, aiHandSize:9,  aiPassThreshold:5, aiDebuffChance:0.25,aiSmartness:0.38},
-  {level:10, name:'Cəngavər',      stars:'⭐⭐',    coinReward:95,  aiDeckBlock:1, aiHandSize:9,  aiPassThreshold:5, aiDebuffChance:0.28,aiSmartness:0.40},
-  {level:11, name:'Usta Yolunda',  stars:'⭐⭐⭐',  coinReward:100, aiDeckBlock:1, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.30,aiSmartness:0.42},
-  {level:12, name:'Döyüşçü',       stars:'⭐⭐⭐',  coinReward:105, aiDeckBlock:1, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.32,aiSmartness:0.44},
-  {level:13, name:'Şampion',       stars:'⭐⭐⭐',  coinReward:110, aiDeckBlock:1, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.35,aiSmartness:0.46},
-  {level:14, name:'Veteran',       stars:'⭐⭐⭐',  coinReward:115, aiDeckBlock:1, aiHandSize:11, aiPassThreshold:6, aiDebuffChance:0.38,aiSmartness:0.48},
-  {level:15, name:'Qəhrəman',      stars:'⭐⭐⭐',  coinReward:120, aiDeckBlock:1, aiHandSize:11, aiPassThreshold:6, aiDebuffChance:0.40,aiSmartness:0.50},
-  {level:16, name:'Elite',         stars:'🌟',      coinReward:125, aiDeckBlock:1, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.42,aiSmartness:0.52},
-  {level:17, name:'Usta',          stars:'🌟',      coinReward:130, aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.45,aiSmartness:0.54},
-  {level:18, name:'Böyük Usta',    stars:'🌟',      coinReward:135, aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.48,aiSmartness:0.56},
-  {level:19, name:'Əfsanə',        stars:'🌟🌟',   coinReward:140, aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.50,aiSmartness:0.58},
-  {level:20, name:'Omnitrix I',    stars:'🌟🌟',   coinReward:150, aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.52,aiSmartness:0.60},
+  {level:1,  name:'Başlanğıc',     stars:'⭐',      coinReward:100,  aiDeckBlock:1, aiHandSize:6,  aiPassThreshold:3, aiDebuffChance:0.05,aiSmartness:0.15},
+  {level:2,  name:'İlk Addım',     stars:'⭐',      coinReward:110,  aiDeckBlock:1, aiHandSize:6,  aiPassThreshold:3, aiDebuffChance:0.08,aiSmartness:0.18},
+  {level:3,  name:'Həvəskar',      stars:'⭐',      coinReward:120,  aiDeckBlock:1, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.10,aiSmartness:0.22},
+  {level:4,  name:'Öyrənən',       stars:'⭐',      coinReward:130,  aiDeckBlock:1, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.12,aiSmartness:0.25},
+  {level:5,  name:'Toplanır',      stars:'⭐',      coinReward:140,  aiDeckBlock:1, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.15,aiSmartness:0.28},
+  {level:6,  name:'Hazır',         stars:'⭐⭐',    coinReward:150,  aiDeckBlock:1, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.18,aiSmartness:0.30},
+  {level:7,  name:'Güclənir',      stars:'⭐⭐',    coinReward:160,  aiDeckBlock:1, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.20,aiSmartness:0.33},
+  {level:8,  name:'Savaşçı',       stars:'⭐⭐',    coinReward:170,  aiDeckBlock:1, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.22,aiSmartness:0.35},
+  {level:9,  name:'İdmançı',       stars:'⭐⭐',    coinReward:180,  aiDeckBlock:1, aiHandSize:9,  aiPassThreshold:5, aiDebuffChance:0.25,aiSmartness:0.38},
+  {level:10, name:'Cəngavər',      stars:'⭐⭐',    coinReward:190,  aiDeckBlock:1, aiHandSize:9,  aiPassThreshold:5, aiDebuffChance:0.28,aiSmartness:0.40},
+  {level:11, name:'Usta Yolunda',  stars:'⭐⭐⭐',  coinReward:200,  aiDeckBlock:1, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.30,aiSmartness:0.42},
+  {level:12, name:'Döyüşçü',       stars:'⭐⭐⭐',  coinReward:210,  aiDeckBlock:1, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.32,aiSmartness:0.44},
+  {level:13, name:'Şampion',       stars:'⭐⭐⭐',  coinReward:220,  aiDeckBlock:1, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.35,aiSmartness:0.46},
+  {level:14, name:'Veteran',       stars:'⭐⭐⭐',  coinReward:230,  aiDeckBlock:1, aiHandSize:11, aiPassThreshold:6, aiDebuffChance:0.38,aiSmartness:0.48},
+  {level:15, name:'Qəhrəman',      stars:'⭐⭐⭐',  coinReward:240,  aiDeckBlock:1, aiHandSize:11, aiPassThreshold:6, aiDebuffChance:0.40,aiSmartness:0.50},
+  {level:16, name:'Elite',         stars:'🌟',      coinReward:250,  aiDeckBlock:1, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.42,aiSmartness:0.52},
+  {level:17, name:'Usta',          stars:'🌟',      coinReward:260,  aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.45,aiSmartness:0.54},
+  {level:18, name:'Böyük Usta',    stars:'🌟',      coinReward:270,  aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.48,aiSmartness:0.56},
+  {level:19, name:'Əfsanə',        stars:'🌟🌟',   coinReward:280,  aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.50,aiSmartness:0.58},
+  {level:20, name:'Omnitrix I',    stars:'🌟🌟',   coinReward:290,  aiDeckBlock:1, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.52,aiSmartness:0.60},
 
-  // ── BLOK 2: Level 21-40 (Orta) ──
-  {level:21, name:'Yeni Təhlükə',  stars:'🌟🌟',   coinReward:155, aiDeckBlock:2, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.20,aiSmartness:0.35},
-  {level:22, name:'Güc Artır',     stars:'🌟🌟',   coinReward:160, aiDeckBlock:2, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.25,aiSmartness:0.38},
-  {level:23, name:'Taktikçi',      stars:'🌟🌟',   coinReward:165, aiDeckBlock:2, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.28,aiSmartness:0.42},
-  {level:24, name:'Strateq',       stars:'🌟🌟',   coinReward:170, aiDeckBlock:2, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.30,aiSmartness:0.45},
-  {level:25, name:'Rəqibsiz',      stars:'🌟🌟',   coinReward:175, aiDeckBlock:2, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.33,aiSmartness:0.48},
-  {level:26, name:'Döyüş Ustası',  stars:'🌟🌟🌟', coinReward:180, aiDeckBlock:2, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.35,aiSmartness:0.50},
-  {level:27, name:'Qüdrətli',      stars:'🌟🌟🌟', coinReward:185, aiDeckBlock:2, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.38,aiSmartness:0.53},
-  {level:28, name:'Titan',         stars:'🌟🌟🌟', coinReward:190, aiDeckBlock:2, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.40,aiSmartness:0.56},
-  {level:29, name:'Yenilməz',      stars:'🌟🌟🌟', coinReward:195, aiDeckBlock:2, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.42,aiSmartness:0.58},
-  {level:30, name:'Omnitrix II',   stars:'🌟🌟🌟', coinReward:200, aiDeckBlock:2, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.45,aiSmartness:0.60},
-  {level:31, name:'Güc Zirvəsi',   stars:'💫',      coinReward:205, aiDeckBlock:2, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.48,aiSmartness:0.62},
-  {level:32, name:'Savaş Tanrısı', stars:'💫',      coinReward:210, aiDeckBlock:2, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.50,aiSmartness:0.64},
-  {level:33, name:'Omnipotent',    stars:'💫',      coinReward:215, aiDeckBlock:2, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.52,aiSmartness:0.66},
-  {level:34, name:'Galaktik',      stars:'💫',      coinReward:220, aiDeckBlock:2, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.55,aiSmartness:0.68},
-  {level:35, name:'Kosmik Güc',    stars:'💫',      coinReward:225, aiDeckBlock:2, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.58,aiSmartness:0.70},
-  {level:36, name:'Ultim8 I',      stars:'💫💫',   coinReward:230, aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.60,aiSmartness:0.72},
-  {level:37, name:'Sonsuz',        stars:'💫💫',   coinReward:235, aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.62,aiSmartness:0.74},
-  {level:38, name:'Mutləq',        stars:'💫💫',   coinReward:240, aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.65,aiSmartness:0.76},
-  {level:39, name:'Kosmik Kral',   stars:'💫💫',   coinReward:245, aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.68,aiSmartness:0.78},
-  {level:40, name:'Omnitrix III',  stars:'💫💫',   coinReward:250, aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.70,aiSmartness:0.80},
+  {level:21, name:'Yeni Təhlükə',  stars:'🌟🌟',   coinReward:305,  aiDeckBlock:2, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.20,aiSmartness:0.35},
+  {level:22, name:'Güc Artır',     stars:'🌟🌟',   coinReward:320,  aiDeckBlock:2, aiHandSize:7,  aiPassThreshold:4, aiDebuffChance:0.25,aiSmartness:0.38},
+  {level:23, name:'Taktikçi',      stars:'🌟🌟',   coinReward:335,  aiDeckBlock:2, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.28,aiSmartness:0.42},
+  {level:24, name:'Strateq',       stars:'🌟🌟',   coinReward:350,  aiDeckBlock:2, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.30,aiSmartness:0.45},
+  {level:25, name:'Rəqibsiz',      stars:'🌟🌟',   coinReward:365,  aiDeckBlock:2, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.33,aiSmartness:0.48},
+  {level:26, name:'Döyüş Ustası',  stars:'🌟🌟🌟', coinReward:380,  aiDeckBlock:2, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.35,aiSmartness:0.50},
+  {level:27, name:'Qüdrətli',      stars:'🌟🌟🌟', coinReward:395,  aiDeckBlock:2, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.38,aiSmartness:0.53},
+  {level:28, name:'Titan',         stars:'🌟🌟🌟', coinReward:410,  aiDeckBlock:2, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.40,aiSmartness:0.56},
+  {level:29, name:'Yenilməz',      stars:'🌟🌟🌟', coinReward:425,  aiDeckBlock:2, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.42,aiSmartness:0.58},
+  {level:30, name:'Omnitrix II',   stars:'🌟🌟🌟', coinReward:440,  aiDeckBlock:2, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.45,aiSmartness:0.60},
+  {level:31, name:'Güc Zirvəsi',   stars:'💫',      coinReward:455,  aiDeckBlock:2, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.48,aiSmartness:0.62},
+  {level:32, name:'Savaş Tanrısı', stars:'💫',      coinReward:470,  aiDeckBlock:2, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.50,aiSmartness:0.64},
+  {level:33, name:'Omnipotent',    stars:'💫',      coinReward:485,  aiDeckBlock:2, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.52,aiSmartness:0.66},
+  {level:34, name:'Galaktik',      stars:'💫',      coinReward:500,  aiDeckBlock:2, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.55,aiSmartness:0.68},
+  {level:35, name:'Kosmik Güc',    stars:'💫',      coinReward:515,  aiDeckBlock:2, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.58,aiSmartness:0.70},
+  {level:36, name:'Ultim8 I',      stars:'💫💫',   coinReward:530,  aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.60,aiSmartness:0.72},
+  {level:37, name:'Sonsuz',        stars:'💫💫',   coinReward:545,  aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.62,aiSmartness:0.74},
+  {level:38, name:'Mutləq',        stars:'💫💫',   coinReward:560,  aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.65,aiSmartness:0.76},
+  {level:39, name:'Kosmik Kral',   stars:'💫💫',   coinReward:575,  aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.68,aiSmartness:0.78},
+  {level:40, name:'Omnitrix III',  stars:'💫💫',   coinReward:590,  aiDeckBlock:2, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.70,aiSmartness:0.80},
 
-  // ── BLOK 3: Level 41-60 (Çətin) ──
-  {level:41, name:'Kart Ustası',   stars:'💫💫',   coinReward:255, aiDeckBlock:3, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.35,aiSmartness:0.50},
-  {level:42, name:'Elit Rəqib',    stars:'💫💫',   coinReward:260, aiDeckBlock:3, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.40,aiSmartness:0.54},
-  {level:43, name:'Güclü Rəqib',   stars:'💫💫',   coinReward:265, aiDeckBlock:3, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.42,aiSmartness:0.57},
-  {level:44, name:'Xaos',          stars:'💫💫💫', coinReward:270, aiDeckBlock:3, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.45,aiSmartness:0.60},
-  {level:45, name:'Fırtına',       stars:'💫💫💫', coinReward:275, aiDeckBlock:3, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.48,aiSmartness:0.62},
-  {level:46, name:'Vihr',          stars:'💫💫💫', coinReward:280, aiDeckBlock:3, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.50,aiSmartness:0.64},
-  {level:47, name:'Zülmət',        stars:'💫💫💫', coinReward:285, aiDeckBlock:3, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.52,aiSmartness:0.66},
-  {level:48, name:'Uçurum',        stars:'💫💫💫', coinReward:290, aiDeckBlock:3, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.55,aiSmartness:0.68},
-  {level:49, name:'Son Sərhəd',    stars:'💫💫💫', coinReward:295, aiDeckBlock:3, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.58,aiSmartness:0.70},
-  {level:50, name:'Omnitrix IV',   stars:'💫💫💫', coinReward:300, aiDeckBlock:3, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.60,aiSmartness:0.72},
-  {level:51, name:'Dəhşət',        stars:'⚡',      coinReward:305, aiDeckBlock:3, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.62,aiSmartness:0.74},
-  {level:52, name:'Qorxunc',       stars:'⚡',      coinReward:310, aiDeckBlock:3, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.64,aiSmartness:0.76},
-  {level:53, name:'Məhvedici',     stars:'⚡',      coinReward:315, aiDeckBlock:3, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.66,aiSmartness:0.78},
-  {level:54, name:'Titan Qüvvəsi', stars:'⚡',      coinReward:320, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.68,aiSmartness:0.80},
-  {level:55, name:'Əbədi Rəqib',   stars:'⚡',      coinReward:325, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.70,aiSmartness:0.82},
-  {level:56, name:'Ultim8 II',     stars:'⚡⚡',    coinReward:330, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.72,aiSmartness:0.83},
-  {level:57, name:'Sonsuz Güc',    stars:'⚡⚡',    coinReward:335, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.74,aiSmartness:0.84},
-  {level:58, name:'Kosmik Titan',  stars:'⚡⚡',    coinReward:340, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.76,aiSmartness:0.85},
-  {level:59, name:'Galaktik Kral', stars:'⚡⚡',    coinReward:345, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.78,aiSmartness:0.86},
-  {level:60, name:'Omnitrix V',    stars:'⚡⚡',    coinReward:350, aiDeckBlock:3, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.80,aiSmartness:0.87},
+  {level:41, name:'Kart Ustası',   stars:'💫💫',   coinReward:610,  aiDeckBlock:3, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.35,aiSmartness:0.50},
+  {level:42, name:'Elit Rəqib',    stars:'💫💫',   coinReward:630,  aiDeckBlock:3, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.40,aiSmartness:0.54},
+  {level:43, name:'Güclü Rəqib',   stars:'💫💫',   coinReward:650,  aiDeckBlock:3, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.42,aiSmartness:0.57},
+  {level:44, name:'Xaos',          stars:'💫💫💫', coinReward:670,  aiDeckBlock:3, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.45,aiSmartness:0.60},
+  {level:45, name:'Fırtına',       stars:'💫💫💫', coinReward:690,  aiDeckBlock:3, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.48,aiSmartness:0.62},
+  {level:46, name:'Vihr',          stars:'💫💫💫', coinReward:710,  aiDeckBlock:3, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.50,aiSmartness:0.64},
+  {level:47, name:'Zülmət',        stars:'💫💫💫', coinReward:730,  aiDeckBlock:3, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.52,aiSmartness:0.66},
+  {level:48, name:'Uçurum',        stars:'💫💫💫', coinReward:750,  aiDeckBlock:3, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.55,aiSmartness:0.68},
+  {level:49, name:'Son Sərhəd',    stars:'💫💫💫', coinReward:770,  aiDeckBlock:3, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.58,aiSmartness:0.70},
+  {level:50, name:'Omnitrix IV',   stars:'💫💫💫', coinReward:790,  aiDeckBlock:3, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.60,aiSmartness:0.72},
+  {level:51, name:'Dəhşət',        stars:'⚡',      coinReward:810,  aiDeckBlock:3, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.62,aiSmartness:0.74},
+  {level:52, name:'Qorxunc',       stars:'⚡',      coinReward:830,  aiDeckBlock:3, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.64,aiSmartness:0.76},
+  {level:53, name:'Məhvedici',     stars:'⚡',      coinReward:850,  aiDeckBlock:3, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.66,aiSmartness:0.78},
+  {level:54, name:'Titan Qüvvəsi', stars:'⚡',      coinReward:870,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:7, aiDebuffChance:0.68,aiSmartness:0.80},
+  {level:55, name:'Əbədi Rəqib',   stars:'⚡',      coinReward:890,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.70,aiSmartness:0.82},
+  {level:56, name:'Ultim8 II',     stars:'⚡⚡',    coinReward:910,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.72,aiSmartness:0.83},
+  {level:57, name:'Sonsuz Güc',    stars:'⚡⚡',    coinReward:930,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.74,aiSmartness:0.84},
+  {level:58, name:'Kosmik Titan',  stars:'⚡⚡',    coinReward:950,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.76,aiSmartness:0.85},
+  {level:59, name:'Galaktik Kral', stars:'⚡⚡',    coinReward:970,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.78,aiSmartness:0.86},
+  {level:60, name:'Omnitrix V',    stars:'⚡⚡',    coinReward:990,  aiDeckBlock:3, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.80,aiSmartness:0.87},
 
-  // ── BLOK 4: Level 61-80 (Çox Çətin - 21-30 kartlar) ──
-  {level:61, name:'Yeni Era',      stars:'⚡⚡',    coinReward:360, aiDeckBlock:4, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.45,aiSmartness:0.60},
-  {level:62, name:'Çətin Yol',     stars:'⚡⚡',    coinReward:365, aiDeckBlock:4, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.48,aiSmartness:0.63},
-  {level:63, name:'Qara Dalğa',    stars:'⚡⚡',    coinReward:370, aiDeckBlock:4, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.50,aiSmartness:0.65},
-  {level:64, name:'Fırtına Öncəsi',stars:'⚡⚡⚡',  coinReward:375, aiDeckBlock:4, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.52,aiSmartness:0.67},
-  {level:65, name:'Böhran',        stars:'⚡⚡⚡',  coinReward:380, aiDeckBlock:4, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.55,aiSmartness:0.69},
-  {level:66, name:'Dağıdıcı',      stars:'⚡⚡⚡',  coinReward:385, aiDeckBlock:4, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.58,aiSmartness:0.71},
-  {level:67, name:'Qara Tanrı',    stars:'⚡⚡⚡',  coinReward:390, aiDeckBlock:4, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.60,aiSmartness:0.73},
-  {level:68, name:'Ultim8 III',    stars:'⚡⚡⚡',  coinReward:395, aiDeckBlock:4, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.62,aiSmartness:0.75},
-  {level:69, name:'Kosmik İradə',  stars:'⚡⚡⚡',  coinReward:400, aiDeckBlock:4, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.65,aiSmartness:0.77},
-  {level:70, name:'Omnitrix VI',   stars:'⚡⚡⚡',  coinReward:405, aiDeckBlock:4, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.68,aiSmartness:0.79},
-  {level:71, name:'Alov Dalğası',  stars:'🔥',      coinReward:410, aiDeckBlock:4, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.70,aiSmartness:0.80},
-  {level:72, name:'Ulduz Fırtınası',stars:'🔥',     coinReward:415, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.72,aiSmartness:0.81},
-  {level:73, name:'Qara Dəlik',    stars:'🔥',      coinReward:420, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.74,aiSmartness:0.82},
-  {level:74, name:'Sonsuz Kral',   stars:'🔥',      coinReward:425, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.76,aiSmartness:0.83},
-  {level:75, name:'Dağ Qüvvəsi',   stars:'🔥',      coinReward:430, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.78,aiSmartness:0.84},
-  {level:76, name:'Ultim8 IV',     stars:'🔥🔥',   coinReward:435, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.80,aiSmartness:0.85},
-  {level:77, name:'Galaktik Titan',stars:'🔥🔥',   coinReward:440, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.82,aiSmartness:0.86},
-  {level:78, name:'Kosmik Zülmət', stars:'🔥🔥',   coinReward:445, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.84,aiSmartness:0.87},
-  {level:79, name:'Son Maneə',     stars:'🔥🔥',   coinReward:450, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.86,aiSmartness:0.88},
-  {level:80, name:'Omnitrix VII',  stars:'🔥🔥',   coinReward:460, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.88,aiSmartness:0.89},
+  {level:61, name:'Yeni Era',      stars:'⚡⚡',    coinReward:1020, aiDeckBlock:4, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.45,aiSmartness:0.60},
+  {level:62, name:'Çətin Yol',     stars:'⚡⚡',    coinReward:1050, aiDeckBlock:4, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.48,aiSmartness:0.63},
+  {level:63, name:'Qara Dalğa',    stars:'⚡⚡',    coinReward:1080, aiDeckBlock:4, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.50,aiSmartness:0.65},
+  {level:64, name:'Fırtına Öncəsi',stars:'⚡⚡⚡',  coinReward:1110, aiDeckBlock:4, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.52,aiSmartness:0.67},
+  {level:65, name:'Böhran',        stars:'⚡⚡⚡',  coinReward:1140, aiDeckBlock:4, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.55,aiSmartness:0.69},
+  {level:66, name:'Dağıdıcı',      stars:'⚡⚡⚡',  coinReward:1170, aiDeckBlock:4, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.58,aiSmartness:0.71},
+  {level:67, name:'Qara Tanrı',    stars:'⚡⚡⚡',  coinReward:1200, aiDeckBlock:4, aiHandSize:10, aiPassThreshold:6, aiDebuffChance:0.60,aiSmartness:0.73},
+  {level:68, name:'Ultim8 III',    stars:'⚡⚡⚡',  coinReward:1230, aiDeckBlock:4, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.62,aiSmartness:0.75},
+  {level:69, name:'Kosmik İradə',  stars:'⚡⚡⚡',  coinReward:1260, aiDeckBlock:4, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.65,aiSmartness:0.77},
+  {level:70, name:'Omnitrix VI',   stars:'⚡⚡⚡',  coinReward:1290, aiDeckBlock:4, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.68,aiSmartness:0.79},
+  {level:71, name:'Alov Dalğası',  stars:'🔥',      coinReward:1320, aiDeckBlock:4, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.70,aiSmartness:0.80},
+  {level:72, name:'Ulduz Fırtınası',stars:'🔥',     coinReward:1350, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.72,aiSmartness:0.81},
+  {level:73, name:'Qara Dəlik',    stars:'🔥',      coinReward:1380, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.74,aiSmartness:0.82},
+  {level:74, name:'Sonsuz Kral',   stars:'🔥',      coinReward:1410, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.76,aiSmartness:0.83},
+  {level:75, name:'Dağ Qüvvəsi',   stars:'🔥',      coinReward:1440, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.78,aiSmartness:0.84},
+  {level:76, name:'Ultim8 IV',     stars:'🔥🔥',   coinReward:1470, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.80,aiSmartness:0.85},
+  {level:77, name:'Galaktik Titan',stars:'🔥🔥',   coinReward:1500, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.82,aiSmartness:0.86},
+  {level:78, name:'Kosmik Zülmət', stars:'🔥🔥',   coinReward:1530, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.84,aiSmartness:0.87},
+  {level:79, name:'Son Maneə',     stars:'🔥🔥',   coinReward:1560, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.86,aiSmartness:0.88},
+  {level:80, name:'Omnitrix VII',  stars:'🔥🔥',   coinReward:1590, aiDeckBlock:4, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.88,aiSmartness:0.89},
 
-  // ── BLOK 5: Level 81-100 (Ultimate — Heç bir məhdudiyyət yoxdur) ──
-  {level:81, name:'Xaos Başlar',   stars:'🔥🔥',   coinReward:470, aiDeckBlock:5, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.55,aiSmartness:0.70},
-  {level:82, name:'Tam Güc',       stars:'🔥🔥',   coinReward:480, aiDeckBlock:5, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.60,aiSmartness:0.73},
-  {level:83, name:'Kosmik Xaos',   stars:'🔥🔥🌟', coinReward:490, aiDeckBlock:5, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.65,aiSmartness:0.76},
-  {level:84, name:'Ultim8 V',      stars:'🔥🔥🌟', coinReward:500, aiDeckBlock:5, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.70,aiSmartness:0.78},
-  {level:85, name:'Əbədi Döyüş',   stars:'🔥🔥🌟', coinReward:510, aiDeckBlock:5, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.72,aiSmartness:0.80},
-  {level:86, name:'Tanrı Modu',    stars:'🔥🔥🌟', coinReward:520, aiDeckBlock:5, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.75,aiSmartness:0.82},
-  {level:87, name:'Kosmik Tanrı',  stars:'🔥🔥🌟', coinReward:530, aiDeckBlock:5, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.78,aiSmartness:0.84},
-  {level:88, name:'Ultim8 VI',     stars:'🔥🔥🌟', coinReward:540, aiDeckBlock:5, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.80,aiSmartness:0.85},
-  {level:89, name:'Sonsuz Xaos',   stars:'🔥🔥🌟', coinReward:550, aiDeckBlock:5, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.82,aiSmartness:0.86},
-  {level:90, name:'Omnitrix VIII', stars:'🔥🔥🌟', coinReward:560, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.84,aiSmartness:0.87},
-  {level:91, name:'Alien X Nəsli', stars:'💥',      coinReward:575, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.86,aiSmartness:0.88},
-  {level:92, name:'Way Big Nəsli', stars:'💥',      coinReward:590, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.88,aiSmartness:0.89},
-  {level:93, name:'Ultim8 VII',    stars:'💥',      coinReward:605, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.90,aiSmartness:0.90},
-  {level:94, name:'Kosmik Hökmdar',stars:'💥',      coinReward:620, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.92,aiSmartness:0.91},
-  {level:95, name:'Sonsuz Güc',    stars:'💥',      coinReward:635, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.94,aiSmartness:0.92},
-  {level:96, name:'Ultim8 VIII',   stars:'💥💥',   coinReward:650, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.95,aiSmartness:0.93},
-  {level:97, name:'Qalaktik Sonu', stars:'💥💥',   coinReward:670, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.96,aiSmartness:0.94},
-  {level:98, name:'Əbədi Hökmdar', stars:'💥💥',   coinReward:690, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.97,aiSmartness:0.95},
-  {level:99, name:'Omnitrix IX',   stars:'💥💥',   coinReward:710, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.98,aiSmartness:0.97},
-  {level:100,name:'ALIEN X',       stars:'💥💥💥', coinReward:750, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:1.0, aiSmartness:1.0},
+  {level:81, name:'Xaos Başlar',   stars:'🔥🔥',   coinReward:1620, aiDeckBlock:5, aiHandSize:6,  aiPassThreshold:4, aiDebuffChance:0.55,aiSmartness:0.70},
+  {level:82, name:'Tam Güc',       stars:'🔥🔥',   coinReward:1650, aiDeckBlock:5, aiHandSize:7,  aiPassThreshold:5, aiDebuffChance:0.60,aiSmartness:0.73},
+  {level:83, name:'Kosmik Xaos',   stars:'🔥🔥🌟', coinReward:1680, aiDeckBlock:5, aiHandSize:8,  aiPassThreshold:5, aiDebuffChance:0.65,aiSmartness:0.76},
+  {level:84, name:'Ultim8 V',      stars:'🔥🔥🌟', coinReward:1710, aiDeckBlock:5, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.70,aiSmartness:0.78},
+  {level:85, name:'Əbədi Döyüş',   stars:'🔥🔥🌟', coinReward:1740, aiDeckBlock:5, aiHandSize:9,  aiPassThreshold:6, aiDebuffChance:0.72,aiSmartness:0.80},
+  {level:86, name:'Tanrı Modu',    stars:'🔥🔥🌟', coinReward:1770, aiDeckBlock:5, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.75,aiSmartness:0.82},
+  {level:87, name:'Kosmik Tanrı',  stars:'🔥🔥🌟', coinReward:1800, aiDeckBlock:5, aiHandSize:10, aiPassThreshold:7, aiDebuffChance:0.78,aiSmartness:0.84},
+  {level:88, name:'Ultim8 VI',     stars:'🔥🔥🌟', coinReward:1830, aiDeckBlock:5, aiHandSize:11, aiPassThreshold:7, aiDebuffChance:0.80,aiSmartness:0.85},
+  {level:89, name:'Sonsuz Xaos',   stars:'🔥🔥🌟', coinReward:1860, aiDeckBlock:5, aiHandSize:11, aiPassThreshold:8, aiDebuffChance:0.82,aiSmartness:0.86},
+  {level:90, name:'Omnitrix VIII', stars:'🔥🔥🌟', coinReward:1890, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.84,aiSmartness:0.87},
+  {level:91, name:'Alien X Nəsli', stars:'💥',      coinReward:1920, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:8, aiDebuffChance:0.86,aiSmartness:0.88},
+  {level:92, name:'Way Big Nəsli', stars:'💥',      coinReward:1950, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.88,aiSmartness:0.89},
+  {level:93, name:'Ultim8 VII',    stars:'💥',      coinReward:1980, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.90,aiSmartness:0.90},
+  {level:94, name:'Kosmik Hökmdar',stars:'💥',      coinReward:2010, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.92,aiSmartness:0.91},
+  {level:95, name:'Sonsuz Güc',    stars:'💥',      coinReward:2040, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:9, aiDebuffChance:0.94,aiSmartness:0.92},
+  {level:96, name:'Ultim8 VIII',   stars:'💥💥',   coinReward:2070, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.95,aiSmartness:0.93},
+  {level:97, name:'Qalaktik Sonu', stars:'💥💥',   coinReward:2100, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.96,aiSmartness:0.94},
+  {level:98, name:'Əbədi Hökmdar', stars:'💥💥',   coinReward:2130, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.97,aiSmartness:0.95},
+  {level:99, name:'Omnitrix IX',   stars:'💥💥',   coinReward:2160, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:0.98,aiSmartness:0.97},
+  {level:100,name:'ALIEN X',       stars:'💥💥💥', coinReward:2190, aiDeckBlock:5, aiHandSize:12, aiPassThreshold:10,aiDebuffChance:1.0, aiSmartness:1.0},
 ];
 
 const LEVEL_AI_CARD_IDS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -1960,20 +1955,47 @@ function aiFindBestPlay(smartness) {
 function aiShouldPass(smartness, lvlCfg) {
   const pTot = sideTotal(GS.pRows);
   const aTot = sideTotal(GS.aiRows);
-  const gap = aTot - pTot;
+  const gap = aTot - pTot; // müsbət = AI önddədir
 
-  // Player pass etmişsə və biz önddəsə — pass et
-  if (GS.pPassed && gap > 0) return true;
-
-  // El boşdursa pass
+  // El boşdursa mütləq pass
   if (GS.aiHand.length === 0) return true;
 
-  // Çox önddəsə və player pass etməyibsə — ehtiyatla pass et
-  if (!GS.pPassed && gap > lvlCfg.aiPassThreshold && GS.aiHand.length > 3) {
-    // Smartness yüksəkdirsə daha az random pass edir (daha strateji)
-    const passChance = 0.5 - smartness * 0.35;
+  // Player pass etmişsə
+  if (GS.pPassed) {
+    // Biz önddəsəksə pass et — kartları növbəti rounda saxla
+    if (gap > 0) return true;
+    // Bərabər və ya geridəsəksə oynamağa davam et
+    return false;
+  }
+
+  // Player hələ oynayır — pass etmək üçün şərtlər:
+
+  // Əlimizdəki bütün kartların toplam potensialını hesabla
+  const aiHandPotential = GS.aiHand.reduce((s, c) => s + c.cur, 0);
+
+  // Rəqibin hələ oynaya biləcəyi potensialı təxmin et
+  // (player pass etməyib, deməli əlindəki kartlar var)
+  // Biz bunu bilmirik amma ehtiyatlı olaq
+
+  // Əgər biz çox önddəsəksə VƏ əlimizdəki bütün kartlar
+  // belə fərqi bağlamaq üçün kifayət deyilsə — pass et
+  // Yəni: gap > aiHandPotential * 2 (player kartlarını da nəzərə alaq)
+  if (gap > 0 && gap >= aiHandPotential * 1.5) {
+    // Smartness aşağıdırsa bu məntiqi daha az işlət
+    if (Math.random() < smartness * 0.7) return true;
+  }
+
+  // Əgər biz çox önddəsəksə VƏ player-in onu qapatması
+  // mümkün deyilsə — strateji pass (kartları saxla)
+  // Gap threshold-dan böyükdürsə VƏ əlimizdə çox kart varsa
+  // (çox kart = növbəti roundda işimizə yarayar)
+  if (gap > lvlCfg.aiPassThreshold * 1.5 && GS.aiHand.length >= 4) {
+    const passChance = Math.max(0, 0.3 - smartness * 0.25);
     if (Math.random() < passChance) return true;
   }
+
+  return false;
+}
 
   // Əlimizdə heç bir kart olmasa
   if (GS.aiHand.length === 0) return true;
@@ -2004,11 +2026,20 @@ async function runAiTurns() {
     playCard(best.card, false, best.rowType);
     await delay(120);
 
-    // Player pass etməyibsə bir kart atıb gözlə — player-in növbəsi
+   // Player pass etməyibsə bir kart atıb gözlə — player-in növbəsi
     if (!GS.pPassed) return;
 
-    // Player pass etmişsə: növbəti iterasiyada da atır (öz növbəsi qalır)
-    // Amma pass etmək lazımdırsa yuxarıdakı check tutur
+    // Player pass etmişsə: AI önddədirsə dərhal pass et, kartları saxla
+    if (GS.pPassed) {
+      const pT = sideTotal(GS.pRows);
+      const aT = sideTotal(GS.aiRows);
+      if (aT > pT) {
+        // Önddəyik, kartları növbəti rounda saxla
+        aiDoPass();
+        return;
+      }
+      // Geridəsəksə və ya bərabərsəksə oynamağa davam et
+    }
   }
 }
 
