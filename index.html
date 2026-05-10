@@ -1997,11 +1997,7 @@ function aiShouldPass(smartness, lvlCfg) {
   return false;
 }
 
-  // Əlimizdə heç bir kart olmasa
-  if (GS.aiHand.length === 0) return true;
 
-  return false;
-}
 
 async function runAiTurns() {
   if (GS.over || GS.aiPassed) { checkRoundEnd(); return; }
@@ -2447,14 +2443,14 @@ window.saveNickname=async function(){
   } catch(e) { err.textContent='Xəta baş verdi'; btn.disabled=false; btn.textContent='✓ TƏSDİQ ET'; }
 };
 
-function updateAuthBar(user,nick) {
+window.updateAuthBar = function(user,nick) {
   const btn=document.getElementById('authStatusBtn');
   const photoHTML=user?.photoURL?`<img class="auth-av" src="${user.photoURL}" referrerpolicy="no-referrer">`:'👤';
   btn.innerHTML=`${photoHTML} <span style="font-family:'Orbitron',monospace;font-size:9px;max-width:80px;overflow:hidden;text-overflow:ellipsis">${nick||'Oyunçu'}</span>`;
   document.getElementById('authSignoutBtn').style.display='inline-block';
 }
 
-function resetAuthBar() {
+window.resetAuthBar = function() {
   document.getElementById('authStatusBtn').innerHTML='G &nbsp;GİRİŞ ET';
   document.getElementById('authSignoutBtn').style.display='none';
 }
