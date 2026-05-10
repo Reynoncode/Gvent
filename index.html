@@ -702,11 +702,28 @@ const CARDS = [
 
 const SELL_PRICE = {common:12, rare:70, epic:210, legendary:1000};
 const BUY_PRICE  = {common:24, rare:140, epic:420, legendary:2000};
-const PACK_PRICE = {common:100, rare:200, epic:500};
+const PACK_PRICE = {common:100, rare:200, epic:500, common2:100, rare2:200, epic2:500, cosmic:2000, ultimate:2500};
 const PACK_ODDS  = {
-  common:{common:70,rare:25,epic:5,legendary:0},
-  rare:{common:50,rare:30,epic:18,legendary:2},
-  epic:{common:30,rare:30,epic:30,legendary:10}
+  common:   {common:70,rare:25,epic:5,legendary:0},
+  rare:     {common:50,rare:30,epic:18,legendary:2},
+  epic:     {common:30,rare:30,epic:30,legendary:10},
+  common2:  {common:70,rare:25,epic:5,legendary:0},
+  rare2:    {common:50,rare:30,epic:18,legendary:2},
+  epic2:    {common:30,rare:30,epic:30,legendary:10},
+  cosmic:   {common:0,rare:0,epic:90,legendary:10},
+  ultimate: {common:0,rare:0,epic:70,legendary:20,ultimate:10}
+};
+
+// Paket üzrə çıxa biləcək kart ID-ləri
+const PACK_CARD_POOL = {
+  common:   [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  rare:     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  epic:     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  common2:  [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
+  rare2:    [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
+  epic2:    [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,50],
+  cosmic:   [36,37,38,39,40,41,42],
+  ultimate: [43,44,45,46,47,48,49]
 };
 const RARITY_AZ = {common:'ADİ',rare:'NADİR',epic:'EPİK',legendary:'LEGENDƏRİ'};
 const ROWS = ['power','speed','light'];
@@ -939,11 +956,11 @@ function switchShopTab(tab) {
 function renderPacksTab() {
   const el = document.getElementById('shopInner');
   el.innerHTML = `
-    <div class="shop-section-title">PAKET MAĞAZASI</div>
+    <div class="shop-section-title">🟩 SERIYA 1 — KARTlar 1-20</div>
     <div class="pack-card pack-common" onclick="buyPack('common')">
       <div class="pack-icon pi-common">🟢<div class="pack-icon-shine"></div></div>
       <div class="pack-info">
-        <div class="pack-name cn">ADİ PAKET</div>
+        <div class="pack-name cn">ADİ PAKET S1</div>
         <div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div>
         <div class="pack-price">🪙 ${PACK_PRICE.common}</div>
       </div>
@@ -952,7 +969,7 @@ function renderPacksTab() {
     <div class="pack-card pack-rare" onclick="buyPack('rare')">
       <div class="pack-icon pi-rare">🔵<div class="pack-icon-shine"></div></div>
       <div class="pack-info">
-        <div class="pack-name rn">NADİR PAKET</div>
+        <div class="pack-name rn">NADİR PAKET S1</div>
         <div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div>
         <div class="pack-price">🪙 ${PACK_PRICE.rare}</div>
       </div>
@@ -961,12 +978,62 @@ function renderPacksTab() {
     <div class="pack-card pack-epic" onclick="buyPack('epic')">
       <div class="pack-icon pi-epic">🟣<div class="pack-icon-shine"></div></div>
       <div class="pack-info">
-        <div class="pack-name en">EPİK PAKET</div>
+        <div class="pack-name en">EPİK PAKET S1</div>
         <div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div>
         <div class="pack-price">🪙 ${PACK_PRICE.epic}</div>
       </div>
       <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic')">AL</button>
     </div>
+
+    <div class="shop-section-title" style="margin-top:8px">🟦 SERIYA 2 — KARTlar 21-36 + 50</div>
+    <div class="pack-card pack-common" onclick="buyPack('common2')">
+      <div class="pack-icon pi-common">🟢<div class="pack-icon-shine"></div></div>
+      <div class="pack-info">
+        <div class="pack-name cn">ADİ PAKET S2</div>
+        <div class="pack-odds">ADİ <span>70%</span> · NADİR <span>25%</span> · EPİK <span>5%</span></div>
+        <div class="pack-price">🪙 ${PACK_PRICE.common2}</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('common2')">AL</button>
+    </div>
+    <div class="pack-card pack-rare" onclick="buyPack('rare2')">
+      <div class="pack-icon pi-rare">🔵<div class="pack-icon-shine"></div></div>
+      <div class="pack-info">
+        <div class="pack-name rn">NADİR PAKET S2</div>
+        <div class="pack-odds">ADİ <span>50%</span> · NADİR <span>30%</span> · EPİK <span>18%</span> · LEG <span>2%</span></div>
+        <div class="pack-price">🪙 ${PACK_PRICE.rare2}</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('rare2')">AL</button>
+    </div>
+    <div class="pack-card pack-epic" onclick="buyPack('epic2')">
+      <div class="pack-icon pi-epic">🟣<div class="pack-icon-shine"></div></div>
+      <div class="pack-info">
+        <div class="pack-name en">EPİK PAKET S2</div>
+        <div class="pack-odds">ADİ <span>30%</span> · NADİR <span>30%</span> · EPİK <span>30%</span> · LEG <span>10%</span></div>
+        <div class="pack-price">🪙 ${PACK_PRICE.epic2}</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('epic2')">AL</button>
+    </div>
+
+    <div class="shop-section-title" style="margin-top:8px">🌌 XÜSUSİ PAKETLƏR</div>
+    <div class="pack-card pack-epic" onclick="buyPack('cosmic')">
+      <div class="pack-icon pi-epic">🌌<div class="pack-icon-shine"></div></div>
+      <div class="pack-info">
+        <div class="pack-name en">COSMİC PAKET</div>
+        <div class="pack-odds">EPİK <span>90%</span> · Xüsusi <span>10%</span></div>
+        <div class="pack-price">🪙 ${PACK_PRICE.cosmic}</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('cosmic')">AL</button>
+    </div>
+    <div class="pack-card pack-epic" onclick="buyPack('ultimate')" style="border-color:#ff4400;">
+      <div class="pack-icon pi-epic" style="border-color:#ff4400;">⚡<div class="pack-icon-shine"></div></div>
+      <div class="pack-info">
+        <div class="pack-name en" style="color:#ff4400;">ULTIMATE PAKET</div>
+        <div class="pack-odds">EPİK <span>70%</span> · LEGEND <span>20%</span> · ULT <span>10%</span></div>
+        <div class="pack-price">🪙 ${PACK_PRICE.ultimate}</div>
+      </div>
+      <button class="pack-buy-btn" onclick="event.stopPropagation();buyPack('ultimate')" style="color:#ff4400;border-color:#ff4400;">AL</button>
+    </div>
+
     <div class="shop-section-title" style="margin-top:4px">STOKDAKI PAKETLƏR</div>
     <div class="stocked-packs" id="stockedPacks"></div>`;
   renderStockedPacks();
@@ -1039,7 +1106,16 @@ function buyPack(type) {
 function renderStockedPacks() {
   const el = document.getElementById('stockedPacks');
   if (!el) return;
-  const types = [{key:'common',label:'ADİ PAKET',cls:'common'},{key:'rare',label:'NADİR PAKET',cls:'rare'},{key:'epic',label:'EPİK PAKET',cls:'epic'}];
+const types = [
+  {key:'common',label:'ADİ PAKET S1',cls:'common'},
+  {key:'rare',label:'NADİR PAKET S1',cls:'rare'},
+  {key:'epic',label:'EPİK PAKET S1',cls:'epic'},
+  {key:'common2',label:'ADİ PAKET S2',cls:'common'},
+  {key:'rare2',label:'NADİR PAKET S2',cls:'rare'},
+  {key:'epic2',label:'EPİK PAKET S2',cls:'epic'},
+  {key:'cosmic',label:'COSMİC PAKET',cls:'epic'},
+  {key:'ultimate',label:'ULTIMATE PAKET',cls:'epic'},
+];
   const rows = types.filter(t => (packetStock[t.key] || 0) > 0);
   if (!rows.length) { el.innerHTML = '<div style="font-size:11px;color:var(--text-dim);padding:8px 0">Heç bir paket yoxdur</div>'; return; }
   el.innerHTML = rows.map(t => `
@@ -1107,16 +1183,30 @@ function rollRarity(pt) {
 }
 
 function generatePack(pt) {
-  const ORDER = {common:0,rare:1,epic:2,legendary:3};
+  const ORDER = {common:0,rare:1,epic:2,legendary:3,ultimate:4};
   const results = [];
+  const allowedIds = PACK_CARD_POOL[pt] || CARDS.map(c=>c.id);
+  const allowedCards = CARDS.filter(c => allowedIds.includes(c.id));
+
   for (let i = 0; i < 5; i++) {
-    const rarity = rollRarity(pt);
-    const pool = CARDS.filter(c => c.rarity === rarity);
-    results.push(pool[Math.floor(Math.random() * pool.length)]);
+    if (pt === 'ultimate' && Math.random() < 0.10) {
+      // 10% ultimate kartlar (ID 43-49)
+      const ultCards = CARDS.filter(c => [43,44,45,46,47,48,49].includes(c.id));
+      results.push(ultCards[Math.floor(Math.random() * ultCards.length)]);
+    } else if (pt === 'cosmic' && Math.random() < 0.10) {
+      // 10% cosmic xüsusi kartlar (ID 36-42)
+      const cosmicSpec = CARDS.filter(c => [36,37,38,39,40,41,42].includes(c.id));
+      results.push(cosmicSpec[Math.floor(Math.random() * cosmicSpec.length)]);
+    } else {
+      const rarity = rollRarity(pt);
+      const pool = allowedCards.filter(c => c.rarity === rarity);
+      const fallback = allowedCards;
+      const chosen = pool.length ? pool : fallback;
+      results.push(chosen[Math.floor(Math.random() * chosen.length)]);
+    }
   }
   return results.sort((a,b) => ORDER[a.rarity] - ORDER[b.rarity]);
 }
-
 function openPack(type) {
   if (!packetStock[type] || packetStock[type] <= 0) return;
   currentOpenPackType = type;
