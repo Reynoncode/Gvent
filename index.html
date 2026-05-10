@@ -16,8 +16,7 @@
   --row-cosmic:#ffffff;
   --enemy:#ff3a4a;--enemy-dim:rgba(255,58,74,0.12);--enemy-glow:rgba(255,58,74,0.35);
   --card-w:68px;--card-h:96px;--card-w-sm:56px;--card-h-sm:78px;
-  --rarity-common:#7a9a80;--rarity-rare:#4a8aff;--rarity-epic:#aa44ff;--rarity-legendary:#ffaa00;
-  --coin:#ffd700;
+--rarity-common:#7a9a80;--rarity-rare:#4a8aff;--rarity-epic:#aa44ff;--rarity-legendary:#ffaa00;--rarity-ultimate:#ff2200;  --coin:#ffd700;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Rajdhani',sans-serif;color:var(--text);}
@@ -171,6 +170,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .card.rarity-epic{border-color:var(--rarity-epic);box-shadow:0 0 12px rgba(170,68,255,0.3);}
 .card.rarity-legendary{border-color:var(--rarity-legendary);animation:legendGlow 2s ease-in-out infinite;}
 @keyframes legendGlow{0%,100%{box-shadow:0 0 18px rgba(255,170,0,0.4),0 0 6px rgba(255,170,0,0.2)}50%{box-shadow:0 0 36px rgba(255,170,0,0.7),0 0 14px rgba(255,170,0,0.4)}}
+.card.rarity-ultimate{border-color:var(--rarity-ultimate);animation:ultimateGlow 1.5s ease-in-out infinite;}
+@keyframes ultimateGlow{0%,100%{box-shadow:0 0 20px rgba(255,34,0,0.5),0 0 8px rgba(255,34,0,0.3)}50%{box-shadow:0 0 40px rgba(255,34,0,0.9),0 0 18px rgba(255,34,0,0.6)}}
 .card-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#040a05;}
 .card-img img{width:100%;height:100%;object-fit:contain;display:block;}
 .card-back{width:var(--card-w-sm);height:var(--card-h-sm);border-radius:5px;border:1.5px solid var(--enemy-dim);background:var(--enemy-dim);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;color:var(--enemy);}
@@ -204,6 +205,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .badge-rare{color:var(--rarity-rare);border:1px solid var(--rarity-rare);}
 .badge-epic{color:var(--rarity-epic);border:1px solid var(--rarity-epic);}
 .badge-legendary{color:var(--rarity-legendary);border:1px solid var(--rarity-legendary);}
+.badge-ultimate{color:var(--rarity-ultimate);border:1px solid var(--rarity-ultimate);}
+.col-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
+.market-item.rarity-ultimate{border-color:var(--rarity-ultimate);}
+.reveal-card.rarity-ultimate{border-color:var(--rarity-ultimate);box-shadow:0 0 30px rgba(255,34,0,0.7);animation:ultimateGlow 1.5s ease-in-out infinite;}
+.reveal-card-rarity.rarity-ultimate{color:var(--rarity-ultimate);background:rgba(255,34,0,0.18);border:1px solid var(--rarity-ultimate);}
+.card-mini.rarity-ultimate{border-color:var(--rarity-ultimate);}
 .col-stack-badge{position:absolute;top:4px;right:4px;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;background:rgba(0,0,0,0.8);color:var(--green);padding:1px 5px;border-radius:3px;border:1px solid var(--green);line-height:1.4;}
 .col-sell-btn{width:100%;margin-top:2px;font-family:'Orbitron',monospace;font-size:7px;letter-spacing:0.05em;background:transparent;border:1px solid var(--border2);color:var(--text-dim);padding:4px 0;cursor:pointer;transition:all 0.15s;border-radius:2px;}
 .col-sell-btn:active{border-color:var(--enemy);color:var(--enemy);background:rgba(255,58,74,0.08);}
@@ -678,30 +685,30 @@ const CARDS = [
   {id:28,name:'GOOP',type:'power',power:5,rarity:'rare',abilityFn:'fourarms'},
   {id:29,name:'SWAMPFIRE',type:'light',power:9,rarity:'epic',abilityFn:'swampfire'},
   {id:30,name:'ALIEN X',type:'cosmic',power:14,rarity:'legendary',abilityFn:'alienx'},
-    {id:31,name:'ARMODRILLO',type:'power',power:7,rarity:'rare',abilityFn:'buffRow'},
-  {id:32,name:'NANOMECH',type:'light',power:2,rarity:'common',abilityFn:'greymatter'},
-  {id:33,name:'FASTTRACK',type:'speed',power:3,rarity:'common',abilityFn:'xlr8'},
-  {id:34,name:'CHAMALIEN',type:'light',power:3,rarity:'common',abilityFn:null},
-  {id:35,name:'CLOCKWORK',type:'cosmic',power:5,rarity:'rare',abilityFn:'selfBuff1'},
-  {id:36,name:'TERRASPIN',type:'speed',power:6,rarity:'rare',abilityFn:'buffRow'},
-  {id:37,name:'NRG',type:'power',power:7,rarity:'rare',abilityFn:'selfBuff1'},
-  {id:38,name:'WATER HAZARD',type:'light',power:8,rarity:'rare',abilityFn:'buffRow'},
-  {id:39,name:'AMPFEBIAN',type:'cosmic',power:9,rarity:'epic',abilityFn:'frankenstrike'},
+  {id:31,name:'ARMODRILLO',type:'power',power:7,rarity:'epic',abilityFn:'buffRow'},
+  {id:32,name:'NANOMECH',type:'light',power:2,rarity:'rare',abilityFn:'greymatter'},
+  {id:33,name:'FASTTRACK',type:'speed',power:3,rarity:'rare',abilityFn:'xlr8'},
+  {id:34,name:'CHAMALIEN',type:'light',power:3,rarity:'epic',abilityFn:null},
+  {id:35,name:'CLOCKWORK',type:'cosmic',power:5,rarity:'legendary',abilityFn:'selfBuff1'},
+  {id:36,name:'TERRASPIN',type:'speed',power:6,rarity:'epic',abilityFn:'buffRow'},
+  {id:37,name:'NRG',type:'power',power:7,rarity:'epic',abilityFn:'selfBuff1'},
+  {id:38,name:'WATER HAZARD',type:'light',power:8,rarity:'epic',abilityFn:'buffRow'},
+  {id:39,name:'AMPFEBIAN',type:'cosmic',power:9,rarity:'legendary',abilityFn:'frankenstrike'},
   {id:40,name:'RATH',type:'power',power:10,rarity:'epic',abilityFn:'fourarms'},
   {id:41,name:'LODESTAR',type:'cosmic',power:8,rarity:'epic',abilityFn:'frankenstrike'},
-  {id:42,name:'FEEDBACK',type:'cosmic',power:10,rarity:'epic',abilityFn:'greymatter'},
-  {id:43,name:'ECHO ECHO (ULT)',type:'speed',power:8,rarity:'epic',abilityFn:'blitzwolfer'},
-  {id:44,name:'WILDMUTT (ULT)',type:'speed',power:8,rarity:'epic',abilityFn:'snareoh'},
-  {id:45,name:'BIG CHILL (ULT)',type:'light',power:8,rarity:'legendary',abilityFn:'swampfire'},
-  {id:46,name:'CANNONBOLT (ULT)',type:'speed',power:10,rarity:'legendary',abilityFn:'buffRow'},
-  {id:47,name:'SPIDERMONKEY (ULT)',type:'power',power:9,rarity:'legendary',abilityFn:'blitzwolfer'},
-  {id:48,name:'SWAMPFIRE (ULT)',type:'light',power:12,rarity:'legendary',abilityFn:'swampfire'},
-  {id:49,name:'HUMUNGOUSAUR (ULT)',type:'power',power:12,rarity:'legendary',abilityFn:'snareoh'},
-  {id:50,name:'WAY BIG (ULT)',type:'cosmic',power:18,rarity:'legendary',abilityFn:'alienx'},
+  {id:42,name:'FEEDBACK',type:'cosmic',power:10,rarity:'legendary',abilityFn:'greymatter'},
+  {id:43,name:'ECHO ECHO (ULT)',type:'speed',power:8,rarity:'ultimate',abilityFn:'blitzwolfer'},
+  {id:44,name:'WILDMUTT (ULT)',type:'speed',power:8,rarity:'ultimate',abilityFn:'snareoh'},
+  {id:45,name:'BIG CHILL (ULT)',type:'light',power:8,rarity:'ultimate',abilityFn:'swampfire'},
+  {id:46,name:'CANNONBOLT (ULT)',type:'speed',power:10,rarity:'ultimate',abilityFn:'buffRow'},
+  {id:47,name:'SPIDERMONKEY (ULT)',type:'power',power:9,rarity:'ultimate',abilityFn:'blitzwolfer'},
+  {id:48,name:'SWAMPFIRE (ULT)',type:'light',power:12,rarity:'ultimate',abilityFn:'swampfire'},
+  {id:49,name:'HUMUNGOUSAUR (ULT)',type:'power',power:12,rarity:'ultimate',abilityFn:'snareoh'},
+  {id:50,name:'WAY BIG (ULT)',type:'cosmic',power:18,rarity:'ultimate',abilityFn:'alienx'},
 ];
 
-const SELL_PRICE = {common:12, rare:70, epic:210, legendary:1000};
-const BUY_PRICE  = {common:24, rare:140, epic:420, legendary:2000};
+const SELL_PRICE = {common:12, rare:70, epic:210, legendary:1000, ultimate:3000};
+const BUY_PRICE  = {common:24, rare:140, epic:420, legendary:2000, ultimate:6000};
 const PACK_PRICE = {common:100, rare:200, epic:500, common2:100, rare2:200, epic2:500, cosmic:2000, ultimate:2500};
 const PACK_ODDS  = {
   common:   {common:70,rare:25,epic:5,legendary:0},
@@ -725,7 +732,7 @@ const PACK_CARD_POOL = {
   cosmic:   [36,37,38,39,40,41,42],
   ultimate: [43,44,45,46,47,48,49]
 };
-const RARITY_AZ = {common:'ADİ',rare:'NADİR',epic:'EPİK',legendary:'LEGENDƏRİ'};
+const RARITY_AZ = {common:'ADİ',rare:'NADİR',epic:'EPİK',legendary:'LEGENDƏRİ',ultimate:'ULTIMATE'};
 const ROWS = ['power','speed','light'];
 
 // ═══════════════════════════════════
