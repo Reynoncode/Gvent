@@ -251,7 +251,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ra
 .shop-inner{flex:1;overflow-y:auto;padding:12px;padding-bottom:70px;display:flex;flex-direction:column;gap:12px;width:100%;max-width:500px;}
 .shop-section-title{font-family:'Orbitron',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:2px;}
 /* ════════════════ SHOP — PACK CARDS (YENİ) ════════════════ */
-.pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));display:flex;align-items:stretch;gap:0;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;min-height:120px;}
+.pack-card{border-radius:10px;border:1.5px solid var(--border2);background:linear-gradient(145deg,var(--bg2),var(--bg3));display:flex;align-items:stretch;gap:0;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;min-height:144px;}
 .pack-card:active{transform:scale(0.98);}
 .pack-card.pack-common{border-color:var(--rarity-common);}
 .pack-card.pack-rare{border-color:var(--rarity-rare);box-shadow:0 0 12px rgba(74,138,255,0.15);}
@@ -1375,7 +1375,7 @@ function renderPacksTab() {
     </div>
 
     <div class="pack-card pack-epic" onclick="buyPack('epic2')">
-      <div class="pack-icon pi-epic" style="padding:0;position:relative">${EPIC2_ART}</div>
+    <div class="pack-icon pi-epic" style="padding:0;overflow:visible;min-width:100px">${buildPackVisual('EPİK','S2 · PAKET','#aa44ff')}</div>
       <div class="pack-right">
         <div>
           <div class="pack-name en">EPİK PAKET S2</div>
