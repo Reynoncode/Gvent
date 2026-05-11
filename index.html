@@ -1398,7 +1398,7 @@ el.innerHTML = `
     <div class="shop-section-title" style="margin-top:8px">🌌 XÜSUSİ PAKETLƏR</div>
 
     <div class="pack-card pack-epic" onclick="buyPack('cosmic')">
-      <div class="pack-icon pi-epic" style="padding:0;overflow:visible;min-width:100px">${buildPackVisual('AGGREGOR','COLLECTİON','#00ccff', B64_COSMIC)}</div>
+      <div class="pack-icon pi-epic" style="padding:0;overflow:visible;min-width:50px">${buildPackVisual('AGGREGOR','COLLECTİON','#00ccff', B64_COSMIC)}</div>
       <div class="pack-right">
         <div>
           <div class="pack-name en">COSMİC PAKET</div>
@@ -1589,7 +1589,7 @@ function openPack(type) {
   document.getElementById('packOpenStep2').style.display='none';
   document.getElementById('revealCardsRow').innerHTML='';
   document.getElementById('btnCollect').style.display='none';
-  const names={common:'ADİ PAKET',rare:'NADİR PAKET',epic:'EPİK PAKET',common2:'ADİ PAKET S2',rare2:'NADİR PAKET S2',epic2:'EPİK PAKET S2',cosmic:'COSMİC PAKET',ultimate:'ULTIMATE PAKET'};
+  const names={common:'ADİ PAKET',rare:'NADİR PAKET',epic:'EPİC PAKET',common2:'ADİ PAKET S2',rare2:'NADİR PAKET S2',epic2:'EPİK PAKET S2',cosmic:'COSMİC PAKET',ultimate:'ULTIMATE PAKET'};
   const emojis={common:'🟢',rare:'🔵',epic:'🟣',common2:'🟢',rare2:'🔵',epic2:'🟣',cosmic:'🌌',ultimate:'⚡'};
   document.getElementById('packOpenLabel').textContent=names[type]||'PAKET';
   const burst=document.getElementById('packBurst');
